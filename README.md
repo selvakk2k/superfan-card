@@ -25,7 +25,7 @@ A premium custom Lovelace card for the [Superfan IR integration](https://github.
 ### HACS (recommended)
 
 1. Open HACS → Frontend → ⋮ → Custom repositories
-2. Add `https://github.com/selvakk2k/superfan-card` with category **Lovelace**
+2. Add `https://github.com/selvakk2k/superfan-card` with category **Dashboard**
 3. Install **Superfan Card**
 
 ### Manual

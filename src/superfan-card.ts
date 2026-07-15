@@ -59,6 +59,16 @@ export class SuperfanCard extends LitElement {
     });
   }
 
+  private _getPresetIcon(preset: string): string {
+    const p = preset.toLowerCase();
+    if (p.includes('breeze')) return 'mdi:weather-windy';
+    if (p.includes('speed')) return 'mdi:swap-vertical';
+    if (p.includes('eco')) return 'mdi:leaf';
+    if (p.includes('wellness')) return 'mdi:heart-pulse';
+    if (p.includes('ac')) return 'mdi:air-conditioner';
+    return 'mdi:auto-fix';
+  }
+
   render() {
     if (!this._config || !this.hass) return html``;
 
@@ -76,6 +86,10 @@ export class SuperfanCard extends LitElement {
     // Dynamically determine speed count from percentage_step
     const percentageStep = stateObj.attributes.percentage_step || 100;
     const speedCount = Math.round(100 / percentageStep);
+
+    // Split presets between modes and timers
+    const modes = presetModes.filter((p: string) => !p.toLowerCase().includes('timer') && !p.toLowerCase().includes('hr') && !p.toLowerCase().includes('hour'));
+    const timers = presetModes.filter((p: string) => p.toLowerCase().includes('timer') || p.toLowerCase().includes('hr') || p.toLowerCase().includes('hour'));
 
     return html`
       <ha-card style="${this._config.accent_color ? `--miraie-accent: ${this._config.accent_color};` : ''}">
@@ -143,23 +157,40 @@ export class SuperfanCard extends LitElement {
           </div>
 
           <!-- Right Column: Presets -->
-          <div class="presets-container">
-            ${presetModes.length > 0 ? html`
-              <div class="section-label">PRESETS</div>
+          <div class="presets-container" style="display: flex; flex-direction: column; gap: 12px;">
+            ${modes.length > 0 ? html`
+              <div class="section-label">Modes</div>
               <div class="pill-grid">
-                ${presetModes.map((preset: string) => html`
+                ${modes.map((preset: string) => html`
                   <button 
                     class="pill-btn ${presetMode === preset ? 'active' : ''}" 
                     @click=${() => this._setPreset(preset)}
                   >
-                    <ha-icon icon="mdi:auto-fix"></ha-icon>
+                    <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
                     <span>${preset}</span>
                   </button>
                 `)}
               </div>
-            ` : html`
-              <div class="section-label">NO PRESETS AVAILABLE</div>
-            `}
+            ` : ''}
+
+            ${timers.length > 0 ? html`
+              <div class="section-label" style="margin-top: 4px;">Timers</div>
+              <div class="pill-grid">
+                ${timers.map((preset: string) => html`
+                  <button 
+                    class="pill-btn ${presetMode === preset ? 'active' : ''}" 
+                    @click=${() => this._setPreset(preset)}
+                  >
+                    <ha-icon icon="mdi:timer-outline"></ha-icon>
+                    <span>${preset}</span>
+                  </button>
+                `)}
+              </div>
+            ` : ''}
+
+            ${presetModes.length === 0 ? html`
+              <div class="section-label">No Presets Available</div>
+            ` : ''}
           </div>
         </div>
       </ha-card>
