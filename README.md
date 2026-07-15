@@ -18,7 +18,7 @@ A premium custom Lovelace card for the [Superfan IR integration](https://github.
 
 | T10 (5-speed) | T12 (3-speed) |
 |---|---|
-| Fan icon + numeric label for each speed | High / Medium / Low with fan-speed icons |
+| <img src="images/remote_t10.png" width="200" alt="T10 Remote"/> | <img src="images/remote_t12_6.png" width="200" alt="T12 Remote"/> |
 
 ## Installation
 
