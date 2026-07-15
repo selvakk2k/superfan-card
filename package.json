@@ -1,0 +1,29 @@
+{
+  "name": "superfan-card",
+  "version": "1.0.0",
+  "description": "A premium custom Lovelace card for the Superfan IR integration.",
+  "type": "module",
+  "main": "dist/superfan-card.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/selvakk2k/superfan-card"
+  },
+  "author": "selvakk2k",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "lit": "^3.1.0",
+    "rollup": "^4.9.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "tslib": "^2.6.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "custom-card-helpers": "^1.9.0"
+  }
+}
