@@ -69,4 +69,4 @@ accent_color: "#03a9f4"   # optional, overrides theme accent
 
 ## License
 
-MIT
+Licensed under the **MIT License**. See the `LICENSE` file for the full license text.
