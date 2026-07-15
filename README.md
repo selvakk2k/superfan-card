@@ -18,7 +18,8 @@ A premium custom Lovelace card for the [Superfan IR integration](https://github.
 
 | T10 (5-speed) | T12 (3-speed) |
 |---|---|
-| <img src="images/remote_t10.png" width="200" alt="T10 Remote"/> | <img src="images/remote_t12_6.png" width="200" alt="T12 Remote"/> |
+| <img src="images/card_t10.png" width="300" alt="T10 Card"/> | <img src="images/card_t12.png" width="300" alt="T12 Card"/> |
+| <img src="images/remote_t10.png" width="150" alt="T10 Remote"/> | <img src="images/remote_t12_6.png" width="150" alt="T12 Remote"/> |
 
 ## Installation
 
