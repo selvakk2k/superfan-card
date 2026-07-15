@@ -49,7 +49,7 @@ Add via the card picker or paste manually:
 
 ```yaml
 type: custom:superfan-card
-entity: fan.room_2_fan
+entity: fan.superfan
 name: Superfan T10        # optional
 accent_color: "#03a9f4"   # optional, overrides theme accent
 ```
