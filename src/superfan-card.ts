@@ -48,8 +48,8 @@ export class SuperfanCard extends LitElement {
     });
   }
 
-  private _turnOff() {
-    this.hass.callService('fan', 'turn_off', { entity_id: this._config.entity });
+  private _toggle() {
+    this.hass.callService('fan', 'toggle', { entity_id: this._config.entity });
   }
 
   private _setPreset(preset: string) {
@@ -116,7 +116,7 @@ export class SuperfanCard extends LitElement {
             </div>
             <div class="subtitle">Fan: ${isOn ? (presetMode || (percentage + '%')) : 'off'}</div>
           </div>
-          <button class="power-btn ${isOn ? 'on' : ''}" @click=${this._turnOff}>
+          <button class="power-btn ${isOn ? 'on' : ''}" @click=${this._toggle}>
             <ha-icon icon="mdi:power"></ha-icon>
           </button>
         </div>
