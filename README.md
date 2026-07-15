@@ -1,6 +1,7 @@
 # superfan-card
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
+[![Version](https://img.shields.io/github/v/release/selvakk2k/superfan-card)](https://github.com/selvakk2k/superfan-card/releases)
 
 A premium custom Lovelace card for the [Superfan IR integration](https://github.com/selvakk2k/superfan_ir).
 
