@@ -91,8 +91,23 @@ export class SuperfanCard extends LitElement {
     const modes = presetModes.filter((p: string) => !p.toLowerCase().includes('timer') && !p.toLowerCase().includes('hr') && !p.toLowerCase().includes('hour'));
     const timers = presetModes.filter((p: string) => p.toLowerCase().includes('timer') || p.toLowerCase().includes('hr') || p.toLowerCase().includes('hour'));
 
+    /* Custom accent color applied as CSS var via inline style */
+    let accentStyle = '';
+    if (this._config.accent_color) {
+      if (Array.isArray(this._config.accent_color)) {
+        accentStyle = `rgb(${this._config.accent_color.join(',')})`;
+      } else if (typeof this._config.accent_color === 'string') {
+        const c = this._config.accent_color.toLowerCase();
+        if (c === 'primary') accentStyle = 'var(--primary-color)';
+        else if (c === 'accent') accentStyle = 'var(--accent-color)';
+        else if (/^[a-z-]+$/.test(c)) accentStyle = `var(--${c}-color, ${c})`;
+        else accentStyle = c;
+      }
+    }
+    const cardStyle = accentStyle ? `--miraie-accent: ${accentStyle};` : '';
+
     return html`
-      <ha-card style="${this._config.accent_color ? `--miraie-accent: ${this._config.accent_color};` : ''}">
+      <ha-card style="${cardStyle}">
         <div class="header">
           <div class="header-left">
             <div class="title-row">
