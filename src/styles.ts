@@ -193,18 +193,19 @@ export const styles = css`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--m-surface-hover);
-    border: none;
-    color: var(--m-text);
+    background: transparent;
+    border: 1px solid var(--m-border);
+    color: var(--m-text-2);
     cursor: pointer;
     transition: 0.2s;
     outline: none;
   }
   .compact-icon-btn:hover {
-    background: var(--m-surface);
+    background: rgba(128, 128, 128, 0.15);
   }
   .compact-icon-btn.on {
     background: var(--m-active-bg);
+    border-color: var(--m-active-border);
     color: var(--miraie-accent);
   }
   .compact-title {
@@ -242,8 +243,8 @@ export const styles = css`
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background: var(--m-surface-hover);
-    border: none;
+    background: transparent;
+    border: 1px solid var(--m-border);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,7 +254,7 @@ export const styles = css`
     outline: none;
   }
   .compact-action-btn:hover:not(:disabled) {
-    background: var(--m-surface);
+    background: rgba(128, 128, 128, 0.15);
   }
   .compact-action-btn:disabled {
     opacity: 0.3;
