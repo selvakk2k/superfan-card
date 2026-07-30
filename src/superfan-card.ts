@@ -237,15 +237,21 @@ export class SuperfanCard extends LitElement {
             ${modes.length > 0 ? html`
               <div class="section-label">Modes</div>
               <div class="pill-grid">
-                ${modes.map((preset: string) => html`
-                  <button 
-                    class="pill-btn ${presetMode === preset ? 'active' : ''}" 
-                    @click=${() => this._setPreset(preset)}
-                  >
-                    <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
-                    <span>${preset}</span>
-                  </button>
-                `)}
+                ${modes.map((preset: string) => {
+                  const isSpeedAdjust = preset.toLowerCase().includes('speed adjust');
+                  const isRealPresetActive = Boolean(presetMode && presetMode !== 'none' && !presetMode.toLowerCase().includes('speed adjust'));
+                  return html`
+                    <button 
+                      class="pill-btn ${presetMode === preset ? 'active' : ''}" 
+                      ?disabled=${isSpeedAdjust && isRealPresetActive}
+                      style="${isSpeedAdjust && isRealPresetActive ? 'opacity: 0.5;' : ''}"
+                      @click=${() => this._setPreset(preset)}
+                    >
+                      <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
+                      <span>${preset}</span>
+                    </button>
+                  `;
+                })}
               </div>
             ` : ''}
 
@@ -303,7 +309,7 @@ export class SuperfanCard extends LitElement {
           <input type="range" class="gh-slider" 
             min="0" max="100" step="1" 
             .value="${percentage}" 
-            ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')}
+            ?disabled=${!isOn}
             @change=${(e: Event) => {
               const target = e.target as HTMLInputElement;
               let val = parseInt(target.value, 10);
@@ -327,12 +333,21 @@ export class SuperfanCard extends LitElement {
 
         ${modes.length > 0 || timers.length > 0 ? html`
           <div class="gh-pill-grid">
-            ${modes.map((preset: string) => html`
-              <button class="gh-pill ${presetMode === preset ? 'active' : ''}" @click=${() => this._setPreset(preset)}>
-                <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
-                <span>${preset}</span>
-              </button>
-            `)}
+            ${modes.map((preset: string) => {
+              const isSpeedAdjust = preset.toLowerCase().includes('speed adjust');
+              const isRealPresetActive = Boolean(presetMode && presetMode !== 'none' && !presetMode.toLowerCase().includes('speed adjust'));
+              return html`
+                <button 
+                  class="gh-pill ${presetMode === preset ? 'active' : ''}" 
+                  ?disabled=${isSpeedAdjust && isRealPresetActive}
+                  style="${isSpeedAdjust && isRealPresetActive ? 'opacity: 0.5;' : ''}"
+                  @click=${() => this._setPreset(preset)}
+                >
+                  <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
+                  <span>${preset}</span>
+                </button>
+              `;
+            })}
             ${timers.map((preset: string) => html`
               <button class="gh-pill ${presetMode === preset ? 'active' : ''}" @click=${() => this._setPreset(preset)}>
                 <ha-icon icon="mdi:timer-outline"></ha-icon>
@@ -362,11 +377,11 @@ export class SuperfanCard extends LitElement {
         </div>
 
         <div class="compact-footer">
-          <button class="compact-action-btn" ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
+          <button class="compact-action-btn" ?disabled=${!isOn} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
             <ha-icon icon="mdi:minus"></ha-icon>
           </button>
           <div class="compact-subtitle">Speed</div>
-          <button class="compact-action-btn" ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
+          <button class="compact-action-btn" ?disabled=${!isOn} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
             <ha-icon icon="mdi:plus"></ha-icon>
           </button>
         </div>
