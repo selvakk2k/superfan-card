@@ -5,6 +5,7 @@ export interface SuperfanCardConfig {
   show_icon?: boolean;
   theme?: string;
   layout?: string;
+  full_layout?: string;
   accent_color?: string;
   main_color?: string;
 }
