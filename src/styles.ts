@@ -167,4 +167,105 @@ export const styles = css`
     color: var(--miraie-accent);
   }
   .pill-btn ha-icon { --mdc-icon-size: 18px; }
+
+  /* ──────────────────────────────────────────────────────────
+     Compact View (Google Home Style)
+     ────────────────────────────────────────────────────────── */
+  .compact-card {
+    cursor: pointer;
+    transition: background 0.2s;
+    background: var(--m-bg);
+    border-radius: 28px;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+  .compact-card:hover {
+    background: var(--m-surface-hover);
+  }
+  .compact-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 12px 0 12px;
+  }
+  .compact-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--m-border);
+    color: var(--m-text-2);
+    cursor: pointer;
+    transition: 0.2s;
+    outline: none;
+  }
+  .compact-icon-btn:hover {
+    background: var(--m-surface);
+  }
+  .compact-icon-btn.on {
+    background: var(--m-active-bg);
+    border-color: var(--m-active-border);
+    color: var(--miraie-accent);
+  }
+  .compact-title {
+    font-weight: 500;
+    font-size: 1rem;
+    flex: 1;
+    margin-left: 4px;
+    color: var(--m-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .compact-chevron {
+    color: var(--m-text-2);
+    opacity: 0.5;
+  }
+  .compact-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+  }
+  .compact-value {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--m-text);
+  }
+  .compact-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 12px 12px;
+  }
+  .compact-action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: transparent;
+    border: 1px solid var(--m-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--m-text);
+    cursor: pointer;
+    transition: 0.2s;
+    outline: none;
+  }
+  .compact-action-btn:hover:not(:disabled) {
+    background: var(--m-surface);
+  }
+  .compact-action-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  .compact-subtitle {
+    color: var(--m-text-2);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
 `;
