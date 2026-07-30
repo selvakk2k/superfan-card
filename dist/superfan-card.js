@@ -215,9 +215,6 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
     padding: 4px;
     box-sizing: border-box;
   }
-  .compact-card:hover {
-    background: var(--m-surface-hover);
-  }
   .compact-header {
     display: flex;
     align-items: center;
@@ -232,9 +229,9 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 1px solid var(--m-border);
-    color: var(--m-text-2);
+    background: var(--m-surface-hover);
+    border: none;
+    color: var(--m-text);
     cursor: pointer;
     transition: 0.2s;
     outline: none;
@@ -244,7 +241,6 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
   }
   .compact-icon-btn.on {
     background: var(--m-active-bg);
-    border-color: var(--m-active-border);
     color: var(--miraie-accent);
   }
   .compact-title {
@@ -282,8 +278,8 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background: transparent;
-    border: 1px solid var(--m-border);
+    background: var(--m-surface-hover);
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -418,7 +414,7 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
       <ha-card class="compact-card" @click=${()=>this._expanded=!0}>
         <div class="compact-header">
           <button class="compact-icon-btn ${s?"on":""}" @click=${t=>{t.stopPropagation(),this._toggle()}}>
-            <ha-icon icon="${s?"mdi:fan":"mdi:power"}"></ha-icon>
+            <ha-icon icon="mdi:power"></ha-icon>
           </button>
           <div class="compact-title">${e}</div>
           <ha-icon class="compact-chevron" icon="mdi:chevron-right"></ha-icon>
