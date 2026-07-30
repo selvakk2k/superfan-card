@@ -3,5 +3,6 @@ export interface SuperfanCardConfig {
   entity: string;
   name?: string;
   show_icon?: boolean;
+  theme?: string;
   accent_color?: string;
 }
