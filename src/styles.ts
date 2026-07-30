@@ -1,19 +1,48 @@
 import { css } from 'lit';
 
 export const styles = css`
+  /* ──────────────────────────────────────────────────────────
+     Default Token Layer (Standard Home Assistant)
+     ────────────────────────────────────────────────────────── */
   :host {
-    --miraie-accent: var(--primary-color, #03a9f4);
+    --miraie-accent:        var(--primary-color, #03a9f4);
 
-    --m-bg: var(--ha-card-background, var(--card-background-color, var(--lovelace-background)));
-    --m-surface: var(--secondary-background-color, rgba(128,128,128,0.08));
-    --m-surface-hover: rgba(128,128,128,0.15);
-    --m-border: var(--divider-color, rgba(128,128,128,0.14));
+    /* Surfaces */
+    --m-bg:                 var(--ha-card-background, var(--card-background-color, var(--lovelace-background)));
+    --m-surface:            var(--secondary-background-color, rgba(128,128,128,0.08));
+    --m-surface-hover:      rgba(128,128,128,0.15);
+    --m-border:             var(--divider-color, rgba(128,128,128,0.14));
 
-    --m-text: var(--primary-text-color);
-    --m-text-2: var(--secondary-text-color);
+    /* Text */
+    --m-text:               var(--primary-text-color);
+    --m-text-2:             var(--secondary-text-color);
+    --m-on-accent:          var(--text-primary-color, #fff);
 
-    --m-active-bg: color-mix(in srgb, var(--miraie-accent) 15%, transparent);
-    --m-active-border: color-mix(in srgb, var(--miraie-accent) 50%, transparent);
+    /* Active state */
+    --m-active-bg:          color-mix(in srgb, var(--miraie-accent) 15%, transparent);
+    --m-active-border:      color-mix(in srgb, var(--miraie-accent) 50%, transparent);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     Material You Token Layer (Activated via Config)
+     ────────────────────────────────────────────────────────── */
+  :host([theme="material_you"]) {
+    --miraie-accent:        var(--md-sys-color-primary, var(--primary-color, #03a9f4));
+
+    /* Surfaces */
+    --m-bg:                 var(--md-sys-color-surface, var(--ha-card-background, var(--card-background-color, var(--lovelace-background))));
+    --m-surface:            var(--md-sys-color-surface-variant, var(--secondary-background-color, rgba(128,128,128,0.08)));
+    --m-surface-hover:      var(--md-sys-color-surface-variant-hover, var(--hover-color, rgba(128,128,128,0.15)));
+    --m-border:             var(--md-sys-color-outline, var(--divider-color, rgba(128,128,128,0.14)));
+
+    /* Text */
+    --m-text:               var(--md-sys-color-on-surface, var(--primary-text-color));
+    --m-text-2:             var(--md-sys-color-on-surface-variant, var(--secondary-text-color));
+    --m-on-accent:          var(--md-sys-color-on-primary, var(--text-primary-color, #fff));
+
+    /* Active state */
+    --m-active-bg:          var(--md-sys-color-secondary-container, color-mix(in srgb, var(--miraie-accent) 15%, transparent));
+    --m-active-border:      var(--md-sys-color-secondary, color-mix(in srgb, var(--miraie-accent) 50%, transparent));
   }
 
   ha-card {
@@ -49,7 +78,7 @@ export const styles = css`
     transition: all 0.2s ease;
   }
   .power-btn:hover { background: var(--m-surface-hover); }
-  .power-btn.on { background: var(--miraie-accent); color: #fff; }
+  .power-btn.on { background: var(--miraie-accent); color: var(--m-on-accent); }
 
   /* ── Body Layout (Side by Side) ── */
   .body-container {
@@ -100,7 +129,7 @@ export const styles = css`
 
   .speed-btn.active {
     background: var(--miraie-accent);
-    color: #fff;
+    color: var(--m-on-accent);
     box-shadow: 0 4px 12px color-mix(in srgb, var(--miraie-accent) 40%, transparent);
   }
 
