@@ -17,6 +17,7 @@ import { styles } from './styles';
 export class SuperfanCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
   @state() private _config!: SuperfanCardConfig;
+  @state() private _expanded: boolean = false;
 
   static get styles() { return styles; }
 
@@ -26,6 +27,7 @@ export class SuperfanCard extends LitElement {
         { name: 'entity', required: true, selector: { entity: { domain: 'fan' } } },
         { name: 'name', selector: { text: {} } },
         { name: 'theme', selector: { select: { options: [{ label: 'Default HA Theme', value: 'default' }, { label: 'Material You', value: 'material_you' }] } } },
+        { name: 'layout', selector: { select: { options: [{ label: 'Default (Full)', value: 'default' }, { label: 'Compact (Expandable)', value: 'compact' }] } } },
         { name: 'accent_color', selector: { ui_color: {} } }
       ]
     };
@@ -50,7 +52,7 @@ export class SuperfanCard extends LitElement {
     }
   }
 
-  getCardSize() { return 4; }
+  getCardSize() { return this._config?.layout === 'compact' && !this._expanded ? 2 : 4; }
 
   private _setSpeed(percentage: number) {
     this.hass.callService('fan', 'set_percentage', {
@@ -117,6 +119,10 @@ export class SuperfanCard extends LitElement {
     }
     const cardStyle = accentStyle ? `--miraie-accent: ${accentStyle};` : '';
 
+    if (this._config.layout === 'compact' && !this._expanded) {
+      return this._renderCompact(stateObj, name, isOn, percentage, presetMode, speedCount);
+    }
+
     return html`
       <ha-card style="${cardStyle}">
         <div class="header">
@@ -127,9 +133,16 @@ export class SuperfanCard extends LitElement {
             </div>
             <div class="subtitle">Fan: ${isOn ? (presetMode || (percentage + '%')) : 'off'}</div>
           </div>
-          <button class="power-btn ${isOn ? 'on' : ''}" @click=${this._toggle}>
-            <ha-icon icon="mdi:power"></ha-icon>
-          </button>
+          <div style="display: flex; gap: 8px;">
+            ${this._config.layout === 'compact' ? html`
+              <button class="power-btn" style="background: transparent;" @click=${() => this._expanded = false}>
+                <ha-icon icon="mdi:chevron-up"></ha-icon>
+              </button>
+            ` : ''}
+            <button class="power-btn ${isOn ? 'on' : ''}" @click=${this._toggle}>
+              <ha-icon icon="mdi:power"></ha-icon>
+            </button>
+          </div>
         </div>
 
         <div class="body-container">
@@ -221,5 +234,42 @@ export class SuperfanCard extends LitElement {
         </div>
       </ha-card>
     `;
+  }
+
+  private _renderCompact(stateObj: any, name: string, isOn: boolean, percentage: number, presetMode: string, speedCount: number) {
+    const displayValue = isOn ? (presetMode || `${percentage}%`) : 'Off';
+    return html`
+      <ha-card class="compact-card" @click=${() => this._expanded = true}>
+        <div class="compact-header">
+          <button class="compact-icon-btn ${isOn ? 'on' : ''}" @click=${(e: Event) => { e.stopPropagation(); this._toggle(); }}>
+            <ha-icon icon="${isOn ? 'mdi:fan' : 'mdi:power'}"></ha-icon>
+          </button>
+          <div class="compact-title">${name}</div>
+          <ha-icon class="compact-chevron" icon="mdi:chevron-right"></ha-icon>
+        </div>
+        
+        <div class="compact-center">
+          <div class="compact-value" style="${displayValue.length > 4 ? 'font-size: 1.8rem;' : ''}">${displayValue}</div>
+        </div>
+
+        <div class="compact-footer">
+          <button class="compact-action-btn" ?disabled=${!isOn || presetMode} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
+            <ha-icon icon="mdi:minus"></ha-icon>
+          </button>
+          <div class="compact-subtitle">Speed</div>
+          <button class="compact-action-btn" ?disabled=${!isOn || presetMode} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
+            <ha-icon icon="mdi:plus"></ha-icon>
+          </button>
+        </div>
+      </ha-card>
+    `;
+  }
+
+  private _cycleSpeed(currentPct: number, speedCount: number, direction: number) {
+    const step = 100 / speedCount;
+    let nextPct = currentPct + (step * direction);
+    if (nextPct > 100) nextPct = 100;
+    if (nextPct < 0) nextPct = 0;
+    this._setSpeed(Math.round(nextPct));
   }
 }

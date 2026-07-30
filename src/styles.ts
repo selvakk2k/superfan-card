@@ -29,11 +29,11 @@ export const styles = css`
   :host([theme="material_you"]) {
     --miraie-accent:        var(--md-sys-color-primary, var(--primary-color, #03a9f4));
 
-    /* Surfaces */
-    --m-bg:                 var(--md-sys-color-surface, var(--ha-card-background, var(--card-background-color, var(--lovelace-background))));
-    --m-surface:            var(--md-sys-color-surface-variant, var(--secondary-background-color, rgba(128,128,128,0.08)));
+    /* Surfaces - using surface-variant or surface-container for better contrast against background */
+    --m-bg:                 var(--md-sys-color-surface-variant, var(--md-sys-color-surface, var(--ha-card-background, var(--card-background-color, var(--lovelace-background)))));
+    --m-surface:            var(--md-sys-color-surface, var(--secondary-background-color, rgba(128,128,128,0.08)));
     --m-surface-hover:      var(--md-sys-color-surface-variant-hover, var(--hover-color, rgba(128,128,128,0.15)));
-    --m-border:             var(--md-sys-color-outline, var(--divider-color, rgba(128,128,128,0.14)));
+    --m-border:             var(--md-sys-color-outline-variant, var(--md-sys-color-outline, var(--divider-color, rgba(128,128,128,0.14))));
 
     /* Text */
     --m-text:               var(--md-sys-color-on-surface, var(--primary-text-color));
