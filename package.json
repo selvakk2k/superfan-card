@@ -1,6 +1,6 @@
 {
   "name": "superfan-card",
-  "version": "1.0.3-beta.4",
+  "version": "1.0.3-beta.5",
   "description": "A premium custom Lovelace card for the Superfan IR integration.",
   "type": "module",
   "main": "dist/superfan-card.js",
