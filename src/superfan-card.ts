@@ -285,11 +285,11 @@ export class SuperfanCard extends LitElement {
         </div>
 
         <div class="compact-footer">
-          <button class="compact-action-btn" ?disabled=${presetMode !== undefined && presetMode !== 'none' && presetMode !== ''} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
+          <button class="compact-action-btn" ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
             <ha-icon icon="mdi:minus"></ha-icon>
           </button>
           <div class="compact-subtitle">Speed</div>
-          <button class="compact-action-btn" ?disabled=${presetMode !== undefined && presetMode !== 'none' && presetMode !== ''} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
+          <button class="compact-action-btn" ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
             <ha-icon icon="mdi:plus"></ha-icon>
           </button>
         </div>
