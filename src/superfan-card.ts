@@ -242,7 +242,7 @@ export class SuperfanCard extends LitElement {
       <ha-card class="compact-card" @click=${() => this._expanded = true}>
         <div class="compact-header">
           <button class="compact-icon-btn ${isOn ? 'on' : ''}" @click=${(e: Event) => { e.stopPropagation(); this._toggle(); }}>
-            <ha-icon icon="${isOn ? 'mdi:fan' : 'mdi:power'}"></ha-icon>
+            <ha-icon icon="mdi:power"></ha-icon>
           </button>
           <div class="compact-title">${name}</div>
           <ha-icon class="compact-chevron" icon="mdi:chevron-right"></ha-icon>
