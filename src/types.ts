@@ -6,4 +6,5 @@ export interface SuperfanCardConfig {
   theme?: string;
   layout?: string;
   accent_color?: string;
+  main_color?: string;
 }

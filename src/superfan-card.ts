@@ -28,7 +28,8 @@ export class SuperfanCard extends LitElement {
         { name: 'name', selector: { text: {} } },
         { name: 'theme', selector: { select: { options: [{ label: 'Default HA Theme', value: 'default' }, { label: 'Material You', value: 'material_you' }] } } },
         { name: 'layout', selector: { select: { options: [{ label: 'Default (Full)', value: 'default' }, { label: 'Compact (Expandable)', value: 'compact' }] } } },
-        { name: 'accent_color', selector: { ui_color: {} } }
+        { name: 'accent_color', selector: { ui_color: {} } },
+        { name: 'main_color', selector: { ui_color: {} } }
       ]
     };
   }
@@ -62,7 +63,24 @@ export class SuperfanCard extends LitElement {
   }
 
   private _toggle() {
-    this.hass.callService('fan', 'toggle', { entity_id: this._config.entity });
+    if (!this.hass || !this._config) return;
+    const stateObj = this.hass.states[this._config.entity];
+    if (stateObj) {
+      if (stateObj.state === 'off') {
+        const speedCount = Math.round(100 / (stateObj.attributes.percentage_step || 100));
+        let defaultSpeed = 33;
+        if (speedCount === 3) defaultSpeed = 33;
+        else if (speedCount === 5) defaultSpeed = 20;
+        else defaultSpeed = Math.round(100 / speedCount);
+        
+        this.hass.callService('fan', 'turn_on', {
+          entity_id: this._config.entity,
+          percentage: defaultSpeed
+        });
+      } else {
+        this.hass.callService('fan', 'turn_off', { entity_id: this._config.entity });
+      }
+    }
   }
 
   private _setPreset(preset: string) {
@@ -104,7 +122,7 @@ export class SuperfanCard extends LitElement {
     const modes = presetModes.filter((p: string) => !p.toLowerCase().includes('timer') && !p.toLowerCase().includes('hr') && !p.toLowerCase().includes('hour'));
     const timers = presetModes.filter((p: string) => p.toLowerCase().includes('timer') || p.toLowerCase().includes('hr') || p.toLowerCase().includes('hour'));
 
-    /* Custom accent color applied as CSS var via inline style */
+    /* Custom accent and main colors applied as CSS vars via inline style */
     let accentStyle = '';
     if (this._config.accent_color) {
       if (Array.isArray(this._config.accent_color)) {
@@ -117,7 +135,21 @@ export class SuperfanCard extends LitElement {
         else accentStyle = c;
       }
     }
-    const cardStyle = accentStyle ? `--miraie-accent: ${accentStyle};` : '';
+    
+    let mainStyle = '';
+    if (this._config.main_color) {
+      if (Array.isArray(this._config.main_color)) {
+        mainStyle = `rgb(${this._config.main_color.join(',')})`;
+      } else if (typeof this._config.main_color === 'string') {
+        const c = this._config.main_color.toLowerCase();
+        if (c === 'primary') mainStyle = 'var(--primary-color)';
+        else if (c === 'accent') mainStyle = 'var(--accent-color)';
+        else if (/^[a-z-]+$/.test(c)) mainStyle = `var(--${c}-color, ${c})`;
+        else mainStyle = c;
+      }
+    }
+    
+    const cardStyle = `${accentStyle ? `--miraie-accent: ${accentStyle}; ` : ''}${mainStyle ? `--m-bg: ${mainStyle}; ` : ''}`;
 
     if (this._config.layout === 'compact' && !this._expanded) {
       return this._renderCompact(stateObj, name, isOn, percentage, presetMode, speedCount);
@@ -253,11 +285,11 @@ export class SuperfanCard extends LitElement {
         </div>
 
         <div class="compact-footer">
-          <button class="compact-action-btn" ?disabled=${!isOn || presetMode} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
+          <button class="compact-action-btn" ?disabled=${presetMode !== undefined && presetMode !== 'none' && presetMode !== ''} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, -1); }}>
             <ha-icon icon="mdi:minus"></ha-icon>
           </button>
           <div class="compact-subtitle">Speed</div>
-          <button class="compact-action-btn" ?disabled=${!isOn || presetMode} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
+          <button class="compact-action-btn" ?disabled=${presetMode !== undefined && presetMode !== 'none' && presetMode !== ''} @click=${(e: Event) => { e.stopPropagation(); this._cycleSpeed(percentage, speedCount, 1); }}>
             <ha-icon icon="mdi:plus"></ha-icon>
           </button>
         </div>
@@ -266,6 +298,26 @@ export class SuperfanCard extends LitElement {
   }
 
   private _cycleSpeed(currentPct: number, speedCount: number, direction: number) {
+    if (speedCount === 3) {
+      const speeds = [0, 33, 66, 100];
+      let currentStep = speeds.findIndex(s => Math.abs(s - currentPct) <= 2);
+      if (currentStep === -1) currentStep = 0;
+      let nextStep = currentStep + direction;
+      if (nextStep > 3) nextStep = 3;
+      if (nextStep < 0) nextStep = 0;
+      this._setSpeed(speeds[nextStep]);
+      return;
+    } else if (speedCount === 5) {
+      const speeds = [0, 20, 40, 60, 80, 100];
+      let currentStep = speeds.findIndex(s => Math.abs(s - currentPct) <= 2);
+      if (currentStep === -1) currentStep = 0;
+      let nextStep = currentStep + direction;
+      if (nextStep > 5) nextStep = 5;
+      if (nextStep < 0) nextStep = 0;
+      this._setSpeed(speeds[nextStep]);
+      return;
+    }
+    
     const step = 100 / speedCount;
     let nextPct = currentPct + (step * direction);
     if (nextPct > 100) nextPct = 100;
