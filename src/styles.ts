@@ -342,7 +342,7 @@ export const styles = css`
     -webkit-appearance: none;
     width: 100%;
     height: 64px;
-    background: var(--m-surface-hover);
+    background: rgba(128, 128, 128, 0.15);
     border-radius: 32px;
     outline: none;
     overflow: hidden;
@@ -378,7 +378,7 @@ export const styles = css`
     gap: 8px;
     padding: 14px 16px;
     border-radius: 20px;
-    background: var(--m-surface-hover);
+    background: rgba(128, 128, 128, 0.15);
     border: none;
     color: var(--m-text);
     font-size: 0.9rem;
@@ -387,7 +387,7 @@ export const styles = css`
     transition: 0.2s;
   }
   .gh-pill:hover {
-    background: rgba(128, 128, 128, 0.15);
+    background: rgba(128, 128, 128, 0.25);
   }
   .gh-pill.active {
     background: var(--m-active-bg);

@@ -301,12 +301,22 @@ export class SuperfanCard extends LitElement {
 
         <div class="gh-slider-container">
           <input type="range" class="gh-slider" 
-            min="0" max="100" step="${100 / speedCount}" 
+            min="0" max="100" step="1" 
             .value="${percentage}" 
-            ?disabled=${!isOn || presetMode !== undefined && presetMode !== 'none' && presetMode !== ''}
+            ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')}
+            @input=${(e: Event) => {
+              const target = e.target as HTMLInputElement;
+              target.style.setProperty('--slider-value', target.value + '%');
+            }}
             @change=${(e: Event) => {
               const target = e.target as HTMLInputElement;
-              this._setSpeed(parseInt(target.value, 10));
+              let val = parseInt(target.value, 10);
+              const step = 100 / speedCount;
+              val = Math.round(val / step) * step;
+              this._setSpeed(Math.round(val));
+              // Snap back visually if needed
+              target.value = Math.round(val).toString();
+              target.style.setProperty('--slider-value', target.value + '%');
             }}
             style="--slider-value: ${percentage}%;"
           >

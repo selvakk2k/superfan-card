@@ -4,7 +4,7 @@ function t(t,e,i,s){var r,o=arguments.length,n=o<3?e:null===s?s=Object.getOwnPro
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const e=globalThis,i=e.ShadowRoot&&(void 0===e.ShadyCSS||e.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s=Symbol(),r=new WeakMap;let o=class{constructor(t,e,i){if(this._$cssResult$=!0,i!==s)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o;const e=this.t;if(i&&void 0===t){const i=void 0!==e&&1===e.length;i&&(t=r.get(e)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),i&&r.set(e,t))}return t}toString(){return this.cssText}};const n=i?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const i of t.cssRules)e+=i.cssText;return(t=>new o("string"==typeof t?t:t+"",void 0,s))(e)})(t):t,{is:a,defineProperty:c,getOwnPropertyDescriptor:l,getOwnPropertyNames:d,getOwnPropertySymbols:h,getPrototypeOf:p}=Object,u=globalThis,m=u.trustedTypes,g=m?m.emptyScript:"",f=u.reactiveElementPolyfillSupport,v=(t,e)=>t,b={toAttribute(t,e){switch(e){case Boolean:t=t?g:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let i=t;switch(e){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t)}catch(t){i=null}}return i}},$=(t,e)=>!a(t,e),_={attribute:!0,type:String,converter:b,reflect:!1,useDefault:!1,hasChanged:$};
+const e=globalThis,i=e.ShadowRoot&&(void 0===e.ShadyCSS||e.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s=Symbol(),r=new WeakMap;let o=class{constructor(t,e,i){if(this._$cssResult$=!0,i!==s)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o;const e=this.t;if(i&&void 0===t){const i=void 0!==e&&1===e.length;i&&(t=r.get(e)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),i&&r.set(e,t))}return t}toString(){return this.cssText}};const n=i?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const i of t.cssRules)e+=i.cssText;return(t=>new o("string"==typeof t?t:t+"",void 0,s))(e)})(t):t,{is:a,defineProperty:c,getOwnPropertyDescriptor:l,getOwnPropertyNames:d,getOwnPropertySymbols:h,getPrototypeOf:p}=Object,u=globalThis,g=u.trustedTypes,m=g?g.emptyScript:"",f=u.reactiveElementPolyfillSupport,v=(t,e)=>t,b={toAttribute(t,e){switch(e){case Boolean:t=t?m:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let i=t;switch(e){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t)}catch(t){i=null}}return i}},$=(t,e)=>!a(t,e),_={attribute:!0,type:String,converter:b,reflect:!1,useDefault:!1,hasChanged:$};
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -378,7 +378,7 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
     -webkit-appearance: none;
     width: 100%;
     height: 64px;
-    background: var(--m-surface-hover);
+    background: rgba(128, 128, 128, 0.15);
     border-radius: 32px;
     outline: none;
     overflow: hidden;
@@ -414,7 +414,7 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
     gap: 8px;
     padding: 14px 16px;
     border-radius: 20px;
-    background: var(--m-surface-hover);
+    background: rgba(128, 128, 128, 0.15);
     border: none;
     color: var(--m-text);
     font-size: 0.9rem;
@@ -423,7 +423,7 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
     transition: 0.2s;
   }
   .gh-pill:hover {
-    background: rgba(128, 128, 128, 0.15);
+    background: rgba(128, 128, 128, 0.25);
   }
   .gh-pill.active {
     background: var(--m-active-bg);
@@ -565,10 +565,11 @@ const ct={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:$},lt=(t=ct
 
         <div class="gh-slider-container">
           <input type="range" class="gh-slider" 
-            min="0" max="100" step="${100/o}" 
+            min="0" max="100" step="1" 
             .value="${s}" 
-            ?disabled=${!i||void 0!==r&&"none"!==r&&""!==r}
-            @change=${t=>{const e=t.target;this._setSpeed(parseInt(e.value,10))}}
+            ?disabled=${!i||Boolean(r&&"none"!==r)}
+            @input=${t=>{const e=t.target;e.style.setProperty("--slider-value",e.value+"%")}}
+            @change=${t=>{const e=t.target;let i=parseInt(e.value,10);const s=100/o;i=Math.round(i/s)*s,this._setSpeed(Math.round(i)),e.value=Math.round(i).toString(),e.style.setProperty("--slider-value",e.value+"%")}}
             style="--slider-value: ${s}%;"
           >
         </div>
