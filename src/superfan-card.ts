@@ -28,6 +28,7 @@ export class SuperfanCard extends LitElement {
         { name: 'name', selector: { text: {} } },
         { name: 'theme', selector: { select: { options: [{ label: 'Default HA Theme', value: 'default' }, { label: 'Material You', value: 'material_you' }] } } },
         { name: 'layout', selector: { select: { options: [{ label: 'Default (Full)', value: 'default' }, { label: 'Compact (Expandable)', value: 'compact' }] } } },
+        { name: 'full_layout', selector: { select: { options: [{ label: 'Classic', value: 'default' }, { label: 'Google Home', value: 'google_home' }] } } },
         { name: 'accent_color', selector: { ui_color: {} } },
         { name: 'main_color', selector: { ui_color: {} } }
       ]
@@ -155,6 +156,10 @@ export class SuperfanCard extends LitElement {
       return this._renderCompact(stateObj, name, isOn, percentage, presetMode, speedCount);
     }
 
+    if (this._config.full_layout === 'google_home') {
+      return this._renderGoogleHomeFull(stateObj, name, isOn, percentage, presetMode, speedCount, modes, timers, cardStyle);
+    }
+
     return html`
       <ha-card style="${cardStyle}">
         <div class="header">
@@ -264,6 +269,65 @@ export class SuperfanCard extends LitElement {
             ` : ''}
           </div>
         </div>
+      </ha-card>
+    `;
+  }
+
+  private _renderGoogleHomeFull(stateObj: any, name: string, isOn: boolean, percentage: number, presetMode: string, speedCount: number, modes: string[], timers: string[], cardStyle: string) {
+    const displayValue = isOn ? (presetMode || `${percentage}%`) : 'Off';
+    return html`
+      <ha-card style="${cardStyle}" class="gh-full-card">
+        <div class="gh-header">
+          <div class="gh-header-left">
+            <ha-icon class="gh-icon" icon="mdi:fan"></ha-icon>
+            <div class="gh-title">${name}</div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            ${this._config.layout === 'compact' ? html`
+              <button class="gh-power-btn" style="background: transparent; color: var(--m-text-2);" @click=${() => this._expanded = false}>
+                <ha-icon icon="mdi:chevron-up"></ha-icon>
+              </button>
+            ` : ''}
+            <button class="gh-power-btn ${isOn ? 'on' : ''}" @click=${this._toggle}>
+              <ha-icon icon="mdi:power"></ha-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="gh-center">
+          <div class="gh-value-large">${displayValue}</div>
+          <div class="gh-subtitle-large">Fan Speed</div>
+        </div>
+
+        <div class="gh-slider-container">
+          <input type="range" class="gh-slider" 
+            min="0" max="100" step="${100 / speedCount}" 
+            .value="${percentage}" 
+            ?disabled=${!isOn || presetMode !== undefined && presetMode !== 'none' && presetMode !== ''}
+            @change=${(e: Event) => {
+              const target = e.target as HTMLInputElement;
+              this._setSpeed(parseInt(target.value, 10));
+            }}
+            style="--slider-value: ${percentage}%;"
+          >
+        </div>
+
+        ${modes.length > 0 || timers.length > 0 ? html`
+          <div class="gh-pill-grid">
+            ${modes.map((preset: string) => html`
+              <button class="gh-pill ${presetMode === preset ? 'active' : ''}" @click=${() => this._setPreset(preset)}>
+                <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
+                <span>${preset}</span>
+              </button>
+            `)}
+            ${timers.map((preset: string) => html`
+              <button class="gh-pill ${presetMode === preset ? 'active' : ''}" @click=${() => this._setPreset(preset)}>
+                <ha-icon icon="mdi:timer-outline"></ha-icon>
+                <span>${preset}</span>
+              </button>
+            `)}
+          </div>
+        ` : ''}
       </ha-card>
     `;
   }
