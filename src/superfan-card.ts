@@ -304,21 +304,24 @@ export class SuperfanCard extends LitElement {
             min="0" max="100" step="1" 
             .value="${percentage}" 
             ?disabled=${!isOn || Boolean(presetMode && presetMode !== 'none')}
-            @input=${(e: Event) => {
-              const target = e.target as HTMLInputElement;
-              target.style.setProperty('--slider-value', target.value + '%');
-            }}
             @change=${(e: Event) => {
               const target = e.target as HTMLInputElement;
               let val = parseInt(target.value, 10);
-              const step = 100 / speedCount;
-              val = Math.round(val / step) * step;
+              
+              if (speedCount === 3) {
+                const map = [0, 33, 66, 100];
+                val = map.reduce((prev, curr) => Math.abs(curr - val) < Math.abs(prev - val) ? curr : prev);
+              } else if (speedCount === 5) {
+                const map = [0, 20, 40, 60, 80, 100];
+                val = map.reduce((prev, curr) => Math.abs(curr - val) < Math.abs(prev - val) ? curr : prev);
+              } else {
+                const step = 100 / speedCount;
+                val = Math.round(val / step) * step;
+              }
+              
               this._setSpeed(Math.round(val));
-              // Snap back visually if needed
               target.value = Math.round(val).toString();
-              target.style.setProperty('--slider-value', target.value + '%');
             }}
-            style="--slider-value: ${percentage}%;"
           >
         </div>
 

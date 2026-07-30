@@ -340,6 +340,7 @@ export const styles = css`
   }
   .gh-slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 64px;
     background: rgba(128, 128, 128, 0.15);
@@ -348,18 +349,33 @@ export const styles = css`
     overflow: hidden;
     cursor: pointer;
     position: relative;
+    margin: 0;
   }
   .gh-slider::-webkit-slider-runnable-track {
-    width: 100%;
+    -webkit-appearance: none;
     height: 100%;
-    border-radius: 32px;
-    background: linear-gradient(to right, var(--m-active-bg) var(--slider-value), transparent var(--slider-value));
+    background: transparent;
   }
   .gh-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 0;
-    height: 0;
+    width: 1px;
+    height: 64px;
+    background: transparent;
+    border: none;
+    box-shadow: -2000px 0 0 2000px var(--m-active-bg);
+  }
+  .gh-slider::-moz-range-track {
+    height: 100%;
+    background: transparent;
+  }
+  .gh-slider::-moz-range-thumb {
+    appearance: none;
+    width: 1px;
+    height: 64px;
+    background: transparent;
+    border: none;
+    box-shadow: -2000px 0 0 2000px var(--m-active-bg);
   }
   .gh-slider:disabled {
     opacity: 0.5;
