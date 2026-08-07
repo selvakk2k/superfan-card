@@ -10,7 +10,7 @@ export const styles = css`
     /* Surfaces */
     --m-bg:                 var(--ha-card-background, var(--card-background-color, var(--lovelace-background)));
     --m-surface:            var(--secondary-background-color, rgba(128,128,128,0.08));
-    --m-surface-hover:      rgba(128,128,128,0.15);
+    --m-surface-hover:      color-mix(in srgb, var(--m-text) 8%, var(--m-surface));
     --m-border:             var(--divider-color, rgba(128,128,128,0.14));
 
     /* Text */
@@ -32,7 +32,7 @@ export const styles = css`
     /* Surfaces - using surface-variant or surface-container for better contrast against background */
     --m-bg:                 var(--md-sys-color-surface-variant, var(--md-sys-color-surface, var(--ha-card-background, var(--card-background-color, var(--lovelace-background)))));
     --m-surface:            var(--md-sys-color-surface, var(--secondary-background-color, rgba(128,128,128,0.08)));
-    --m-surface-hover:      var(--md-sys-color-surface-variant-hover, var(--hover-color, rgba(128,128,128,0.15)));
+    --m-surface-hover:      color-mix(in srgb, var(--md-sys-color-on-surface, var(--m-text)) 8%, var(--m-surface));
     --m-border:             var(--md-sys-color-outline-variant, var(--md-sys-color-outline, var(--divider-color, rgba(128,128,128,0.14))));
 
     /* Text */
