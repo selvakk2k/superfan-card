@@ -98,6 +98,7 @@ export class SuperfanCard extends LitElement {
     if (p.includes('eco')) return 'mdi:leaf';
     if (p.includes('wellness')) return 'mdi:heart-pulse';
     if (p.includes('ac')) return 'mdi:air-conditioner';
+    if (p.includes('reverse')) return 'mdi:rotate-left';
     return 'mdi:auto-fix';
   }
 
