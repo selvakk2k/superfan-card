@@ -358,7 +358,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 80 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 5 (100%)'}"
-                @click=${() => this._setSpeed(100)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(100); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>5</span>
@@ -366,7 +366,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 60 && percentage <= 80 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 4 (80%)'}"
-                @click=${() => this._setSpeed(80)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(80); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>4</span>
@@ -374,7 +374,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 40 && percentage <= 60 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 3 (60%)'}"
-                @click=${() => this._setSpeed(60)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(60); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>3</span>
@@ -382,7 +382,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 20 && percentage <= 40 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 2 (40%)'}"
-                @click=${() => this._setSpeed(40)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(40); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>2</span>
@@ -390,7 +390,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 0 && percentage <= 20 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 1 (20%)'}"
-                @click=${() => this._setSpeed(20)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(20); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>1</span>
@@ -399,7 +399,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 66 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'High Speed (100%)'}"
-                @click=${() => this._setSpeed(100)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(100); } }}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
@@ -407,7 +407,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 33 && percentage <= 66 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Medium Speed (66%)'}"
-                @click=${() => this._setSpeed(66)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(66); } }}
               >
                 <ha-icon icon="mdi:fan-speed-2"></ha-icon>
                 <span>Medium</span>
@@ -415,7 +415,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 0 && percentage <= 33 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Low Speed (33%)'}"
-                @click=${() => this._setSpeed(33)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(33); } }}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
@@ -424,7 +424,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 50 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'High Speed'}"
-                @click=${() => this._setSpeed(100)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(100); } }}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
@@ -432,7 +432,7 @@ export class SuperfanCard extends LitElement {
               <button
                 class="speed-btn ${isOn && percentage > 0 && percentage <= 50 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to adjust speed' : 'Low Speed'}"
-                @click=${() => this._setSpeed(50)}
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(50); } }}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
@@ -574,19 +574,12 @@ export class SuperfanCard extends LitElement {
             (idx === speedSteps.length - 1 && percentage >= s.pct - 10)
         );
 
-    // Calculate active timer if any
+    // Active speed label
+    const activeSpeedLabel = currentStepIndex >= 0 ? speedSteps[currentStepIndex].label : `${percentage}%`;
+
+    // Active timer if any
     const activeTimer = timers.find((t) => presetMode === t);
     const activeNonTimerPreset = presetMode && !activeTimer ? presetMode : null;
-
-    // Filter secondary quick-action chips
-    const quickChips = modes.filter(
-      (m) =>
-        m.toLowerCase().includes('reverse') ||
-        m.toLowerCase().includes('eco') ||
-        m.toLowerCase().includes('wellness') ||
-        m.toLowerCase().includes('adjust') ||
-        m.toLowerCase().includes('ac mix')
-    );
 
     const isBlasterOnline = irBlaster ? irBlaster.state === 'on' : isOnline;
     const lastControlledText = controlSource ? controlSource.state : null;
@@ -672,170 +665,169 @@ export class SuperfanCard extends LitElement {
           </button>
         </div>
 
-        <!-- Material 3 Stepped Notch Slider -->
-        <div class="step-slider-wrap">
-          <div class="step-slider-header">
-            <span class="step-slider-title">Speed Step</span>
-            <span class="step-slider-val">
-              ${isOn && currentStepIndex >= 0 ? speedSteps[currentStepIndex].label : (isOn ? `${percentage}%` : 'Off')}
-            </span>
-          </div>
-          <div class="step-track-outer">
-            <div class="step-track-bg">
-              <div
-                class="step-track-fill"
-                style="width: ${isOn && currentStepIndex >= 0 ? ((currentStepIndex) / (speedSteps.length - 1)) * 100 : 0}%"
-              ></div>
-            </div>
-            <div class="step-notches">
-              ${speedSteps.map((step, i) => {
-                const isFilled = isOn && i <= currentStepIndex;
-                const isCurrent = isOn && i === currentStepIndex;
-                return html`
-                  <div class="notch-wrapper">
-                    <button
-                      class="step-notch ${isFilled ? 'filled' : ''} ${isCurrent ? 'current' : ''} ${!isOnline ? 'disabled' : ''}"
-                      title="${!isOnline ? 'Device is offline' : (!isOn ? `Turn on and set to Speed ${step.label}` : `Set Speed ${step.label}`)}"
-                      @click=${(e: Event) => {
-                        e.stopPropagation();
-                        if (!isOnline) {
-                          this._showToast('Device is offline');
-                        } else {
-                          this._setSpeed(step.pct);
-                        }
-                      }}
-                    ></button>
-                    <span class="notch-label ${isCurrent ? 'current' : ''}">${step.label}</span>
-                  </div>
-                `;
-              })}
-            </div>
-          </div>
-        </div>
-
-        <!-- Dropdowns Container -->
-        ${modes.length > 0 || timers.length > 0 ? html`
-          <div class="gh-select-container">
-            <!-- Preset Dropdown -->
-            ${modes.length > 0 ? html`
-              <div class="gh-select-wrapper ${this._ghDropdown === 'preset' ? 'active' : ''}">
-                <button
-                  class="gh-custom-select ${!isOn ? 'disabled' : ''}"
-                  title="${!isOn ? 'Turn on the fan to select presets' : 'Select Preset Mode'}"
-                  @click=${(e: Event) => {
-                    e.stopPropagation();
-                    if (!isOn) {
-                      this._showToast('Turn on the fan to select presets');
-                    } else {
-                      this._haptic('selection');
-                      this._ghDropdown = this._ghDropdown === 'preset' ? null : 'preset';
-                    }
-                  }}
-                >
-                  <span>Preset: ${activeNonTimerPreset ? this._formatPresetName(activeNonTimerPreset) : 'None'}</span>
-                  <ha-icon icon="mdi:chevron-down"></ha-icon>
-                </button>
-                ${this._ghDropdown === 'preset' ? html`
-                  <div class="gh-dropdown-menu">
-                    <button
-                      class="gh-dropdown-item ${!activeNonTimerPreset ? 'active' : ''}"
-                      @click=${(e: Event) => {
-                        e.stopPropagation();
-                        this._ghDropdown = null;
-                        this._setSpeed(percentage || speedSteps[0].pct);
-                      }}
-                    >
-                      None
-                    </button>
-                    ${modes.map((p) => html`
-                      <button
-                        class="gh-dropdown-item ${presetMode === p ? 'active' : ''}"
-                        @click=${(e: Event) => {
-                          e.stopPropagation();
-                          this._ghDropdown = null;
-                          this._setPreset(p);
-                        }}
-                      >
-                        ${this._formatPresetName(p)}
-                      </button>
-                    `)}
-                  </div>
-                ` : ''}
-              </div>
-            ` : ''}
-
-            <!-- Timer Dropdown -->
-            ${timers.length > 0 ? html`
-              <div class="gh-select-wrapper ${this._ghDropdown === 'timer' ? 'active' : ''}">
-                <button
-                  class="gh-custom-select ${!isOn ? 'disabled' : ''}"
-                  title="${!isOn ? 'Turn on the fan to set timers' : 'Select Timer'}"
-                  @click=${(e: Event) => {
-                    e.stopPropagation();
-                    if (!isOn) {
-                      this._showToast('Turn on the fan to set timers');
-                    } else {
-                      this._haptic('selection');
-                      this._ghDropdown = this._ghDropdown === 'timer' ? null : 'timer';
-                    }
-                  }}
-                >
-                  <span>Timer: ${activeTimer ? this._formatPresetName(activeTimer) : 'None'}</span>
-                  <ha-icon icon="mdi:chevron-down"></ha-icon>
-                </button>
-                ${this._ghDropdown === 'timer' ? html`
-                  <div class="gh-dropdown-menu">
-                    <button
-                      class="gh-dropdown-item ${!activeTimer ? 'active' : ''}"
-                      @click=${(e: Event) => {
-                        e.stopPropagation();
-                        this._ghDropdown = null;
-                        this._setSpeed(percentage || speedSteps[0].pct);
-                      }}
-                    >
-                      None (Off)
-                    </button>
-                    ${timers.map((t) => html`
-                      <button
-                        class="gh-dropdown-item ${presetMode === t ? 'active' : ''}"
-                        @click=${(e: Event) => {
-                          e.stopPropagation();
-                          this._ghDropdown = null;
-                          this._setPreset(t);
-                        }}
-                      >
-                        ${this._formatPresetName(t)}
-                      </button>
-                    `)}
-                  </div>
-                ` : ''}
+        <!-- Dropdowns Container: Speed, Preset, Timer -->
+        <div class="gh-select-container">
+          <!-- Speed Dropdown -->
+          <div class="gh-select-wrapper ${this._ghDropdown === 'speed' ? 'active' : ''}">
+            <button
+              class="gh-custom-select ${!isOn ? 'disabled' : ''}"
+              title="${!isOn ? 'Turn on the fan to select speed' : 'Select Speed'}"
+              @click=${(e: Event) => {
+                e.stopPropagation();
+                if (!isOn) {
+                  this._showToast('Turn on the fan to select speed');
+                } else {
+                  this._haptic('selection');
+                  this._ghDropdown = this._ghDropdown === 'speed' ? null : 'speed';
+                }
+              }}
+            >
+              <span>Speed: ${isOn ? activeSpeedLabel : 'Off'}</span>
+              <ha-icon icon="mdi:chevron-down"></ha-icon>
+            </button>
+            ${this._ghDropdown === 'speed' ? html`
+              <div class="gh-dropdown-menu">
+                ${speedSteps.map((step, idx) => html`
+                  <button
+                    class="gh-dropdown-item ${isOn && currentStepIndex === idx ? 'active' : ''}"
+                    @click=${(e: Event) => {
+                      e.stopPropagation();
+                      this._ghDropdown = null;
+                      this._setSpeed(step.pct);
+                    }}
+                  >
+                    Speed ${step.label} (${step.pct}%)
+                  </button>
+                `)}
               </div>
             ` : ''}
           </div>
-        ` : ''}
 
-        <!-- Auxiliary Action Chips (LED Light if present) -->
-        ${modes.filter(m => m.toLowerCase().includes('light') || m.toLowerCase().includes('led')).length > 0 ? html`
-          <div class="gh-extra-chips">
-            ${modes.filter(m => m.toLowerCase().includes('light') || m.toLowerCase().includes('led')).map((chip) => html`
+          <!-- Preset Dropdown -->
+          ${modes.length > 0 ? html`
+            <div class="gh-select-wrapper ${this._ghDropdown === 'preset' ? 'active' : ''}">
               <button
-                class="gh-chip ${presetMode === chip ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to activate' : chip}"
+                class="gh-custom-select ${!isOn ? 'disabled' : ''}"
+                title="${!isOn ? 'Turn on the fan to select presets' : 'Select Preset Mode'}"
                 @click=${(e: Event) => {
                   e.stopPropagation();
                   if (!isOn) {
-                    this._showToast('Turn on the fan to activate');
+                    this._showToast('Turn on the fan to select presets');
                   } else {
-                    this._setPreset(chip);
+                    this._haptic('selection');
+                    this._ghDropdown = this._ghDropdown === 'preset' ? null : 'preset';
                   }
                 }}
               >
-                <ha-icon icon="mdi:lightbulb-outline"></ha-icon>
-                <span>${this._formatPresetName(chip)}</span>
+                <span>Preset: ${activeNonTimerPreset ? this._formatPresetName(activeNonTimerPreset) : 'None'}</span>
+                <ha-icon icon="mdi:chevron-down"></ha-icon>
               </button>
-            `)}
-          </div>
-        ` : ''}
+              ${this._ghDropdown === 'preset' ? html`
+                <div class="gh-dropdown-menu">
+                  <button
+                    class="gh-dropdown-item ${!activeNonTimerPreset ? 'active' : ''}"
+                    @click=${(e: Event) => {
+                      e.stopPropagation();
+                      this._ghDropdown = null;
+                      this._setSpeed(percentage || speedSteps[0].pct);
+                    }}
+                  >
+                    None
+                  </button>
+                  ${modes.map((p) => html`
+                    <button
+                      class="gh-dropdown-item ${presetMode === p ? 'active' : ''}"
+                      @click=${(e: Event) => {
+                        e.stopPropagation();
+                        this._ghDropdown = null;
+                        this._setPreset(p);
+                      }}
+                    >
+                      ${this._formatPresetName(p)}
+                    </button>
+                  `)}
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
+
+          <!-- Timer Dropdown -->
+          ${timers.length > 0 ? html`
+            <div class="gh-select-wrapper ${this._ghDropdown === 'timer' ? 'active' : ''}">
+              <button
+                class="gh-custom-select ${!isOn ? 'disabled' : ''}"
+                title="${!isOn ? 'Turn on the fan to set timers' : 'Select Timer'}"
+                @click=${(e: Event) => {
+                  e.stopPropagation();
+                  if (!isOn) {
+                    this._showToast('Turn on the fan to set timers');
+                  } else {
+                    this._haptic('selection');
+                    this._ghDropdown = this._ghDropdown === 'timer' ? null : 'timer';
+                  }
+                }}
+              >
+                <span>Timer: ${activeTimer ? this._formatPresetName(activeTimer) : 'None'}</span>
+                <ha-icon icon="mdi:chevron-down"></ha-icon>
+              </button>
+              ${this._ghDropdown === 'timer' ? html`
+                <div class="gh-dropdown-menu">
+                  <button
+                    class="gh-dropdown-item ${!activeTimer ? 'active' : ''}"
+                    @click=${(e: Event) => {
+                      e.stopPropagation();
+                      this._ghDropdown = null;
+                      this._setSpeed(percentage || speedSteps[0].pct);
+                    }}
+                  >
+                    None (Off)
+                  </button>
+                  ${timers.map((t) => html`
+                    <button
+                      class="gh-dropdown-item ${presetMode === t ? 'active' : ''}"
+                      @click=${(e: Event) => {
+                        e.stopPropagation();
+                        this._ghDropdown = null;
+                        this._setPreset(t);
+                      }}
+                    >
+                      ${this._formatPresetName(t)}
+                    </button>
+                  `)}
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Auxiliary Action Chips (LED Light if present) -->
+        ${modes.filter((m) => m.toLowerCase().includes('light') || m.toLowerCase().includes('led')).length > 0
+          ? html`
+              <div class="gh-extra-chips">
+                ${modes
+                  .filter((m) => m.toLowerCase().includes('light') || m.toLowerCase().includes('led'))
+                  .map(
+                    (chip) => html`
+                      <button
+                        class="gh-chip ${presetMode === chip ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
+                        title="${!isOn ? 'Turn on the fan to activate' : chip}"
+                        @click=${(e: Event) => {
+                          e.stopPropagation();
+                          if (!isOn) {
+                            this._showToast('Turn on the fan to activate');
+                          } else {
+                            this._setPreset(chip);
+                          }
+                        }}
+                      >
+                        <ha-icon icon="mdi:lightbulb-outline"></ha-icon>
+                        <span>${this._formatPresetName(chip)}</span>
+                      </button>
+                    `
+                  )}
+              </div>
+            `
+          : ''}
 
         <!-- Footer Telemetry Status Row -->
         <div class="footer-telemetry-row">
@@ -843,12 +835,21 @@ export class SuperfanCard extends LitElement {
             <div class="status-dot ${isBlasterOnline ? 'online' : ''}"></div>
             <span>IR Blaster</span>
           </div>
-          ${lastControlledText ? html`
-            <div class="connection-status-pill">
-              <ha-icon icon="${lastControlledText === 'IR Remote' ? 'mdi:remote' : (lastControlledText === 'Mains Switch' ? 'mdi:toggle-switch' : 'mdi:remote-desktop')}" style="--mdc-icon-size: 14px;"></ha-icon>
-              <span>Controlled via ${lastControlledText}</span>
-            </div>
-          ` : ''}
+          ${lastControlledText
+            ? html`
+                <div class="connection-status-pill">
+                  <ha-icon
+                    icon="${lastControlledText === 'IR Remote'
+                      ? 'mdi:remote'
+                      : lastControlledText === 'Mains Switch'
+                      ? 'mdi:toggle-switch'
+                      : 'mdi:remote-desktop'}"
+                    style="--mdc-icon-size: 14px;"
+                  ></ha-icon>
+                  <span>Controlled via ${lastControlledText}</span>
+                </div>
+              `
+            : ''}
         </div>
       </ha-card>
     `;

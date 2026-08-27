@@ -1,24 +1,55 @@
 import { css } from 'lit';
 
 export const styles = css`
+  /* ──────────────────────────────────────────────────────────
+     Default Token Layer (Standard Home Assistant)
+     ────────────────────────────────────────────────────────── */
   :host {
     display: block;
-    --sf-accent: var(--primary-color, #7c4dff);
-    --sf-on-accent: #ffffff;
-    --sf-surface: var(--card-background-color, #1e1e24);
-    --sf-surface-hover: color-mix(in srgb, var(--sf-surface) 90%, var(--sf-text, #ffffff));
-    --sf-active-bg: color-mix(in srgb, var(--sf-accent) 15%, transparent);
-    --sf-active-border: var(--sf-accent);
-    --sf-border: var(--divider-color, rgba(255, 255, 255, 0.08));
-    --sf-text: var(--primary-text-color, #ffffff);
-    --sf-text-2: var(--secondary-text-color, #9e9e9e);
+    --sf-accent:            var(--primary-color, #7c4dff);
+
+    /* Surfaces - color-mix ensures deep contrast in both light & dark themes */
+    --sf-bg:                var(--ha-card-background, var(--card-background-color, var(--lovelace-background)));
+    --sf-surface:           color-mix(in srgb, var(--primary-text-color, #000) 10%, var(--ha-card-background, var(--card-background-color, #fff)));
+    --sf-surface-hover:     color-mix(in srgb, var(--primary-text-color, #000) 18%, var(--sf-surface));
+    --sf-border:            color-mix(in srgb, var(--primary-text-color, #000) 24%, transparent);
+
+    /* Text */
+    --sf-text:              var(--primary-text-color, #111111);
+    --sf-text-2:            color-mix(in srgb, var(--primary-text-color, #000) 80%, transparent);
+    --sf-on-accent:         var(--text-primary-color, var(--sf-bg));
+
+    /* Active state */
+    --sf-active-bg:         color-mix(in srgb, var(--sf-accent) 22%, var(--sf-surface));
+    --sf-active-border:     color-mix(in srgb, var(--sf-accent) 75%, transparent);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     Material You Token Layer (Activated via Config)
+     ────────────────────────────────────────────────────────── */
+  :host([theme="material_you"]) {
+    --sf-accent:            var(--md-sys-color-primary, var(--primary-color, #7c4dff));
+
+    --sf-bg:                var(--md-sys-color-surface-variant, var(--md-sys-color-surface, var(--ha-card-background, var(--card-background-color, var(--lovelace-background)))));
+    --sf-surface:           var(--md-sys-color-surface, color-mix(in srgb, var(--primary-text-color, #000) 10%, var(--ha-card-background, var(--card-background-color, #fff))));
+    --sf-surface-hover:     color-mix(in srgb, var(--md-sys-color-on-surface, var(--sf-text)) 18%, var(--sf-surface));
+    --sf-border:            var(--md-sys-color-outline-variant, var(--md-sys-color-outline, color-mix(in srgb, var(--primary-text-color, #000) 24%, transparent)));
+
+    /* Text */
+    --sf-text:              var(--md-sys-color-on-surface, var(--primary-text-color, #111111));
+    --sf-text-2:            var(--md-sys-color-on-surface-variant, color-mix(in srgb, var(--primary-text-color, #000) 80%, transparent));
+    --sf-on-accent:         var(--md-sys-color-on-primary, var(--text-primary-color, var(--sf-bg)));
+
+    /* Active state */
+    --sf-active-bg:         var(--md-sys-color-secondary-container, color-mix(in srgb, var(--sf-accent) 22%, var(--sf-surface)));
+    --sf-active-border:     var(--md-sys-color-secondary, color-mix(in srgb, var(--sf-accent) 75%, transparent));
   }
 
   ha-card {
     background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border: 1px solid var(--sf-border);
-    border-radius: var(--ha-card-border-radius, 20px);
-    padding: 16px;
+    border-radius: var(--ha-card-border-radius, 18px);
+    padding: 20px 18px 18px;
     box-shadow: var(--ha-card-box-shadow, 0 4px 20px rgba(0, 0, 0, 0.15));
     box-sizing: border-box;
     font-family: var(--paper-font-body1_-_font-family, inherit);
@@ -31,7 +62,7 @@ export const styles = css`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
   .header-left {
     display: flex;
@@ -47,11 +78,6 @@ export const styles = css`
     --mdc-icon-size: 22px;
     color: var(--sf-accent);
   }
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
   .title {
     font-size: 1.05rem;
     font-weight: 700;
@@ -61,6 +87,11 @@ export const styles = css`
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--sf-text-2);
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .collapse-btn {
@@ -145,19 +176,6 @@ export const styles = css`
     box-shadow: 0 0 16px color-mix(in srgb, var(--sf-accent) 55%, transparent), 0 2px 8px color-mix(in srgb, var(--sf-accent) 35%, transparent);
   }
 
-  /* ── Telemetry & Connection Footer ── */
-  .footer-telemetry-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 16px;
-    padding-top: 12px;
-    border-top: 1px solid var(--sf-border);
-    font-size: 0.76rem;
-    color: var(--sf-text-2);
-  }
-
   /* ── Right Column: Presets ── */
   .presets-container {
     flex: 1;
@@ -211,10 +229,45 @@ export const styles = css`
     box-shadow: 0 0 16px color-mix(in srgb, var(--sf-accent) 55%, transparent), 0 2px 8px color-mix(in srgb, var(--sf-accent) 35%, transparent);
   }
 
+  /* ── Telemetry & Connection Footer ── */
+  .footer-telemetry-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--sf-border);
+    font-size: 0.76rem;
+    color: var(--sf-text-2);
+  }
+  .connection-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    color: var(--sf-text-2);
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e74c3c;
+    flex-shrink: 0;
+  }
+  .status-dot.online {
+    background: #2ecc71;
+    box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
+  }
+
   /* ──────────────────────────────────────────────────────────
      Google Home / Material Design 3 Full Layout
      ────────────────────────────────────────────────────────── */
   .gh-full-card {
+    background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
+    border-radius: 28px;
+    padding: 16px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -302,108 +355,6 @@ export const styles = css`
     cursor: not-allowed;
   }
 
-  /* ── Material 3 Stepped Notch Slider ── */
-  .step-slider-wrap {
-    margin-top: 4px;
-    border-radius: 16px;
-    background: var(--sf-surface);
-    border: 1px solid var(--sf-border);
-    padding: 14px 16px 10px;
-  }
-  .step-slider-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-  .step-slider-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--sf-text-2);
-  }
-  .step-slider-val {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--sf-accent);
-  }
-  .step-track-outer {
-    position: relative;
-    height: 4px;
-    margin: 14px 6px 24px;
-  }
-  .step-track-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--sf-border);
-    border-radius: 2px;
-  }
-  .step-track-fill {
-    height: 100%;
-    background: var(--sf-accent);
-    border-radius: 2px;
-    transition: width 0.25s ease;
-  }
-  .step-notches {
-    position: absolute;
-    top: -4px;
-    left: 0;
-    width: 100%;
-    height: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .notch-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 12px;
-    height: 12px;
-  }
-  .step-notch {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    padding: 0;
-    background: var(--sf-surface-hover);
-    border: 2px solid var(--sf-border);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    outline: none;
-  }
-  .step-notch:hover:not(:disabled) {
-    transform: scale(1.3);
-  }
-  .step-notch.filled {
-    background: var(--sf-accent);
-    border-color: var(--sf-accent);
-  }
-  .step-notch.current {
-    transform: scale(1.4);
-    background: var(--sf-accent);
-    border-color: var(--sf-surface);
-    box-shadow: 0 0 0 1px var(--sf-accent);
-  }
-  .step-notch.disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-  .notch-label {
-    position: absolute;
-    top: 18px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--sf-text-2);
-    white-space: nowrap;
-  }
-  .notch-label.current {
-    color: var(--sf-accent);
-    font-weight: 700;
-  }
-
   /* ── Custom Dropdown Selectors ── */
   .gh-select-container {
     display: flex;
@@ -412,8 +363,8 @@ export const styles = css`
     padding-top: 4px;
   }
   .gh-select-wrapper {
-    flex: 1 1 calc(50% - 8px);
-    min-width: 120px;
+    flex: 1 1 calc(33.3% - 8px);
+    min-width: 100px;
     position: relative;
   }
   .gh-select-wrapper.active {
@@ -430,7 +381,7 @@ export const styles = css`
     justify-content: space-between;
     padding: 0 14px;
     color: var(--sf-text);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
@@ -525,51 +476,22 @@ export const styles = css`
     cursor: not-allowed;
   }
 
-  /* ── Footer Telemetry & Status ── */
-  .gh-footer-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 8px;
-    font-size: 0.76rem;
-    color: var(--sf-text-2);
-  }
-  .connection-status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.76rem;
-    color: var(--sf-text-2);
-  }
-  .status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #e74c3c;
-    flex-shrink: 0;
-  }
-  .status-dot.online {
-    background: #2ecc71;
-    box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
-  }
-
   /* ── Compact Views: Classic vs Google Home ── */
   .compact-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
   }
 
-  /* Classic Compact: Structured Rectangle with Visible Surface & Border */
+  /* Classic Compact */
   .compact-card.classic {
     border-radius: 16px;
     border: 1px solid var(--sf-border);
     background: rgba(128, 128, 128, 0.08);
-    padding: 14px;
+    padding: 16px;
   }
   .compact-card.classic .compact-icon-btn {
     width: 38px; height: 38px; border-radius: 10px;
@@ -581,7 +503,7 @@ export const styles = css`
     background: var(--sf-accent);
     color: var(--sf-on-accent);
     border-color: var(--sf-accent);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--sf-accent) 40%, transparent);
   }
   .compact-card.classic .compact-action-btn {
     width: 38px; height: 38px; border-radius: 10px;
@@ -590,16 +512,16 @@ export const styles = css`
     transition: all 0.2s ease;
   }
   .compact-card.classic .compact-value {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
     font-weight: 800;
     color: var(--sf-text);
   }
 
-  /* Google Home Compact: Sleek Minimalist Rounded Tile */
+  /* Google Home Compact */
   .compact-card.google-home {
+    background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border-radius: 28px;
     border: 1px solid var(--sf-border);
-    background: var(--sf-surface);
     padding: 16px;
   }
   .compact-card.google-home .compact-icon-btn {
