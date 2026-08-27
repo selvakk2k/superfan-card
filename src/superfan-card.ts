@@ -295,7 +295,7 @@ export class SuperfanCard extends LitElement {
     const cardStyle = `${accentStyle ? `--sf-accent: ${accentStyle}; ` : ''}${mainStyle ? `--sf-bg: ${mainStyle}; ` : ''}`;
 
     if (this._config.layout === 'compact' && !this._expanded) {
-      return this._renderCompact(stateObj, name, isOn, isOnline, percentage, presetMode, speedCount);
+      return this._renderCompact(stateObj, name, isOn, isOnline, percentage, presetMode, speedCount, cardStyle);
     }
 
     if (this._config.full_layout === 'google_home') {
@@ -862,12 +862,15 @@ export class SuperfanCard extends LitElement {
     isOnline: boolean,
     percentage: number,
     presetMode: string,
-    speedCount: number
+    speedCount: number,
+    cardStyle: string
   ): TemplateResult {
-    const displayValue = isOn ? (presetMode || `${percentage}%`) : (isOnline ? 'Off' : 'Offline');
+    const displayValue = isOn ? (presetMode ? this._formatPresetName(presetMode) : `${percentage}%`) : (isOnline ? 'Off' : 'Offline');
+    const isGoogleHome = this._config.full_layout === 'google_home';
     return html`
       <ha-card
-        class="compact-card"
+        style="${cardStyle}"
+        class="compact-card ${isGoogleHome ? 'google-home' : 'classic'}"
         title="Click to expand Superfan controls"
         @click=${() => {
           this._haptic('selection');

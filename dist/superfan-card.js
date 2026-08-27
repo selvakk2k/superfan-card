@@ -580,35 +580,84 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
     box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
   }
 
-  /* ── Compact View ── */
+  /* ── Compact Views: Classic vs Google Home ── */
   .compact-card {
     display: flex;
     flex-direction: column;
     gap: 12px;
     cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
   }
-  .compact-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+
+  /* Classic Compact: Structured Rectangle with Visible Surface & Border */
+  .compact-card.classic {
+    border-radius: 16px;
+    border: 1px solid var(--sf-border);
+    background: rgba(128, 128, 128, 0.08);
+    padding: 14px;
   }
-  .compact-icon-btn {
-    width: 36px; height: 36px; border-radius: 50%;
+  .compact-card.classic .compact-icon-btn {
+    width: 38px; height: 38px; border-radius: 10px;
     border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
     background: var(--sf-surface); color: var(--sf-text);
-    transition: all 0.2s ease;
-    flex-shrink: 0;
+    transition: all 0.2s ease; flex-shrink: 0;
   }
-  .compact-icon-btn:hover { background: var(--sf-surface-hover); }
-  .compact-icon-btn.disabled { opacity: 0.5; pointer-events: none; }
-  .compact-icon-btn.on {
+  .compact-card.classic .compact-icon-btn.on {
     background: var(--sf-accent);
     color: var(--sf-on-accent);
     border-color: var(--sf-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  .compact-card.classic .compact-action-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: var(--sf-surface); color: var(--sf-text);
+    transition: all 0.2s ease;
+  }
+  .compact-card.classic .compact-value {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: var(--sf-text);
+  }
+
+  /* Google Home Compact: Sleek Minimalist Rounded Tile */
+  .compact-card.google-home {
+    border-radius: 28px;
+    border: 1px solid var(--sf-border);
+    background: var(--sf-surface);
+    padding: 16px;
+  }
+  .compact-card.google-home .compact-icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: rgba(128, 128, 128, 0.15); color: var(--sf-text-2);
+    transition: all 0.2s ease; flex-shrink: 0;
+  }
+  .compact-card.google-home .compact-icon-btn.on {
+    background: var(--sf-active-bg);
+    color: var(--sf-accent);
+  }
+  .compact-card.google-home .compact-action-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: rgba(128, 128, 128, 0.15); color: var(--sf-text);
+    transition: all 0.2s ease;
+  }
+  .compact-card.google-home .compact-value {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--sf-text);
+  }
+
+  .compact-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .compact-title {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     flex: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -617,35 +666,24 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
   .compact-chevron {
     color: var(--sf-text-2);
   }
-
   .compact-center {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .compact-value {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--sf-text);
-  }
-
   .compact-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 4px;
   }
-  .compact-action-btn {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
-    background: var(--sf-surface); color: var(--sf-text);
-    transition: all 0.2s ease;
-  }
+  .compact-icon-btn:hover { background: var(--sf-surface-hover); }
+  .compact-icon-btn.disabled { opacity: 0.4; pointer-events: none; }
   .compact-action-btn:hover { background: var(--sf-surface-hover); }
-  .compact-action-btn:disabled, .compact-action-btn.disabled { opacity: 0.4; pointer-events: none; }
+  .compact-action-btn:disabled, .compact-action-btn.disabled { opacity: 0.3; pointer-events: none; }
   .compact-subtitle {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 500;
     color: var(--sf-text-2);
   }
 `;window.customCards=window.customCards||[],window.customCards.push({type:"superfan-card",name:"Superfan Card",description:"A premium Lovelace fan card for the Superfan integration.",preview:!0});let ut=class extends rt{constructor(){super(...arguments),this._expanded=!1,this._ghDropdown=null,this._handleWindowClick=t=>{const e=t.composedPath();this._ghDropdown&&!e.includes(this)&&(this._ghDropdown=null)}}connectedCallback(){super.connectedCallback(),window.addEventListener("click",this._handleWindowClick)}disconnectedCallback(){window.removeEventListener("click",this._handleWindowClick),super.disconnectedCallback()}static get styles(){return pt}static getConfigForm(){return{schema:[{name:"entity",required:!0,label:"Fan Entity",selector:{entity:{domain:"fan",integration:"superfan_ir"}}},{name:"name",label:"Custom Title",selector:{text:{}}},{name:"theme",label:"Theme",selector:{select:{options:[{label:"Default HA Theme",value:"default"},{label:"Material You",value:"material_you"}]}}},{name:"layout",label:"Card Layout",selector:{select:{options:[{label:"Default (Full)",value:"default"},{label:"Compact (Expandable)",value:"compact"}]}}},{name:"full_layout",label:"Full View Style",selector:{select:{options:[{label:"Classic",value:"default"},{label:"Google Home",value:"google_home"}]}}},{name:"",type:"expandable",title:"Theming & Colors",icon:"mdi:palette",schema:[{name:"accent_color",label:"Accent Color",selector:{ui_color:{}}},{name:"main_color",label:"Background Color",selector:{ui_color:{}}}]},{name:"",type:"expandable",title:"Companion Entities (Auto-Discovered if blank)",icon:"mdi:link-variant",schema:[{name:"control_source_sensor",label:"Control Source Sensor",selector:{entity:{domain:"sensor",integration:"superfan_ir"}}},{name:"ir_blaster_sensor",label:"IR Blaster Sensor",selector:{entity:{domain:["binary_sensor","infrared","remote"]}}}]}]}}static getStubConfig(t,e,s){const i=e.find(t=>t.startsWith("fan."))||"";return{type:"custom:superfan-card",entity:i}}setConfig(t){if(!t||!t.entity)throw new Error("Please define a valid fan entity");this._config={...t}}updated(t){if(super.updated(t),t.has("_config")){const t=this._config?.theme||"default";this.getAttribute("theme")!==t&&this.setAttribute("theme",t)}}getCardSize(){return"compact"!==this._config?.layout||this._expanded?4:2}_haptic(t="light"){window.dispatchEvent(new CustomEvent("haptic",{detail:t}))}_showToast(t){window.dispatchEvent(new CustomEvent("hass-notification",{detail:{message:t},bubbles:!0,composed:!0}))}_setSpeed(t){this._haptic("selection"),this.hass.callService("fan","set_percentage",{entity_id:this._config.entity,percentage:t})}_toggle(){if(!this.hass||!this._config)return;this._haptic("medium");const t=this.hass.states[this._config.entity];t&&("off"===t.state?this.hass.callService("fan","turn_on",{entity_id:this._config.entity}):this.hass.callService("fan","turn_off",{entity_id:this._config.entity}))}_setPreset(t){this._haptic("light"),this.hass.callService("fan","set_preset_mode",{entity_id:this._config.entity,preset_mode:t})}_formatPresetName(t){return t?t.replace(/_/g," ").replace(/\b\w/g,t=>t.toUpperCase()):""}_getPresetIcon(t){const e=t.toLowerCase();return e.includes("breeze")?"mdi:weather-windy":e.includes("nature")?"mdi:nature":e.includes("smart")?"mdi:brain":e.includes("speed")?"mdi:swap-vertical":e.includes("eco")?"mdi:leaf":e.includes("wellness")?"mdi:heart-pulse":e.includes("ac")?"mdi:air-conditioner":e.includes("reverse")?"mdi:rotate-left":e.includes("sleep")?"mdi:bed-clock":e.includes("led")||e.includes("light")?"mdi:lightbulb-outline":e.includes("boost")?"mdi:rocket-launch-outline":e.includes("timer")||e.includes("hr")||e.includes("hour")?"mdi:timer-outline":"mdi:fan"}render(){if(!this._config||!this.hass)return null;const t=this.hass.states[this._config.entity];if(!t)return B`
@@ -829,7 +867,7 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
           </div>
         </div>
       </ha-card>
-    `:this._renderCompact(t,e,i,s,o,n,c)}_renderGoogleHomeFull(t,e,s,i,o,n,r,a,c,l,d,h){const p=s?n?this._formatPresetName(n):`${o}%`:"Off";let u=[];if(3===r)u=[{label:"Low",pct:33},{label:"Med",pct:66},{label:"High",pct:100}];else if(5===r)u=[{label:"1",pct:20},{label:"2",pct:40},{label:"3",pct:60},{label:"4",pct:80},{label:"5",pct:100}];else if(6===r)u=[{label:"1",pct:17},{label:"2",pct:33},{label:"3",pct:50},{label:"4",pct:67},{label:"5",pct:83},{label:"6",pct:100}];else{const t=r>0?r:3,e=100/t;for(let s=1;s<=t;s++)u.push({label:`${s}`,pct:Math.round(s*e)})}const f=s?u.findIndex((t,e)=>Math.abs(t.pct-o)<=10||e===u.length-1&&o>=t.pct-10):-1,g=c.find(t=>n===t),b=n&&!g?n:null;a.filter(t=>t.toLowerCase().includes("reverse")||t.toLowerCase().includes("eco")||t.toLowerCase().includes("wellness")||t.toLowerCase().includes("adjust")||t.toLowerCase().includes("ac mix"));const m=h?"on"===h.state:i,v=d?d.state:null;return B`
+    `:this._renderCompact(t,e,i,s,o,n,c,v)}_renderGoogleHomeFull(t,e,s,i,o,n,r,a,c,l,d,h){const p=s?n?this._formatPresetName(n):`${o}%`:"Off";let u=[];if(3===r)u=[{label:"Low",pct:33},{label:"Med",pct:66},{label:"High",pct:100}];else if(5===r)u=[{label:"1",pct:20},{label:"2",pct:40},{label:"3",pct:60},{label:"4",pct:80},{label:"5",pct:100}];else if(6===r)u=[{label:"1",pct:17},{label:"2",pct:33},{label:"3",pct:50},{label:"4",pct:67},{label:"5",pct:83},{label:"6",pct:100}];else{const t=r>0?r:3,e=100/t;for(let s=1;s<=t;s++)u.push({label:`${s}`,pct:Math.round(s*e)})}const f=s?u.findIndex((t,e)=>Math.abs(t.pct-o)<=10||e===u.length-1&&o>=t.pct-10):-1,g=c.find(t=>n===t),b=n&&!g?n:null;a.filter(t=>t.toLowerCase().includes("reverse")||t.toLowerCase().includes("eco")||t.toLowerCase().includes("wellness")||t.toLowerCase().includes("adjust")||t.toLowerCase().includes("ac mix"));const m=h?"on"===h.state:i,v=d?d.state:null;return B`
       <ha-card style="${l}" class="gh-full-card" @click=${()=>this._ghDropdown=null}>
         <!-- Header -->
         <div class="gh-header">
@@ -1012,9 +1050,10 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
           `:""}
         </div>
       </ha-card>
-    `}_renderCompact(t,e,s,i,o,n,r){const a=s?n||`${o}%`:i?"Off":"Offline";return B`
+    `}_renderCompact(t,e,s,i,o,n,r,a){const c=s?n?this._formatPresetName(n):`${o}%`:i?"Off":"Offline",l="google_home"===this._config.full_layout;return B`
       <ha-card
-        class="compact-card"
+        style="${a}"
+        class="compact-card ${l?"google-home":"classic"}"
         title="Click to expand Superfan controls"
         @click=${()=>{this._haptic("selection"),this._expanded=!0}}
       >
@@ -1033,9 +1072,9 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
         <div class="compact-center">
           <div
             class="compact-value"
-            style="${a.length>4?"font-size: 1.8rem;":""}"
+            style="${c.length>4?"font-size: 1.8rem;":""}"
           >
-            ${a}
+            ${c}
           </div>
         </div>
 
