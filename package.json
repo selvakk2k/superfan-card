@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c --watch",
-    "test": "node tests/audit_buttons.test.js && node tests/audit_ui_text.test.js"
+    "test": "node tests/audit_buttons.test.js && node tests/audit_ui_text.test.js && node tests/audit_design_system.test.js"
   },
   "repository": {
     "type": "git",
