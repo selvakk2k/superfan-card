@@ -319,14 +319,16 @@ export class SuperfanCard extends LitElement {
       <ha-card style="${cardStyle}">
         <div class="header">
           <div class="header-left">
-            <div class="title">${name}</div>
+            <div class="title-row">
+              <ha-icon class="header-icon" icon="mdi:fan"></ha-icon>
+              <div class="title">${name}</div>
+            </div>
             <div class="subtitle">Fan: ${isOn ? (presetMode ? this._formatPresetName(presetMode) : `${percentage}%`) : (isOnline ? 'Off' : 'Offline')}</div>
           </div>
           <div class="header-right">
             ${this._config.layout === 'compact' ? html`
               <button
-                class="power-btn"
-                style="background: transparent; border-color: transparent;"
+                class="collapse-btn"
                 title="Collapse card"
                 @click=${() => (this._expanded = false)}
               >
@@ -498,21 +500,18 @@ export class SuperfanCard extends LitElement {
           </div>
         </div>
 
-        <!-- Classic Connection Footer -->
-        <div class="classic-connection-section">
-          <div class="classic-connection-label">Connection</div>
-          <div class="classic-telemetry-row">
-            <div class="connection-status-pill">
-              <div class="status-dot ${isBlasterOnline ? 'online' : ''}"></div>
-              <span>IR Blaster</span>
-            </div>
-            ${lastControlledText ? html`
-              <div class="connection-status-pill">
-                <ha-icon icon="${lastControlledText === 'IR Remote' ? 'mdi:remote' : (lastControlledText === 'Mains Switch' ? 'mdi:toggle-switch' : 'mdi:remote-desktop')}" style="--mdc-icon-size: 14px;"></ha-icon>
-                <span>${lastControlledText}</span>
-              </div>
-            ` : ''}
+        <!-- Telemetry & Connection Footer -->
+        <div class="footer-telemetry-row">
+          <div class="connection-status-pill">
+            <div class="status-dot ${isBlasterOnline ? 'online' : ''}"></div>
+            <span>IR Blaster</span>
           </div>
+          ${lastControlledText ? html`
+            <div class="connection-status-pill">
+              <ha-icon icon="${lastControlledText === 'IR Remote' ? 'mdi:remote' : (lastControlledText === 'Mains Switch' ? 'mdi:toggle-switch' : 'mdi:remote-desktop')}" style="--mdc-icon-size: 14px;"></ha-icon>
+              <span>Controlled via ${lastControlledText}</span>
+            </div>
+          ` : ''}
         </div>
       </ha-card>
     `;
@@ -839,15 +838,15 @@ export class SuperfanCard extends LitElement {
         ` : ''}
 
         <!-- Footer Telemetry Status Row -->
-        <div class="gh-footer-text">
+        <div class="footer-telemetry-row">
           <div class="connection-status-pill">
             <div class="status-dot ${isBlasterOnline ? 'online' : ''}"></div>
             <span>IR Blaster</span>
           </div>
           ${lastControlledText ? html`
             <div class="connection-status-pill">
-              <ha-icon icon="mdi:remote" style="--mdc-icon-size: 14px;"></ha-icon>
-              <span>${lastControlledText}</span>
+              <ha-icon icon="${lastControlledText === 'IR Remote' ? 'mdi:remote' : (lastControlledText === 'Mains Switch' ? 'mdi:toggle-switch' : 'mdi:remote-desktop')}" style="--mdc-icon-size: 14px;"></ha-icon>
+              <span>Controlled via ${lastControlledText}</span>
             </div>
           ` : ''}
         </div>

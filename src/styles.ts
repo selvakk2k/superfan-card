@@ -15,7 +15,7 @@ export const styles = css`
   }
 
   ha-card {
-    background: var(--sf-surface);
+    background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border: 1px solid var(--sf-border);
     border-radius: var(--ha-card-border-radius, 20px);
     padding: 16px;
@@ -38,6 +38,15 @@ export const styles = css`
     flex-direction: column;
     gap: 2px;
   }
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-icon {
+    --mdc-icon-size: 22px;
+    color: var(--sf-accent);
+  }
   .header-right {
     display: flex;
     align-items: center;
@@ -54,18 +63,29 @@ export const styles = css`
     color: var(--sf-text-2);
   }
 
+  .collapse-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: var(--sf-surface); color: var(--sf-text-2);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+  .collapse-btn:hover { background: var(--sf-surface-hover); color: var(--sf-text); }
+
   .power-btn {
-    width: 44px; height: 44px; border-radius: 50%;
+    width: 40px; height: 40px; border-radius: 50%;
     border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
     background: var(--sf-surface); color: var(--sf-text);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
   }
   .power-btn:hover { background: var(--sf-surface-hover); }
   .power-btn.disabled { opacity: 0.5; pointer-events: none; }
   .power-btn.on {
-    background: var(--sf-active-bg);
-    color: var(--sf-accent);
-    border-color: var(--sf-active-border);
+    background: var(--sf-accent);
+    color: var(--sf-on-accent, #ffffff);
+    border-color: var(--sf-accent);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--sf-accent) 40%, transparent);
   }
 
   /* ── Body Layout ── */
@@ -122,29 +142,18 @@ export const styles = css`
     background: var(--sf-accent);
     color: var(--sf-on-accent, #ffffff);
     font-weight: 700;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--sf-accent) 55%, transparent), 0 2px 8px color-mix(in srgb, var(--sf-accent) 35%, transparent);
   }
 
-  /* ── Classic Connection Footer ── */
-  .classic-connection-section {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px solid var(--sf-border);
-  }
-  .classic-connection-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--sf-text-2);
-    margin-bottom: 6px;
-    text-align: center;
-  }
-  .classic-telemetry-row {
+  /* ── Telemetry & Connection Footer ── */
+  .footer-telemetry-row {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--sf-border);
     font-size: 0.76rem;
     color: var(--sf-text-2);
   }
@@ -195,10 +204,11 @@ export const styles = css`
   .pill-btn ha-icon { --mdc-icon-size: 16px; flex-shrink: 0; }
 
   .pill-btn.active {
-    background: var(--sf-active-bg);
-    border-color: var(--sf-active-border);
-    color: var(--sf-accent);
+    background: var(--sf-accent);
+    border-color: var(--sf-accent);
+    color: var(--sf-on-accent, #ffffff);
     font-weight: 700;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--sf-accent) 55%, transparent), 0 2px 8px color-mix(in srgb, var(--sf-accent) 35%, transparent);
   }
 
   /* ──────────────────────────────────────────────────────────
