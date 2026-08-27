@@ -266,6 +266,8 @@ export const styles = css`
   .gh-full-card {
     background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border-radius: 28px;
+    border: none;
+    box-shadow: none;
     padding: 16px;
     box-sizing: border-box;
     display: flex;
@@ -490,7 +492,7 @@ export const styles = css`
   .compact-card.classic {
     border-radius: 16px;
     border: 1px solid var(--sf-border);
-    background: rgba(128, 128, 128, 0.08);
+    background: var(--sf-bg);
     padding: 16px;
   }
   .compact-card.classic .compact-icon-btn {
@@ -521,7 +523,8 @@ export const styles = css`
   .compact-card.google-home {
     background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border-radius: 28px;
-    border: 1px solid var(--sf-border);
+    border: none;
+    box-shadow: none;
     padding: 16px;
   }
   .compact-card.google-home .compact-icon-btn {

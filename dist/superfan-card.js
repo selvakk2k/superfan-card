@@ -302,6 +302,8 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
   .gh-full-card {
     background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border-radius: 28px;
+    border: none;
+    box-shadow: none;
     padding: 16px;
     box-sizing: border-box;
     display: flex;
@@ -526,7 +528,7 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
   .compact-card.classic {
     border-radius: 16px;
     border: 1px solid var(--sf-border);
-    background: rgba(128, 128, 128, 0.08);
+    background: var(--sf-bg);
     padding: 16px;
   }
   .compact-card.classic .compact-icon-btn {
@@ -557,7 +559,8 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
   .compact-card.google-home {
     background: var(--sf-bg, var(--ha-card-background, var(--card-background-color, #1e1e24)));
     border-radius: 28px;
-    border: 1px solid var(--sf-border);
+    border: none;
+    box-shadow: none;
     padding: 16px;
   }
   .compact-card.google-home .compact-icon-btn {
@@ -793,7 +796,7 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
           ${u?B`
             <div class="connection-status-pill">
               <ha-icon icon="${"IR Remote"===u?"mdi:remote":"Mains Switch"===u?"mdi:toggle-switch":"mdi:remote-desktop"}" style="--mdc-icon-size: 14px;"></ha-icon>
-              <span>Controlled via ${u}</span>
+              <span>Last controlled by: ${u}</span>
             </div>
           `:""}
         </div>
@@ -971,7 +974,7 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
                     icon="${"IR Remote"===_?"mdi:remote":"Mains Switch"===_?"mdi:toggle-switch":"mdi:remote-desktop"}"
                     style="--mdc-icon-size: 14px;"
                   ></ha-icon>
-                  <span>Controlled via ${_}</span>
+                  <span>Last controlled by: ${_}</span>
                 </div>
               `:""}
         </div>
