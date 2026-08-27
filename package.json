@@ -1,12 +1,13 @@
 {
   "name": "superfan-card",
-  "version": "1.0.3",
+  "version": "2.0.0-beta.1",
   "description": "A premium custom Lovelace card for the Superfan IR integration.",
   "type": "module",
   "main": "dist/superfan-card.js",
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c --watch"
+    "watch": "rollup -c --watch",
+    "test": "node tests/audit_buttons.test.js && node tests/audit_ui_text.test.js"
   },
   "repository": {
     "type": "git",
