@@ -352,4 +352,32 @@ export const styles = css`
     font-weight: 600;
     color: var(--sf-text-2);
   }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--sf-surface);
+    color: var(--sf-text-2);
+    border: 1px solid var(--sf-border);
+    margin-top: 4px;
+    transition: all 0.2s ease;
+  }
+  .status-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--error-color, #e53935);
+  }
+  .status-pill.online .dot {
+    background: var(--success-color, #4caf50);
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+  }
+  .status-pill.offline {
+    color: var(--error-color, #e53935);
+  }
 `;

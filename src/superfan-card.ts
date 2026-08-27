@@ -69,6 +69,16 @@ export class SuperfanCard extends LitElement {
             { name: 'main_color', selector: { ui_color: {} } },
           ],
         },
+        {
+          name: '',
+          type: 'expandable',
+          title: 'Companion Entities',
+          icon: 'mdi:link-variant',
+          schema: [
+            { name: 'control_source_sensor', selector: { entity: { domain: 'sensor' } } },
+            { name: 'ir_blaster_sensor', selector: { entity: { domain: 'binary_sensor' } } },
+          ],
+        },
       ],
     };
   }
@@ -158,11 +168,16 @@ export class SuperfanCard extends LitElement {
   private _getPresetIcon(preset: string): string {
     const p = preset.toLowerCase();
     if (p.includes('breeze')) return 'mdi:weather-windy';
+    if (p.includes('nature')) return 'mdi:nature';
+    if (p.includes('smart')) return 'mdi:brain';
     if (p.includes('speed')) return 'mdi:swap-vertical';
     if (p.includes('eco')) return 'mdi:leaf';
     if (p.includes('wellness')) return 'mdi:heart-pulse';
     if (p.includes('ac')) return 'mdi:air-conditioner';
     if (p.includes('reverse')) return 'mdi:rotate-left';
+    if (p.includes('sleep')) return 'mdi:bed-clock';
+    if (p.includes('led') || p.includes('light')) return 'mdi:lightbulb-outline';
+    if (p.includes('boost')) return 'mdi:rocket-launch-outline';
     if (p.includes('timer') || p.includes('hr') || p.includes('hour')) return 'mdi:timer-outline';
     return 'mdi:fan';
   }
@@ -191,6 +206,15 @@ export class SuperfanCard extends LitElement {
 
     const percentageStep = stateObj.attributes.percentage_step || 100;
     const speedCount = Math.round(100 / percentageStep);
+
+    const baseId = this._config.entity.replace(/^fan\./, '');
+    const controlSource = this._config.control_source_sensor 
+      ? this.hass.states[this._config.control_source_sensor]
+      : (this.hass.states[`sensor.${baseId}_last_controlled_via`] || Object.values(this.hass.states).find(s => s.entity_id.startsWith('sensor.') && s.entity_id.includes(baseId) && s.entity_id.includes('last_controlled_via')));
+
+    const irBlaster = this._config.ir_blaster_sensor
+      ? this.hass.states[this._config.ir_blaster_sensor]
+      : (this.hass.states[`binary_sensor.${baseId}_ir_blaster_available`] || Object.values(this.hass.states).find(s => s.entity_id.startsWith('binary_sensor.') && s.entity_id.includes(baseId) && s.entity_id.includes('ir_blaster_available')));
 
     // Split presets between modes and timers
     const modes = presetModes.filter(
@@ -460,7 +484,7 @@ export class SuperfanCard extends LitElement {
       <ha-card style="${cardStyle}" class="gh-full-card">
         <div class="gh-header">
           <div class="gh-header-left">
-            <ha-icon class="gh-icon" icon="mdi:fan"></ha-icon>
+            <div class="status-dot ${isOnline ? (isOn ? 'online' : '') : ''}"></div>
             <div class="gh-title">${name}</div>
           </div>
           <div style="display: flex; gap: 8px;">
