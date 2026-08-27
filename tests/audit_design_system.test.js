@@ -8,7 +8,7 @@ const stylesFile = fs.readFileSync(path.join(srcDir, 'styles.ts'), 'utf8');
 const cardFileName = fs.readdirSync(srcDir).find(f => f.endsWith('.ts') && !f.includes('styles') && !f.includes('editor'));
 const cardContent = fs.readFileSync(path.join(srcDir, cardFileName), 'utf8');
 
-console.log('🎨 Starting Design System Compliance Audit...\n');
+console.log('🎨 Starting Comprehensive Design System Compliance Audit...\n');
 
 let errors = 0;
 
@@ -35,6 +35,19 @@ check(
 check(
   'Telemetry uses "Last controlled by:" standard label',
   cardContent.includes('Last controlled by:')
+);
+
+// Check that telemetry pills are borderless / unboxed
+check(
+  'Telemetry pills (.connection-status-pill) are borderless with no bulky box background',
+  !stylesFile.includes('padding: 9px 12px;') &&
+  stylesFile.includes('.connection-status-pill')
+);
+
+// Check that "Via:" chip is not duplicated alongside "Last controlled by:"
+check(
+  'No duplicate "Via:" control chip alongside "Last controlled by:" in footer',
+  !cardContent.includes('<span>Via: ${')
 );
 
 // 2. Google Home Borderless Styling
