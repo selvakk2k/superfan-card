@@ -27,7 +27,7 @@ export const styles = css`
   }
 
   /* ── Card Header ── */
-  .card-header {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,23 +35,24 @@ export const styles = css`
   }
   .header-left {
     display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .header-icon {
-    --mdc-icon-size: 22px;
-    color: var(--sf-accent);
-  }
-  .title-group {
-    display: flex;
     flex-direction: column;
+    gap: 2px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .title {
     font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.2;
   }
-  .subtitle { font-size: 0.78rem; font-weight: 600; color: var(--sf-text-2); }
+  .subtitle {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--sf-text-2);
+  }
 
   .power-btn {
     width: 44px; height: 44px; border-radius: 50%;
@@ -81,6 +82,7 @@ export const styles = css`
     gap: 4px;
     width: 76px;
     flex-shrink: 0;
+    align-self: flex-start;
     background: rgba(128, 128, 128, 0.08);
     border: 1px solid var(--sf-border);
     border-radius: 16px;
@@ -136,10 +138,12 @@ export const styles = css`
     letter-spacing: 0.06em;
     color: var(--sf-text-2);
     margin-bottom: 6px;
+    text-align: center;
   }
   .classic-telemetry-row {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 16px;
     font-size: 0.76rem;
     color: var(--sf-text-2);
@@ -245,7 +249,7 @@ export const styles = css`
     padding: 12px 0 6px 0;
   }
   .gh-value-large {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 400;
     color: var(--sf-text);
     line-height: 1.1;

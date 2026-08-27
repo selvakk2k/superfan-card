@@ -19,6 +19,24 @@ export class SuperfanCard extends LitElement {
   @state() private _expanded: boolean = false;
   @state() private _ghDropdown: string | null = null;
 
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('click', this._handleWindowClick);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('click', this._handleWindowClick);
+    super.disconnectedCallback();
+  }
+
+  private _handleWindowClick = (e: MouseEvent) => {
+    const path = e.composedPath();
+    if (this._ghDropdown && !path.includes(this)) {
+      this._ghDropdown = null;
+    }
+  };
+
+
   static get styles() { return styles; }
 
   /* ── Native visual editor ── */
@@ -301,13 +319,10 @@ export class SuperfanCard extends LitElement {
       <ha-card style="${cardStyle}">
         <div class="header">
           <div class="header-left">
-            <div class="title-row">
-              <div class="status-dot ${isOnline ? (isOn ? 'online' : '') : ''}"></div>
-              <div class="title">${name}</div>
-            </div>
-            <div class="subtitle">Fan: ${isOn ? (presetMode || `${percentage}%`) : (isOnline ? 'Off' : 'Offline')}</div>
+            <div class="title">${name}</div>
+            <div class="subtitle">Fan: ${isOn ? (presetMode ? this._formatPresetName(presetMode) : `${percentage}%`) : (isOnline ? 'Off' : 'Offline')}</div>
           </div>
-          <div style="display: flex; gap: 8px;">
+          <div class="header-right">
             ${this._config.layout === 'compact' ? html`
               <button
                 class="power-btn"
@@ -800,10 +815,10 @@ export class SuperfanCard extends LitElement {
           </div>
         ` : ''}
 
-        <!-- Quick-Action Chips -->
-        ${quickChips.length > 0 ? html`
+        <!-- Auxiliary Action Chips (LED Light if present) -->
+        ${modes.filter(m => m.toLowerCase().includes('light') || m.toLowerCase().includes('led')).length > 0 ? html`
           <div class="gh-extra-chips">
-            ${quickChips.map((chip) => html`
+            ${modes.filter(m => m.toLowerCase().includes('light') || m.toLowerCase().includes('led')).map((chip) => html`
               <button
                 class="gh-chip ${presetMode === chip ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
                 title="${!isOn ? 'Turn on the fan to activate' : chip}"
@@ -816,7 +831,7 @@ export class SuperfanCard extends LitElement {
                   }
                 }}
               >
-                <ha-icon icon="${this._getPresetIcon(chip)}"></ha-icon>
+                <ha-icon icon="mdi:lightbulb-outline"></ha-icon>
                 <span>${this._formatPresetName(chip)}</span>
               </button>
             `)}
