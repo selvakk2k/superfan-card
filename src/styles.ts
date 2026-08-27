@@ -544,35 +544,84 @@ export const styles = css`
     box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
   }
 
-  /* ── Compact View ── */
+  /* ── Compact Views: Classic vs Google Home ── */
   .compact-card {
     display: flex;
     flex-direction: column;
     gap: 12px;
     cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
   }
-  .compact-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+
+  /* Classic Compact: Structured Rectangle with Visible Surface & Border */
+  .compact-card.classic {
+    border-radius: 16px;
+    border: 1px solid var(--sf-border);
+    background: rgba(128, 128, 128, 0.08);
+    padding: 14px;
   }
-  .compact-icon-btn {
-    width: 36px; height: 36px; border-radius: 50%;
+  .compact-card.classic .compact-icon-btn {
+    width: 38px; height: 38px; border-radius: 10px;
     border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
     background: var(--sf-surface); color: var(--sf-text);
-    transition: all 0.2s ease;
-    flex-shrink: 0;
+    transition: all 0.2s ease; flex-shrink: 0;
   }
-  .compact-icon-btn:hover { background: var(--sf-surface-hover); }
-  .compact-icon-btn.disabled { opacity: 0.5; pointer-events: none; }
-  .compact-icon-btn.on {
+  .compact-card.classic .compact-icon-btn.on {
     background: var(--sf-accent);
     color: var(--sf-on-accent);
     border-color: var(--sf-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  .compact-card.classic .compact-action-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: var(--sf-surface); color: var(--sf-text);
+    transition: all 0.2s ease;
+  }
+  .compact-card.classic .compact-value {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: var(--sf-text);
+  }
+
+  /* Google Home Compact: Sleek Minimalist Rounded Tile */
+  .compact-card.google-home {
+    border-radius: 28px;
+    border: 1px solid var(--sf-border);
+    background: var(--sf-surface);
+    padding: 16px;
+  }
+  .compact-card.google-home .compact-icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: rgba(128, 128, 128, 0.15); color: var(--sf-text-2);
+    transition: all 0.2s ease; flex-shrink: 0;
+  }
+  .compact-card.google-home .compact-icon-btn.on {
+    background: var(--sf-active-bg);
+    color: var(--sf-accent);
+  }
+  .compact-card.google-home .compact-action-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: rgba(128, 128, 128, 0.15); color: var(--sf-text);
+    transition: all 0.2s ease;
+  }
+  .compact-card.google-home .compact-value {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--sf-text);
+  }
+
+  .compact-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .compact-title {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     flex: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -581,35 +630,24 @@ export const styles = css`
   .compact-chevron {
     color: var(--sf-text-2);
   }
-
   .compact-center {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .compact-value {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--sf-text);
-  }
-
   .compact-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 4px;
   }
-  .compact-action-btn {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid var(--sf-border); cursor: pointer; display: flex; align-items: center; justify-content: center;
-    background: var(--sf-surface); color: var(--sf-text);
-    transition: all 0.2s ease;
-  }
+  .compact-icon-btn:hover { background: var(--sf-surface-hover); }
+  .compact-icon-btn.disabled { opacity: 0.4; pointer-events: none; }
   .compact-action-btn:hover { background: var(--sf-surface-hover); }
-  .compact-action-btn:disabled, .compact-action-btn.disabled { opacity: 0.4; pointer-events: none; }
+  .compact-action-btn:disabled, .compact-action-btn.disabled { opacity: 0.3; pointer-events: none; }
   .compact-subtitle {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 500;
     color: var(--sf-text-2);
   }
 `;
