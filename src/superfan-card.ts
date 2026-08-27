@@ -509,7 +509,7 @@ export class SuperfanCard extends LitElement {
           ${lastControlledText ? html`
             <div class="connection-status-pill">
               <ha-icon icon="${lastControlledText === 'IR Remote' ? 'mdi:remote' : (lastControlledText === 'Mains Switch' ? 'mdi:toggle-switch' : 'mdi:remote-desktop')}" style="--mdc-icon-size: 14px;"></ha-icon>
-              <span>Controlled via ${lastControlledText}</span>
+              <span>Last controlled by: ${lastControlledText}</span>
             </div>
           ` : ''}
         </div>
@@ -846,7 +846,7 @@ export class SuperfanCard extends LitElement {
                       : 'mdi:remote-desktop'}"
                     style="--mdc-icon-size: 14px;"
                   ></ha-icon>
-                  <span>Controlled via ${lastControlledText}</span>
+                  <span>Last controlled by: ${lastControlledText}</span>
                 </div>
               `
             : ''}
