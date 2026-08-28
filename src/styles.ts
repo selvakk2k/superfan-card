@@ -111,7 +111,7 @@ export const styles = css`
     outline: none;
   }
   .power-btn:hover { background: var(--sf-surface-hover); }
-  .power-btn.disabled { opacity: 0.5; pointer-events: none; }
+  .power-btn.disabled { opacity: 0.5; cursor: not-allowed; }
   .power-btn.on {
     background: var(--sf-accent);
     color: var(--sf-on-accent, #ffffff);
@@ -218,7 +218,7 @@ export const styles = css`
     text-overflow: ellipsis;
   }
   .pill-btn:hover { background: var(--sf-surface-hover); }
-  .pill-btn.disabled { opacity: 0.5; pointer-events: none; }
+  .pill-btn.disabled { opacity: 0.5; cursor: not-allowed; }
   .pill-btn ha-icon { --mdc-icon-size: 16px; flex-shrink: 0; }
 
   .pill-btn.active {
@@ -577,9 +577,9 @@ export const styles = css`
     padding: 0 4px;
   }
   .compact-icon-btn:hover { background: var(--sf-surface-hover); }
-  .compact-icon-btn.disabled { opacity: 0.4; pointer-events: none; }
+  .compact-icon-btn.disabled { opacity: 0.4; cursor: not-allowed; }
   .compact-action-btn:hover { background: var(--sf-surface-hover); }
-  .compact-action-btn:disabled, .compact-action-btn.disabled { opacity: 0.3; pointer-events: none; }
+  .compact-action-btn:disabled, .compact-action-btn.disabled { opacity: 0.3; cursor: not-allowed; }
   .compact-subtitle {
     font-size: 0.82rem;
     font-weight: 500;
