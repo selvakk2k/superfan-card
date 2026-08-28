@@ -50,6 +50,12 @@ check(
   !cardContent.includes('<span>Via: ${')
 );
 
+// Check for unified _sourceIcon helper
+check(
+  'Unified _sourceIcon helper is defined and used for telemetry icons',
+  cardContent.includes('_sourceIcon(')
+);
+
 // 2. Google Home Borderless Styling
 check(
   'Google Home full view (.gh-full-card) uses seamless borderless design',
