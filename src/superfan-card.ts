@@ -149,7 +149,16 @@ export class SuperfanCard extends LitElement {
     window.dispatchEvent(new CustomEvent('haptic', { detail: type }));
   }
 
-  private _showToast(message: string): void {
+    private _sourceIcon(source: string): string {
+    const s = (source || '').toLowerCase();
+    if (s.includes('remote')) return 'mdi:remote';
+    if (s.includes('switch')) return 'mdi:toggle-switch';
+    if (s.includes('blaster') || s.includes('failover') || s === 'ir') return 'mdi:remote-desktop';
+    if (s.includes('cloud') || s === 'mqtt') return 'mdi:cloud-check';
+    return 'mdi:remote-desktop';
+  }
+
+private _showToast(message: string): void {
     window.dispatchEvent(
       new CustomEvent('hass-notification', {
         detail: { message },
@@ -839,11 +848,7 @@ export class SuperfanCard extends LitElement {
             ? html`
                 <div class="connection-status-pill">
                   <ha-icon
-                    icon="${lastControlledText === 'IR Remote'
-                      ? 'mdi:remote'
-                      : lastControlledText === 'Mains Switch'
-                      ? 'mdi:toggle-switch'
-                      : 'mdi:remote-desktop'}"
+                    icon="${this._sourceIcon(lastControlledText)}"
                     style="--mdc-icon-size: 14px;"
                   ></ha-icon>
                   <span>Last controlled by: ${lastControlledText}</span>
