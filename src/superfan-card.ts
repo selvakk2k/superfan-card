@@ -159,11 +159,12 @@ export class SuperfanCard extends LitElement {
   }
 
 private _showToast(message: string): void {
-    window.dispatchEvent(
+    this._haptic('warning');
+    this.dispatchEvent(
       new CustomEvent('hass-notification', {
-        detail: { message },
         bubbles: true,
         composed: true,
+        detail: { message },
       })
     );
   }
@@ -642,13 +643,15 @@ private _showToast(message: string): void {
         <!-- Google Home Dual Stepper Action Row -->
         <div class="gh-action-row">
           <button
-            class="gh-circular-btn ${!isOn ? 'disabled' : ''}"
-            title="${!isOn ? 'Turn on the fan to decrease speed' : (currentStepIndex <= 0 ? 'Turn fan off' : 'Decrease speed')}"
-            ?disabled="${!isOn}"
+            class="gh-circular-btn ${!isOn || !isOnline ? 'disabled' : ''}"
+            title="${!isOnline ? 'Device is offline' : (!isOn ? 'Turn on the fan to decrease speed' : (currentStepIndex <= 0 ? 'Turn fan off' : 'Decrease speed'))}"
             @click=${(e: Event) => {
               e.stopPropagation();
-              if (!isOn) return;
-              if (currentStepIndex <= 0) {
+              if (!isOnline) {
+                this._showToast('Device is offline');
+              } else if (!isOn) {
+                this._showToast('Turn on the fan to decrease speed');
+              } else if (currentStepIndex <= 0) {
                 this._toggle();
               } else {
                 this._setSpeed(speedSteps[currentStepIndex - 1].pct);
@@ -658,14 +661,17 @@ private _showToast(message: string): void {
             <ha-icon icon="mdi:minus"></ha-icon>
           </button>
           <button
-            class="gh-circular-btn ${isOn && currentStepIndex === speedSteps.length - 1 ? 'disabled' : ''}"
-            title="${!isOn ? 'Turn on fan at low speed' : (currentStepIndex >= speedSteps.length - 1 ? 'Maximum speed reached' : 'Increase speed')}"
-            ?disabled="${isOn && currentStepIndex === speedSteps.length - 1}"
+            class="gh-circular-btn ${!isOnline || (isOn && currentStepIndex >= speedSteps.length - 1) ? 'disabled' : ''}"
+            title="${!isOnline ? 'Device is offline' : (!isOn ? 'Turn on fan at low speed' : (currentStepIndex >= speedSteps.length - 1 ? 'Maximum speed reached' : 'Increase speed'))}"
             @click=${(e: Event) => {
               e.stopPropagation();
-              if (!isOn) {
+              if (!isOnline) {
+                this._showToast('Device is offline');
+              } else if (!isOn) {
                 this._setSpeed(speedSteps[0].pct);
-              } else if (currentStepIndex < speedSteps.length - 1) {
+              } else if (currentStepIndex >= speedSteps.length - 1) {
+                this._showToast('Maximum speed reached');
+              } else {
                 this._setSpeed(speedSteps[currentStepIndex + 1].pct);
               }
             }}
@@ -912,11 +918,13 @@ private _showToast(message: string): void {
 
         <div class="compact-footer">
           <button
-            class="compact-action-btn ${!isOn ? 'disabled' : ''}"
-            title="${!isOn ? 'Turn on the fan to adjust speed' : 'Decrease Speed'}"
+            class="compact-action-btn ${!isOn || !isOnline ? 'disabled' : ''}"
+            title="${!isOnline ? 'Device is offline' : (!isOn ? 'Turn on the fan to adjust speed' : (percentage <= 1 ? 'Turn fan off' : 'Decrease Speed'))}"
             @click=${(e: Event) => {
               e.stopPropagation();
-              if (!isOn) {
+              if (!isOnline) {
+                this._showToast('Device is offline');
+              } else if (!isOn) {
                 this._showToast('Turn on the fan to adjust speed');
               } else {
                 this._cycleSpeed(percentage, speedCount, -1);
@@ -927,12 +935,16 @@ private _showToast(message: string): void {
           </button>
           <div class="compact-subtitle">Speed</div>
           <button
-            class="compact-action-btn ${!isOn ? 'disabled' : ''}"
-            title="${!isOn ? 'Turn on the fan to adjust speed' : 'Increase Speed'}"
+            class="compact-action-btn ${!isOn || !isOnline || (isOn && percentage >= 100) ? 'disabled' : ''}"
+            title="${!isOnline ? 'Device is offline' : (!isOn ? 'Turn on the fan to adjust speed' : (percentage >= 100 ? 'Maximum speed reached' : 'Increase Speed'))}"
             @click=${(e: Event) => {
               e.stopPropagation();
-              if (!isOn) {
+              if (!isOnline) {
+                this._showToast('Device is offline');
+              } else if (!isOn) {
                 this._showToast('Turn on the fan to adjust speed');
+              } else if (percentage >= 100) {
+                this._showToast('Maximum speed reached');
               } else {
                 this._cycleSpeed(percentage, speedCount, 1);
               }
