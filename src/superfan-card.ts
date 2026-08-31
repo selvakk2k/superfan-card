@@ -366,83 +366,83 @@ private _showToast(message: string): void {
           <div class="vertical-selector">
             ${speedCount === 5 ? html`
               <button
-                class="speed-btn ${isOn && percentage > 80 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 5 (100%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(100); } }}
+                class="speed-btn ${isOn && percentage > 80 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Speed 5 (100%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(100); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>5</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 60 && percentage <= 80 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 4 (80%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(80); } }}
+                class="speed-btn ${isOn && percentage > 60 && percentage <= 80 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Speed 4 (80%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(80); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>4</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 40 && percentage <= 60 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 3 (60%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(60); } }}
+                class="speed-btn ${isOn && percentage > 40 && percentage <= 60 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Speed 3 (60%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(60); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>3</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 20 && percentage <= 40 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 2 (40%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(40); } }}
+                class="speed-btn ${isOn && percentage > 20 && percentage <= 40 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Speed 2 (40%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(40); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>2</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 0 && percentage <= 20 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Speed 1 (20%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(20); } }}
+                class="speed-btn ${isOn && percentage > 0 && percentage <= 20 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Speed 1 (20%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(20); } }}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>1</span>
               </button>
             ` : speedCount === 3 ? html`
               <button
-                class="speed-btn ${isOn && percentage > 66 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'High Speed (100%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(100); } }}
+                class="speed-btn ${isOn && percentage > 66 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'High Speed (100%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(100); } }}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 33 && percentage <= 66 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Medium Speed (66%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(66); } }}
+                class="speed-btn ${isOn && percentage > 33 && percentage <= 66 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Medium Speed (66%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(66); } }}
               >
                 <ha-icon icon="mdi:fan-speed-2"></ha-icon>
                 <span>Medium</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 0 && percentage <= 33 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Low Speed (33%)'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(33); } }}
+                class="speed-btn ${isOn && percentage > 0 && percentage <= 33 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Low Speed (33%)'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(33); } }}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
               </button>
             ` : html`
               <button
-                class="speed-btn ${isOn && percentage > 50 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'High Speed'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(100); } }}
+                class="speed-btn ${isOn && percentage > 50 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'High Speed'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(100); } }}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
               </button>
               <button
-                class="speed-btn ${isOn && percentage > 0 && percentage <= 50 && !presetMode ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to adjust speed' : 'Low Speed'}"
-                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else if (!isOn) { this._showToast("Turn on the fan to adjust speed"); } else { this._setSpeed(50); } }}
+                class="speed-btn ${isOn && percentage > 0 && percentage <= 50 && !presetMode ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Low Speed'}"
+                @click=${() => { if (!isOnline) { this._showToast("Device is offline"); } else { this._setSpeed(50); } }}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
@@ -464,11 +464,13 @@ private _showToast(message: string): void {
                   );
                   return html`
                     <button
-                      class="pill-btn ${presetMode === preset ? 'active' : ''} ${!isOn || (isSpeedAdjust && isRealPresetActive) ? 'disabled' : ''}"
-                      title="${!isOn ? 'Turn on the fan to select modes' : preset}"
+                      class="pill-btn ${presetMode === preset && isOn ? 'active' : ''} ${!isOnline || (isSpeedAdjust && isRealPresetActive) ? 'disabled' : ''}"
+                      title="${!isOnline ? 'Device is offline' : (isSpeedAdjust && isRealPresetActive ? 'Deactivate current preset to adjust speed' : preset)}"
                       @click=${() => {
-                        if (!isOn) {
-                          this._showToast('Turn on the fan to select modes');
+                        if (!isOnline) {
+                          this._showToast('Device is offline');
+                        } else if (isSpeedAdjust && isRealPresetActive) {
+                          this._showToast('Deactivate current preset to adjust speed');
                         } else {
                           this._setPreset(preset);
                         }
@@ -487,11 +489,11 @@ private _showToast(message: string): void {
               <div class="pill-grid">
                 ${timers.map((preset: string) => html`
                   <button
-                    class="pill-btn ${presetMode === preset ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                    title="${!isOn ? 'Turn on the fan to activate timers' : preset}"
+                    class="pill-btn ${presetMode === preset && isOn ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                    title="${!isOnline ? 'Device is offline' : preset}"
                     @click=${() => {
-                      if (!isOn) {
-                        this._showToast('Turn on the fan to activate timers');
+                      if (!isOnline) {
+                        this._showToast('Device is offline');
                       } else {
                         this._setPreset(preset);
                       }
@@ -636,8 +638,13 @@ private _showToast(message: string): void {
 
         <!-- Hero Value -->
         <div class="gh-center">
-          <div class="gh-value-large">${displayValue}</div>
-          <div class="gh-subtitle-large">Fan Speed</div>
+          <div
+            class="gh-value-large"
+            style="${displayValue.length > 5 ? 'font-size: 2.4rem; padding: 0 8px;' : ''}"
+          >
+            ${displayValue}
+          </div>
+          <div class="gh-subtitle-large">${presetMode ? 'Active Preset' : 'Fan Speed'}</div>
         </div>
 
         <!-- Google Home Dual Stepper Action Row -->
@@ -685,12 +692,12 @@ private _showToast(message: string): void {
           <!-- Speed Dropdown -->
           <div class="gh-select-wrapper ${this._ghDropdown === 'speed' ? 'active' : ''}">
             <button
-              class="gh-custom-select ${!isOn ? 'disabled' : ''}"
-              title="${!isOn ? 'Turn on the fan to select speed' : 'Select Speed'}"
+              class="gh-custom-select ${!isOnline ? 'disabled' : ''}"
+              title="${!isOnline ? 'Device is offline' : 'Select Speed'}"
               @click=${(e: Event) => {
                 e.stopPropagation();
-                if (!isOn) {
-                  this._showToast('Turn on the fan to select speed');
+                if (!isOnline) {
+                  this._showToast('Device is offline');
                 } else {
                   this._haptic('selection');
                   this._ghDropdown = this._ghDropdown === 'speed' ? null : 'speed';
@@ -722,12 +729,12 @@ private _showToast(message: string): void {
           ${modes.length > 0 ? html`
             <div class="gh-select-wrapper ${this._ghDropdown === 'preset' ? 'active' : ''}">
               <button
-                class="gh-custom-select ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to select presets' : 'Select Preset Mode'}"
+                class="gh-custom-select ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Select Preset Mode'}"
                 @click=${(e: Event) => {
                   e.stopPropagation();
-                  if (!isOn) {
-                    this._showToast('Turn on the fan to select presets');
+                  if (!isOnline) {
+                    this._showToast('Device is offline');
                   } else {
                     this._haptic('selection');
                     this._ghDropdown = this._ghDropdown === 'preset' ? null : 'preset';
@@ -770,12 +777,12 @@ private _showToast(message: string): void {
           ${timers.length > 0 ? html`
             <div class="gh-select-wrapper ${this._ghDropdown === 'timer' ? 'active' : ''}">
               <button
-                class="gh-custom-select ${!isOn ? 'disabled' : ''}"
-                title="${!isOn ? 'Turn on the fan to set timers' : 'Select Timer'}"
+                class="gh-custom-select ${!isOnline ? 'disabled' : ''}"
+                title="${!isOnline ? 'Device is offline' : 'Select Timer'}"
                 @click=${(e: Event) => {
                   e.stopPropagation();
-                  if (!isOn) {
-                    this._showToast('Turn on the fan to set timers');
+                  if (!isOnline) {
+                    this._showToast('Device is offline');
                   } else {
                     this._haptic('selection');
                     this._ghDropdown = this._ghDropdown === 'timer' ? null : 'timer';
@@ -824,12 +831,12 @@ private _showToast(message: string): void {
                   .map(
                     (chip) => html`
                       <button
-                        class="gh-chip ${presetMode === chip ? 'active' : ''} ${!isOn ? 'disabled' : ''}"
-                        title="${!isOn ? 'Turn on the fan to activate' : chip}"
+                        class="gh-chip ${presetMode === chip && isOn ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
+                        title="${!isOnline ? 'Device is offline' : chip}"
                         @click=${(e: Event) => {
                           e.stopPropagation();
-                          if (!isOn) {
-                            this._showToast('Turn on the fan to activate');
+                          if (!isOnline) {
+                            this._showToast('Device is offline');
                           } else {
                             this._setPreset(chip);
                           }
@@ -926,6 +933,8 @@ private _showToast(message: string): void {
                 this._showToast('Device is offline');
               } else if (!isOn) {
                 this._showToast('Turn on the fan to adjust speed');
+              } else if (percentage <= 1) {
+                this._toggle();
               } else {
                 this._cycleSpeed(percentage, speedCount, -1);
               }
@@ -935,14 +944,14 @@ private _showToast(message: string): void {
           </button>
           <div class="compact-subtitle">Speed</div>
           <button
-            class="compact-action-btn ${!isOn || !isOnline || (isOn && percentage >= 100) ? 'disabled' : ''}"
-            title="${!isOnline ? 'Device is offline' : (!isOn ? 'Turn on the fan to adjust speed' : (percentage >= 100 ? 'Maximum speed reached' : 'Increase Speed'))}"
+            class="compact-action-btn ${!isOnline || (isOn && percentage >= 100) ? 'disabled' : ''}"
+            title="${!isOnline ? 'Device is offline' : (!isOn ? 'Turn on fan at low speed' : (percentage >= 100 ? 'Maximum speed reached' : 'Increase Speed'))}"
             @click=${(e: Event) => {
               e.stopPropagation();
               if (!isOnline) {
                 this._showToast('Device is offline');
               } else if (!isOn) {
-                this._showToast('Turn on the fan to adjust speed');
+                this._setSpeed(percentage > 0 ? percentage : (speedCount === 3 ? 33 : (speedCount === 6 ? 17 : 20)));
               } else if (percentage >= 100) {
                 this._showToast('Maximum speed reached');
               } else {

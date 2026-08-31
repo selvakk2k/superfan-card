@@ -200,9 +200,10 @@ export const styles = css`
   }
 
   .pill-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     gap: 6px;
     padding: 10px 8px;
     border-radius: 12px;
@@ -213,13 +214,19 @@ export const styles = css`
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+    min-width: 0;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
   .pill-btn:hover { background: var(--sf-surface-hover); }
   .pill-btn.disabled { opacity: 0.5; cursor: not-allowed; }
   .pill-btn ha-icon { --mdc-icon-size: 16px; flex-shrink: 0; }
+  .pill-btn span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    max-width: 100%;
+  }
 
   .pill-btn.active {
     background: var(--sf-accent);
@@ -318,12 +325,16 @@ export const styles = css`
     font-weight: 400;
     color: var(--sf-text);
     line-height: 1.1;
+    text-align: center;
+    max-width: 100%;
+    word-break: break-word;
   }
   .gh-subtitle-large {
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--sf-text-2);
     margin-top: 4px;
+    text-align: center;
   }
 
   /* ── Google Home Stepper Action Row ── */
@@ -452,6 +463,8 @@ export const styles = css`
   .gh-chip {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 6px;
     padding: 6px 12px;
     border-radius: 16px;
@@ -464,6 +477,14 @@ export const styles = css`
     transition: 0.2s ease;
     --mdc-icon-size: 16px;
     outline: none;
+    min-width: 0;
+  }
+  .gh-chip span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    max-width: 100%;
   }
   .gh-chip:hover:not(:disabled), .gh-pill:hover {
     background: rgba(128, 128, 128, 0.25);
