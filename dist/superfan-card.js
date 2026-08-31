@@ -1,42 +1,42 @@
-function t(t,e,s,o){var i,n=arguments.length,r=n<3?e:null===o?o=Object.getOwnPropertyDescriptor(e,s):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)r=Reflect.decorate(t,e,s,o);else for(var a=t.length-1;a>=0;a--)(i=t[a])&&(r=(n<3?i(r):n>3?i(e,s,r):i(e,s))||r);return n>3&&r&&Object.defineProperty(e,s,r),r}"function"==typeof SuppressedError&&SuppressedError;
+function e(e,t,i,s){var o,n=arguments.length,r=n<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,i):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)r=Reflect.decorate(e,t,i,s);else for(var a=e.length-1;a>=0;a--)(o=e[a])&&(r=(n<3?o(r):n>3?o(t,i,r):o(t,i))||r);return n>3&&r&&Object.defineProperty(t,i,r),r}"function"==typeof SuppressedError&&SuppressedError;
 /**
  * @license
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const e=globalThis,s=e.ShadowRoot&&(void 0===e.ShadyCSS||e.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,o=Symbol(),i=new WeakMap;let n=class{constructor(t,e,s){if(this._$cssResult$=!0,s!==o)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o;const e=this.t;if(s&&void 0===t){const s=void 0!==e&&1===e.length;s&&(t=i.get(e)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),s&&i.set(e,t))}return t}toString(){return this.cssText}};const r=s?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return(t=>new n("string"==typeof t?t:t+"",void 0,o))(e)})(t):t,{is:a,defineProperty:c,getOwnPropertyDescriptor:l,getOwnPropertyNames:d,getOwnPropertySymbols:h,getPrototypeOf:p}=Object,u=globalThis,f=u.trustedTypes,g=f?f.emptyScript:"",b=u.reactiveElementPolyfillSupport,m=(t,e)=>t,v={toAttribute(t,e){switch(e){case Boolean:t=t?g:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let s=t;switch(e){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t)}catch(t){s=null}}return s}},_=(t,e)=>!a(t,e),$={attribute:!0,type:String,converter:v,reflect:!1,useDefault:!1,hasChanged:_};
+const t=globalThis,i=t.ShadowRoot&&(void 0===t.ShadyCSS||t.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s=Symbol(),o=new WeakMap;let n=class{constructor(e,t,i){if(this._$cssResult$=!0,i!==s)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=e,this.t=t}get styleSheet(){let e=this.o;const t=this.t;if(i&&void 0===e){const i=void 0!==t&&1===t.length;i&&(e=o.get(t)),void 0===e&&((this.o=e=new CSSStyleSheet).replaceSync(this.cssText),i&&o.set(t,e))}return e}toString(){return this.cssText}};const r=i?e=>e:e=>e instanceof CSSStyleSheet?(e=>{let t="";for(const i of e.cssRules)t+=i.cssText;return(e=>new n("string"==typeof e?e:e+"",void 0,s))(t)})(e):e,{is:a,defineProperty:c,getOwnPropertyDescriptor:l,getOwnPropertyNames:d,getOwnPropertySymbols:h,getPrototypeOf:p}=Object,f=globalThis,u=f.trustedTypes,g=u?u.emptyScript:"",b=f.reactiveElementPolyfillSupport,m=(e,t)=>e,v={toAttribute(e,t){switch(t){case Boolean:e=e?g:null;break;case Object:case Array:e=null==e?e:JSON.stringify(e)}return e},fromAttribute(e,t){let i=e;switch(t){case Boolean:i=null!==e;break;case Number:i=null===e?null:Number(e);break;case Object:case Array:try{i=JSON.parse(e)}catch(e){i=null}}return i}},_=(e,t)=>!a(e,t),$={attribute:!0,type:String,converter:v,reflect:!1,useDefault:!1,hasChanged:_};
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */Symbol.metadata??=Symbol("metadata"),u.litPropertyMetadata??=new WeakMap;let x=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=$){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){const s=Symbol(),o=this.getPropertyDescriptor(t,s,e);void 0!==o&&c(this.prototype,t,o)}}static getPropertyDescriptor(t,e,s){const{get:o,set:i}=l(this.prototype,t)??{get(){return this[e]},set(t){this[e]=t}};return{get:o,set(e){const n=o?.call(this);i?.call(this,e),this.requestUpdate(t,n,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??$}static _$Ei(){if(this.hasOwnProperty(m("elementProperties")))return;const t=p(this);t.finalize(),void 0!==t.l&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(m("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(m("properties"))){const t=this.properties,e=[...d(t),...h(t)];for(const s of e)this.createProperty(s,t[s])}const t=this[Symbol.metadata];if(null!==t){const e=litPropertyMetadata.get(t);if(void 0!==e)for(const[t,s]of e)this.elementProperties.set(t,s)}this._$Eh=new Map;for(const[t,e]of this.elementProperties){const s=this._$Eu(t,e);void 0!==s&&this._$Eh.set(s,t)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){const e=[];if(Array.isArray(t)){const s=new Set(t.flat(1/0).reverse());for(const t of s)e.unshift(r(t))}else void 0!==t&&e.push(r(t));return e}static _$Eu(t,e){const s=e.attribute;return!1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(t=>this.enableUpdating=t),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(t=>t(this))}addController(t){(this._$EO??=new Set).add(t),void 0!==this.renderRoot&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){const t=new Map,e=this.constructor.elementProperties;for(const s of e.keys())this.hasOwnProperty(s)&&(t.set(s,this[s]),delete this[s]);t.size>0&&(this._$Ep=t)}createRenderRoot(){const t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return((t,o)=>{if(s)t.adoptedStyleSheets=o.map(t=>t instanceof CSSStyleSheet?t:t.styleSheet);else for(const s of o){const o=document.createElement("style"),i=e.litNonce;void 0!==i&&o.setAttribute("nonce",i),o.textContent=s.cssText,t.appendChild(o)}})(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(t=>t.hostConnected?.())}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach(t=>t.hostDisconnected?.())}attributeChangedCallback(t,e,s){this._$AK(t,s)}_$ET(t,e){const s=this.constructor.elementProperties.get(t),o=this.constructor._$Eu(t,s);if(void 0!==o&&!0===s.reflect){const i=(void 0!==s.converter?.toAttribute?s.converter:v).toAttribute(e,s.type);this._$Em=t,null==i?this.removeAttribute(o):this.setAttribute(o,i),this._$Em=null}}_$AK(t,e){const s=this.constructor,o=s._$Eh.get(t);if(void 0!==o&&this._$Em!==o){const t=s.getPropertyOptions(o),i="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==t.converter?.fromAttribute?t.converter:v;this._$Em=o;const n=i.fromAttribute(e,t.type);this[o]=n??this._$Ej?.get(o)??n,this._$Em=null}}requestUpdate(t,e,s,o=!1,i){if(void 0!==t){const n=this.constructor;if(!1===o&&(i=this[t]),s??=n.getPropertyOptions(t),!((s.hasChanged??_)(i,e)||s.useDefault&&s.reflect&&i===this._$Ej?.get(t)&&!this.hasAttribute(n._$Eu(t,s))))return;this.C(t,e,s)}!1===this.isUpdatePending&&(this._$ES=this._$EP())}C(t,e,{useDefault:s,reflect:o,wrapped:i},n){s&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),!0!==i||void 0!==n)||(this._$AL.has(t)||(this.hasUpdated||s||(e=void 0),this._$AL.set(t,e)),!0===o&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(t){Promise.reject(t)}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[t,e]of this._$Ep)this[t]=e;this._$Ep=void 0}const t=this.constructor.elementProperties;if(t.size>0)for(const[e,s]of t){const{wrapped:t}=s,o=this[e];!0!==t||this._$AL.has(e)||void 0===o||this.C(e,void 0,s,o)}}let t=!1;const e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach(t=>t.hostUpdate?.()),this.update(e)):this._$EM()}catch(e){throw t=!1,this._$EM(),e}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach(t=>t.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach(t=>this._$ET(t,this[t])),this._$EM()}updated(t){}firstUpdated(t){}};x.elementStyles=[],x.shadowRootOptions={mode:"open"},x[m("elementProperties")]=new Map,x[m("finalized")]=new Map,b?.({ReactiveElement:x}),(u.reactiveElementVersions??=[]).push("2.1.2");
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-const y=globalThis,w=t=>t,A=y.trustedTypes,S=A?A.createPolicy("lit-html",{createHTML:t=>t}):void 0,k="$lit$",T=`lit$${Math.random().toFixed(9).slice(2)}$`,C="?"+T,E=`<${C}>`,P=document,D=()=>P.createComment(""),j=t=>null===t||"object"!=typeof t&&"function"!=typeof t,z=Array.isArray,M="[ \t\n\f\r]",H=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,O=/-->/g,L=/>/g,N=RegExp(`>|${M}(?:([^\\s"'>=/]+)(${M}*=${M}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),U=/'/g,R=/"/g,I=/^(?:script|style|textarea|title)$/i,B=(t=>(e,...s)=>({_$litType$:t,strings:e,values:s}))(1),W=Symbol.for("lit-noChange"),F=Symbol.for("lit-nothing"),q=new WeakMap,V=P.createTreeWalker(P,129);function G(t,e){if(!z(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==S?S.createHTML(e):e}const J=(t,e)=>{const s=t.length-1,o=[];let i,n=2===e?"<svg>":3===e?"<math>":"",r=H;for(let e=0;e<s;e++){const s=t[e];let a,c,l=-1,d=0;for(;d<s.length&&(r.lastIndex=d,c=r.exec(s),null!==c);)d=r.lastIndex,r===H?"!--"===c[1]?r=O:void 0!==c[1]?r=L:void 0!==c[2]?(I.test(c[2])&&(i=RegExp("</"+c[2],"g")),r=N):void 0!==c[3]&&(r=N):r===N?">"===c[0]?(r=i??H,l=-1):void 0===c[1]?l=-2:(l=r.lastIndex-c[2].length,a=c[1],r=void 0===c[3]?N:'"'===c[3]?R:U):r===R||r===U?r=N:r===O||r===L?r=H:(r=N,i=void 0);const h=r===N&&t[e+1].startsWith("/>")?" ":"";n+=r===H?s+E:l>=0?(o.push(a),s.slice(0,l)+k+s.slice(l)+T+h):s+T+(-2===l?e:h)}return[G(t,n+(t[s]||"<?>")+(2===e?"</svg>":3===e?"</math>":"")),o]};class K{constructor({strings:t,_$litType$:e},s){let o;this.parts=[];let i=0,n=0;const r=t.length-1,a=this.parts,[c,l]=J(t,e);if(this.el=K.createElement(c,s),V.currentNode=this.el.content,2===e||3===e){const t=this.el.content.firstChild;t.replaceWith(...t.childNodes)}for(;null!==(o=V.nextNode())&&a.length<r;){if(1===o.nodeType){if(o.hasAttributes())for(const t of o.getAttributeNames())if(t.endsWith(k)){const e=l[n++],s=o.getAttribute(t).split(T),r=/([.?@])?(.*)/.exec(e);a.push({type:1,index:i,name:r[2],strings:s,ctor:"."===r[1]?tt:"?"===r[1]?et:"@"===r[1]?st:X}),o.removeAttribute(t)}else t.startsWith(T)&&(a.push({type:6,index:i}),o.removeAttribute(t));if(I.test(o.tagName)){const t=o.textContent.split(T),e=t.length-1;if(e>0){o.textContent=A?A.emptyScript:"";for(let s=0;s<e;s++)o.append(t[s],D()),V.nextNode(),a.push({type:2,index:++i});o.append(t[e],D())}}}else if(8===o.nodeType)if(o.data===C)a.push({type:2,index:i});else{let t=-1;for(;-1!==(t=o.data.indexOf(T,t+1));)a.push({type:7,index:i}),t+=T.length-1}i++}}static createElement(t,e){const s=P.createElement("template");return s.innerHTML=t,s}}function Y(t,e,s=t,o){if(e===W)return e;let i=void 0!==o?s._$Co?.[o]:s._$Cl;const n=j(e)?void 0:e._$litDirective$;return i?.constructor!==n&&(i?._$AO?.(!1),void 0===n?i=void 0:(i=new n(t),i._$AT(t,s,o)),void 0!==o?(s._$Co??=[])[o]=i:s._$Cl=i),void 0!==i&&(e=Y(t,i._$AS(t,e.values),i,o)),e}class Z{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){const{el:{content:e},parts:s}=this._$AD,o=(t?.creationScope??P).importNode(e,!0);V.currentNode=o;let i=V.nextNode(),n=0,r=0,a=s[0];for(;void 0!==a;){if(n===a.index){let e;2===a.type?e=new Q(i,i.nextSibling,this,t):1===a.type?e=new a.ctor(i,a.name,a.strings,this,t):6===a.type&&(e=new ot(i,this,t)),this._$AV.push(e),a=s[++r]}n!==a?.index&&(i=V.nextNode(),n++)}return V.currentNode=P,o}p(t){let e=0;for(const s of this._$AV)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,e),e+=s.strings.length-2):s._$AI(t[e])),e++}}class Q{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,s,o){this.type=2,this._$AH=F,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=s,this.options=o,this._$Cv=o?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode;const e=this._$AM;return void 0!==e&&11===t?.nodeType&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=Y(this,t,e),j(t)?t===F||null==t||""===t?(this._$AH!==F&&this._$AR(),this._$AH=F):t!==this._$AH&&t!==W&&this._(t):void 0!==t._$litType$?this.$(t):void 0!==t.nodeType?this.T(t):(t=>z(t)||"function"==typeof t?.[Symbol.iterator])(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==F&&j(this._$AH)?this._$AA.nextSibling.data=t:this.T(P.createTextNode(t)),this._$AH=t}$(t){const{values:e,_$litType$:s}=t,o="number"==typeof s?this._$AC(t):(void 0===s.el&&(s.el=K.createElement(G(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===o)this._$AH.p(e);else{const t=new Z(o,this),s=t.u(this.options);t.p(e),this.T(s),this._$AH=t}}_$AC(t){let e=q.get(t.strings);return void 0===e&&q.set(t.strings,e=new K(t)),e}k(t){z(this._$AH)||(this._$AH=[],this._$AR());const e=this._$AH;let s,o=0;for(const i of t)o===e.length?e.push(s=new Q(this.O(D()),this.O(D()),this,this.options)):s=e[o],s._$AI(i),o++;o<e.length&&(this._$AR(s&&s._$AB.nextSibling,o),e.length=o)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t!==this._$AB;){const e=w(t).nextSibling;w(t).remove(),t=e}}setConnected(t){void 0===this._$AM&&(this._$Cv=t,this._$AP?.(t))}}class X{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,s,o,i){this.type=1,this._$AH=F,this._$AN=void 0,this.element=t,this.name=e,this._$AM=o,this.options=i,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=F}_$AI(t,e=this,s,o){const i=this.strings;let n=!1;if(void 0===i)t=Y(this,t,e,0),n=!j(t)||t!==this._$AH&&t!==W,n&&(this._$AH=t);else{const o=t;let r,a;for(t=i[0],r=0;r<i.length-1;r++)a=Y(this,o[s+r],e,r),a===W&&(a=this._$AH[r]),n||=!j(a)||a!==this._$AH[r],a===F?t=F:t!==F&&(t+=(a??"")+i[r+1]),this._$AH[r]=a}n&&!o&&this.j(t)}j(t){t===F?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"")}}class tt extends X{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===F?void 0:t}}class et extends X{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==F)}}class st extends X{constructor(t,e,s,o,i){super(t,e,s,o,i),this.type=5}_$AI(t,e=this){if((t=Y(this,t,e,0)??F)===W)return;const s=this._$AH,o=t===F&&s!==F||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,i=t!==F&&(s===F||o);o&&this.element.removeEventListener(this.name,this,s),i&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}}class ot{constructor(t,e,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(t){Y(this,t)}}const it=y.litHtmlPolyfillSupport;it?.(K,Q),(y.litHtmlVersions??=[]).push("3.3.3");const nt=globalThis;
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */class rt extends x{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){const e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=((t,e,s)=>{const o=s?.renderBefore??e;let i=o._$litPart$;if(void 0===i){const t=s?.renderBefore??null;o._$litPart$=i=new Q(e.insertBefore(D(),t),t,void 0,s??{})}return i._$AI(t),i})(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return W}}rt._$litElement$=!0,rt.finalized=!0,nt.litElementHydrateSupport?.({LitElement:rt});const at=nt.litElementPolyfillSupport;at?.({LitElement:rt}),(nt.litElementVersions??=[]).push("4.2.2");
+ */Symbol.metadata??=Symbol("metadata"),f.litPropertyMetadata??=new WeakMap;let x=class extends HTMLElement{static addInitializer(e){this._$Ei(),(this.l??=[]).push(e)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(e,t=$){if(t.state&&(t.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(e)&&((t=Object.create(t)).wrapped=!0),this.elementProperties.set(e,t),!t.noAccessor){const i=Symbol(),s=this.getPropertyDescriptor(e,i,t);void 0!==s&&c(this.prototype,e,s)}}static getPropertyDescriptor(e,t,i){const{get:s,set:o}=l(this.prototype,e)??{get(){return this[t]},set(e){this[t]=e}};return{get:s,set(t){const n=s?.call(this);o?.call(this,t),this.requestUpdate(e,n,i)},configurable:!0,enumerable:!0}}static getPropertyOptions(e){return this.elementProperties.get(e)??$}static _$Ei(){if(this.hasOwnProperty(m("elementProperties")))return;const e=p(this);e.finalize(),void 0!==e.l&&(this.l=[...e.l]),this.elementProperties=new Map(e.elementProperties)}static finalize(){if(this.hasOwnProperty(m("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(m("properties"))){const e=this.properties,t=[...d(e),...h(e)];for(const i of t)this.createProperty(i,e[i])}const e=this[Symbol.metadata];if(null!==e){const t=litPropertyMetadata.get(e);if(void 0!==t)for(const[e,i]of t)this.elementProperties.set(e,i)}this._$Eh=new Map;for(const[e,t]of this.elementProperties){const i=this._$Eu(e,t);void 0!==i&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(e){const t=[];if(Array.isArray(e)){const i=new Set(e.flat(1/0).reverse());for(const e of i)t.unshift(r(e))}else void 0!==e&&t.push(r(e));return t}static _$Eu(e,t){const i=t.attribute;return!1===i?void 0:"string"==typeof i?i:"string"==typeof e?e.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(e=>this.enableUpdating=e),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(e=>e(this))}addController(e){(this._$EO??=new Set).add(e),void 0!==this.renderRoot&&this.isConnected&&e.hostConnected?.()}removeController(e){this._$EO?.delete(e)}_$E_(){const e=new Map,t=this.constructor.elementProperties;for(const i of t.keys())this.hasOwnProperty(i)&&(e.set(i,this[i]),delete this[i]);e.size>0&&(this._$Ep=e)}createRenderRoot(){const e=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return((e,s)=>{if(i)e.adoptedStyleSheets=s.map(e=>e instanceof CSSStyleSheet?e:e.styleSheet);else for(const i of s){const s=document.createElement("style"),o=t.litNonce;void 0!==o&&s.setAttribute("nonce",o),s.textContent=i.cssText,e.appendChild(s)}})(e,this.constructor.elementStyles),e}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(e=>e.hostConnected?.())}enableUpdating(e){}disconnectedCallback(){this._$EO?.forEach(e=>e.hostDisconnected?.())}attributeChangedCallback(e,t,i){this._$AK(e,i)}_$ET(e,t){const i=this.constructor.elementProperties.get(e),s=this.constructor._$Eu(e,i);if(void 0!==s&&!0===i.reflect){const o=(void 0!==i.converter?.toAttribute?i.converter:v).toAttribute(t,i.type);this._$Em=e,null==o?this.removeAttribute(s):this.setAttribute(s,o),this._$Em=null}}_$AK(e,t){const i=this.constructor,s=i._$Eh.get(e);if(void 0!==s&&this._$Em!==s){const e=i.getPropertyOptions(s),o="function"==typeof e.converter?{fromAttribute:e.converter}:void 0!==e.converter?.fromAttribute?e.converter:v;this._$Em=s;const n=o.fromAttribute(t,e.type);this[s]=n??this._$Ej?.get(s)??n,this._$Em=null}}requestUpdate(e,t,i,s=!1,o){if(void 0!==e){const n=this.constructor;if(!1===s&&(o=this[e]),i??=n.getPropertyOptions(e),!((i.hasChanged??_)(o,t)||i.useDefault&&i.reflect&&o===this._$Ej?.get(e)&&!this.hasAttribute(n._$Eu(e,i))))return;this.C(e,t,i)}!1===this.isUpdatePending&&(this._$ES=this._$EP())}C(e,t,{useDefault:i,reflect:s,wrapped:o},n){i&&!(this._$Ej??=new Map).has(e)&&(this._$Ej.set(e,n??t??this[e]),!0!==o||void 0!==n)||(this._$AL.has(e)||(this.hasUpdated||i||(t=void 0),this._$AL.set(e,t)),!0===s&&this._$Em!==e&&(this._$Eq??=new Set).add(e))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}const e=this.scheduleUpdate();return null!=e&&await e,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[e,t]of this._$Ep)this[e]=t;this._$Ep=void 0}const e=this.constructor.elementProperties;if(e.size>0)for(const[t,i]of e){const{wrapped:e}=i,s=this[t];!0!==e||this._$AL.has(t)||void 0===s||this.C(t,void 0,i,s)}}let e=!1;const t=this._$AL;try{e=this.shouldUpdate(t),e?(this.willUpdate(t),this._$EO?.forEach(e=>e.hostUpdate?.()),this.update(t)):this._$EM()}catch(t){throw e=!1,this._$EM(),t}e&&this._$AE(t)}willUpdate(e){}_$AE(e){this._$EO?.forEach(e=>e.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(e)),this.updated(e)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(e){return!0}update(e){this._$Eq&&=this._$Eq.forEach(e=>this._$ET(e,this[e])),this._$EM()}updated(e){}firstUpdated(e){}};x.elementStyles=[],x.shadowRootOptions={mode:"open"},x[m("elementProperties")]=new Map,x[m("finalized")]=new Map,b?.({ReactiveElement:x}),(f.reactiveElementVersions??=[]).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct,e,s)=>{const{kind:o,metadata:i}=s;let n=globalThis.litPropertyMetadata.get(i);if(void 0===n&&globalThis.litPropertyMetadata.set(i,n=new Map),"setter"===o&&((t=Object.create(t)).wrapped=!0),n.set(s.name,t),"accessor"===o){const{name:o}=s;return{set(s){const i=e.get.call(this);e.set.call(this,s),this.requestUpdate(o,i,t,!0,s)},init(e){return void 0!==e&&this.C(o,void 0,t,e),e}}}if("setter"===o){const{name:o}=s;return function(s){const i=this[o];e.call(this,s),this.requestUpdate(o,i,t,!0,s)}}throw Error("Unsupported decorator location: "+o)};
+const y=globalThis,w=e=>e,A=y.trustedTypes,S=A?A.createPolicy("lit-html",{createHTML:e=>e}):void 0,k="$lit$",C=`lit$${Math.random().toFixed(9).slice(2)}$`,E="?"+C,D=`<${E}>`,P=document,T=()=>P.createComment(""),z=e=>null===e||"object"!=typeof e&&"function"!=typeof e,M=Array.isArray,H="[ \t\n\f\r]",O=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,j=/-->/g,L=/>/g,N=RegExp(`>|${H}(?:([^\\s"'>=/]+)(${H}*=${H}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),U=/'/g,R=/"/g,I=/^(?:script|style|textarea|title)$/i,B=(e=>(t,...i)=>({_$litType$:e,strings:t,values:i}))(1),W=Symbol.for("lit-noChange"),F=Symbol.for("lit-nothing"),q=new WeakMap,V=P.createTreeWalker(P,129);function G(e,t){if(!M(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==S?S.createHTML(t):t}const J=(e,t)=>{const i=e.length-1,s=[];let o,n=2===t?"<svg>":3===t?"<math>":"",r=O;for(let t=0;t<i;t++){const i=e[t];let a,c,l=-1,d=0;for(;d<i.length&&(r.lastIndex=d,c=r.exec(i),null!==c);)d=r.lastIndex,r===O?"!--"===c[1]?r=j:void 0!==c[1]?r=L:void 0!==c[2]?(I.test(c[2])&&(o=RegExp("</"+c[2],"g")),r=N):void 0!==c[3]&&(r=N):r===N?">"===c[0]?(r=o??O,l=-1):void 0===c[1]?l=-2:(l=r.lastIndex-c[2].length,a=c[1],r=void 0===c[3]?N:'"'===c[3]?R:U):r===R||r===U?r=N:r===j||r===L?r=O:(r=N,o=void 0);const h=r===N&&e[t+1].startsWith("/>")?" ":"";n+=r===O?i+D:l>=0?(s.push(a),i.slice(0,l)+k+i.slice(l)+C+h):i+C+(-2===l?t:h)}return[G(e,n+(e[i]||"<?>")+(2===t?"</svg>":3===t?"</math>":"")),s]};class K{constructor({strings:e,_$litType$:t},i){let s;this.parts=[];let o=0,n=0;const r=e.length-1,a=this.parts,[c,l]=J(e,t);if(this.el=K.createElement(c,i),V.currentNode=this.el.content,2===t||3===t){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(s=V.nextNode())&&a.length<r;){if(1===s.nodeType){if(s.hasAttributes())for(const e of s.getAttributeNames())if(e.endsWith(k)){const t=l[n++],i=s.getAttribute(e).split(C),r=/([.?@])?(.*)/.exec(t);a.push({type:1,index:o,name:r[2],strings:i,ctor:"."===r[1]?ee:"?"===r[1]?te:"@"===r[1]?ie:X}),s.removeAttribute(e)}else e.startsWith(C)&&(a.push({type:6,index:o}),s.removeAttribute(e));if(I.test(s.tagName)){const e=s.textContent.split(C),t=e.length-1;if(t>0){s.textContent=A?A.emptyScript:"";for(let i=0;i<t;i++)s.append(e[i],T()),V.nextNode(),a.push({type:2,index:++o});s.append(e[t],T())}}}else if(8===s.nodeType)if(s.data===E)a.push({type:2,index:o});else{let e=-1;for(;-1!==(e=s.data.indexOf(C,e+1));)a.push({type:7,index:o}),e+=C.length-1}o++}}static createElement(e,t){const i=P.createElement("template");return i.innerHTML=e,i}}function Y(e,t,i=e,s){if(t===W)return t;let o=void 0!==s?i._$Co?.[s]:i._$Cl;const n=z(t)?void 0:t._$litDirective$;return o?.constructor!==n&&(o?._$AO?.(!1),void 0===n?o=void 0:(o=new n(e),o._$AT(e,i,s)),void 0!==s?(i._$Co??=[])[s]=o:i._$Cl=o),void 0!==o&&(t=Y(e,o._$AS(e,t.values),o,s)),t}class Z{constructor(e,t){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=t}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:t},parts:i}=this._$AD,s=(e?.creationScope??P).importNode(t,!0);V.currentNode=s;let o=V.nextNode(),n=0,r=0,a=i[0];for(;void 0!==a;){if(n===a.index){let t;2===a.type?t=new Q(o,o.nextSibling,this,e):1===a.type?t=new a.ctor(o,a.name,a.strings,this,e):6===a.type&&(t=new se(o,this,e)),this._$AV.push(t),a=i[++r]}n!==a?.index&&(o=V.nextNode(),n++)}return V.currentNode=P,s}p(e){let t=0;for(const i of this._$AV)void 0!==i&&(void 0!==i.strings?(i._$AI(e,i,t),t+=i.strings.length-2):i._$AI(e[t])),t++}}class Q{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,t,i,s){this.type=2,this._$AH=F,this._$AN=void 0,this._$AA=e,this._$AB=t,this._$AM=i,this.options=s,this._$Cv=s?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const t=this._$AM;return void 0!==t&&11===e?.nodeType&&(e=t.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,t=this){e=Y(this,e,t),z(e)?e===F||null==e||""===e?(this._$AH!==F&&this._$AR(),this._$AH=F):e!==this._$AH&&e!==W&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>M(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==F&&z(this._$AH)?this._$AA.nextSibling.data=e:this.T(P.createTextNode(e)),this._$AH=e}$(e){const{values:t,_$litType$:i}=e,s="number"==typeof i?this._$AC(e):(void 0===i.el&&(i.el=K.createElement(G(i.h,i.h[0]),this.options)),i);if(this._$AH?._$AD===s)this._$AH.p(t);else{const e=new Z(s,this),i=e.u(this.options);e.p(t),this.T(i),this._$AH=e}}_$AC(e){let t=q.get(e.strings);return void 0===t&&q.set(e.strings,t=new K(e)),t}k(e){M(this._$AH)||(this._$AH=[],this._$AR());const t=this._$AH;let i,s=0;for(const o of e)s===t.length?t.push(i=new Q(this.O(T()),this.O(T()),this,this.options)):i=t[s],i._$AI(o),s++;s<t.length&&(this._$AR(i&&i._$AB.nextSibling,s),t.length=s)}_$AR(e=this._$AA.nextSibling,t){for(this._$AP?.(!1,!0,t);e!==this._$AB;){const t=w(e).nextSibling;w(e).remove(),e=t}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class X{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,t,i,s,o){this.type=1,this._$AH=F,this._$AN=void 0,this.element=e,this.name=t,this._$AM=s,this.options=o,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=F}_$AI(e,t=this,i,s){const o=this.strings;let n=!1;if(void 0===o)e=Y(this,e,t,0),n=!z(e)||e!==this._$AH&&e!==W,n&&(this._$AH=e);else{const s=e;let r,a;for(e=o[0],r=0;r<o.length-1;r++)a=Y(this,s[i+r],t,r),a===W&&(a=this._$AH[r]),n||=!z(a)||a!==this._$AH[r],a===F?e=F:e!==F&&(e+=(a??"")+o[r+1]),this._$AH[r]=a}n&&!s&&this.j(e)}j(e){e===F?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class ee extends X{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===F?void 0:e}}class te extends X{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==F)}}class ie extends X{constructor(e,t,i,s,o){super(e,t,i,s,o),this.type=5}_$AI(e,t=this){if((e=Y(this,e,t,0)??F)===W)return;const i=this._$AH,s=e===F&&i!==F||e.capture!==i.capture||e.once!==i.once||e.passive!==i.passive,o=e!==F&&(i===F||s);s&&this.element.removeEventListener(this.name,this,i),o&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class se{constructor(e,t,i){this.element=e,this.type=6,this._$AN=void 0,this._$AM=t,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(e){Y(this,e)}}const oe=y.litHtmlPolyfillSupport;oe?.(K,Q),(y.litHtmlVersions??=[]).push("3.3.3");const ne=globalThis;
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function dt(t){return(e,s)=>"object"==typeof s?lt(t,e,s):((t,e,s)=>{const o=e.hasOwnProperty(s);return e.constructor.createProperty(s,t),o?Object.getOwnPropertyDescriptor(e,s):void 0})(t,e,s)}
+ */class re extends x{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const e=super.createRenderRoot();return this.renderOptions.renderBefore??=e.firstChild,e}update(e){const t=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(e),this._$Do=((e,t,i)=>{const s=i?.renderBefore??t;let o=s._$litPart$;if(void 0===o){const e=i?.renderBefore??null;s._$litPart$=o=new Q(t.insertBefore(T(),e),e,void 0,i??{})}return o._$AI(e),o})(t,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return W}}re._$litElement$=!0,re.finalized=!0,ne.litElementHydrateSupport?.({LitElement:re});const ae=ne.litElementPolyfillSupport;ae?.({LitElement:re}),(ne.litElementVersions??=[]).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function ht(t){return dt({...t,state:!0,attribute:!1})}const pt=((t,...e)=>{const s=1===t.length?t[0]:e.reduce((e,s,o)=>e+(t=>{if(!0===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+t[o+1],t[0]);return new n(s,t,o)})`
+ */
+const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce,t,i)=>{const{kind:s,metadata:o}=i;let n=globalThis.litPropertyMetadata.get(o);if(void 0===n&&globalThis.litPropertyMetadata.set(o,n=new Map),"setter"===s&&((e=Object.create(e)).wrapped=!0),n.set(i.name,e),"accessor"===s){const{name:s}=i;return{set(i){const o=t.get.call(this);t.set.call(this,i),this.requestUpdate(s,o,e,!0,i)},init(t){return void 0!==t&&this.C(s,void 0,e,t),t}}}if("setter"===s){const{name:s}=i;return function(i){const o=this[s];t.call(this,i),this.requestUpdate(s,o,e,!0,i)}}throw Error("Unsupported decorator location: "+s)};
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */function de(e){return(t,i)=>"object"==typeof i?le(e,t,i):((e,t,i)=>{const s=t.hasOwnProperty(i);return t.constructor.createProperty(i,e),s?Object.getOwnPropertyDescriptor(t,i):void 0})(e,t,i)}
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */function he(e){return de({...e,state:!0,attribute:!1})}const pe=((e,...t)=>{const i=1===e.length?e[0]:t.reduce((t,i,s)=>t+(e=>{if(!0===e._$cssResult$)return e.cssText;if("number"==typeof e)return e;throw Error("Value passed to 'css' function must be a 'css' function result: "+e+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(i)+e[s+1],e[0]);return new n(i,e,s)})`
   /* ──────────────────────────────────────────────────────────
      Default Token Layer (Standard Home Assistant)
      ────────────────────────────────────────────────────────── */
@@ -236,9 +236,10 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
   }
 
   .pill-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     gap: 6px;
     padding: 10px 8px;
     border-radius: 12px;
@@ -249,13 +250,19 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+    min-width: 0;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
   .pill-btn:hover { background: var(--sf-surface-hover); }
   .pill-btn.disabled { opacity: 0.5; cursor: not-allowed; }
   .pill-btn ha-icon { --mdc-icon-size: 16px; flex-shrink: 0; }
+  .pill-btn span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    max-width: 100%;
+  }
 
   .pill-btn.active {
     background: var(--sf-accent);
@@ -354,12 +361,16 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
     font-weight: 400;
     color: var(--sf-text);
     line-height: 1.1;
+    text-align: center;
+    max-width: 100%;
+    word-break: break-word;
   }
   .gh-subtitle-large {
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--sf-text-2);
     margin-top: 4px;
+    text-align: center;
   }
 
   /* ── Google Home Stepper Action Row ── */
@@ -488,6 +499,8 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
   .gh-chip {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 6px;
     padding: 6px 12px;
     border-radius: 16px;
@@ -500,6 +513,14 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
     transition: 0.2s ease;
     --mdc-icon-size: 16px;
     outline: none;
+    min-width: 0;
+  }
+  .gh-chip span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    max-width: 100%;
   }
   .gh-chip:hover:not(:disabled), .gh-pill:hover {
     background: rgba(128, 128, 128, 0.25);
@@ -621,22 +642,22 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
     font-weight: 500;
     color: var(--sf-text-2);
   }
-`;window.customCards=window.customCards||[],window.customCards.push({type:"superfan-card",name:"Superfan Card",description:"A premium Lovelace fan card for the Superfan integration.",preview:!0});let ut=class extends rt{constructor(){super(...arguments),this._expanded=!1,this._ghDropdown=null,this._handleWindowClick=t=>{const e=t.composedPath();this._ghDropdown&&!e.includes(this)&&(this._ghDropdown=null)}}connectedCallback(){super.connectedCallback(),window.addEventListener("click",this._handleWindowClick)}disconnectedCallback(){window.removeEventListener("click",this._handleWindowClick),super.disconnectedCallback()}static get styles(){return pt}static getConfigForm(){return{schema:[{name:"entity",required:!0,label:"Fan Entity",selector:{entity:{domain:"fan",integration:"superfan_ir"}}},{name:"name",label:"Custom Title",selector:{text:{}}},{name:"theme",label:"Theme",selector:{select:{options:[{label:"Default HA Theme",value:"default"},{label:"Material You",value:"material_you"}]}}},{name:"layout",label:"Card Layout",selector:{select:{options:[{label:"Default (Full)",value:"default"},{label:"Compact (Expandable)",value:"compact"}]}}},{name:"full_layout",label:"Full View Style",selector:{select:{options:[{label:"Classic",value:"default"},{label:"Google Home",value:"google_home"}]}}},{name:"",type:"expandable",title:"Theming & Colors",icon:"mdi:palette",schema:[{name:"accent_color",label:"Accent Color",selector:{ui_color:{}}},{name:"main_color",label:"Background Color",selector:{ui_color:{}}}]},{name:"",type:"expandable",title:"Companion Entities (Auto-Discovered if blank)",icon:"mdi:link-variant",schema:[{name:"control_source_sensor",label:"Control Source Sensor",selector:{entity:{domain:"sensor",integration:"superfan_ir"}}},{name:"ir_blaster_sensor",label:"IR Blaster Sensor",selector:{entity:{domain:["binary_sensor","infrared","remote"]}}}]}]}}static getStubConfig(t,e,s){const o=e.find(t=>t.startsWith("fan."))||"";return{type:"custom:superfan-card",entity:o}}setConfig(t){if(!t||!t.entity)throw new Error("Please define a valid fan entity");this._config={...t}}updated(t){if(super.updated(t),t.has("_config")){const t=this._config?.theme||"default";this.getAttribute("theme")!==t&&this.setAttribute("theme",t)}}getCardSize(){return"compact"!==this._config?.layout||this._expanded?4:2}_haptic(t="light"){window.dispatchEvent(new CustomEvent("haptic",{detail:t}))}_sourceIcon(t){const e=(t||"").toLowerCase();return e.includes("remote")?"mdi:remote":e.includes("switch")?"mdi:toggle-switch":e.includes("blaster")||e.includes("failover")||"ir"===e?"mdi:remote-desktop":e.includes("cloud")||"mqtt"===e?"mdi:cloud-check":"mdi:remote-desktop"}_showToast(t){this._haptic("warning"),this.dispatchEvent(new CustomEvent("hass-notification",{bubbles:!0,composed:!0,detail:{message:t}}))}_setSpeed(t){this._haptic("selection"),this.hass.callService("fan","set_percentage",{entity_id:this._config.entity,percentage:t})}_toggle(){if(!this.hass||!this._config)return;this._haptic("medium");const t=this.hass.states[this._config.entity];t&&("off"===t.state?this.hass.callService("fan","turn_on",{entity_id:this._config.entity}):this.hass.callService("fan","turn_off",{entity_id:this._config.entity}))}_setPreset(t){this._haptic("light"),this.hass.callService("fan","set_preset_mode",{entity_id:this._config.entity,preset_mode:t})}_formatPresetName(t){return t?t.replace(/_/g," ").replace(/\b\w/g,t=>t.toUpperCase()):""}_getPresetIcon(t){const e=t.toLowerCase();return e.includes("breeze")?"mdi:weather-windy":e.includes("nature")?"mdi:nature":e.includes("smart")?"mdi:brain":e.includes("speed")?"mdi:swap-vertical":e.includes("eco")?"mdi:leaf":e.includes("wellness")?"mdi:heart-pulse":e.includes("ac")?"mdi:air-conditioner":e.includes("reverse")?"mdi:rotate-left":e.includes("sleep")?"mdi:bed-clock":e.includes("led")||e.includes("light")?"mdi:lightbulb-outline":e.includes("boost")?"mdi:rocket-launch-outline":e.includes("timer")||e.includes("hr")||e.includes("hour")?"mdi:timer-outline":"mdi:fan"}render(){if(!this._config||!this.hass)return null;const t=this.hass.states[this._config.entity];if(!t)return B`
+`;window.customCards=window.customCards||[],window.customCards.push({type:"superfan-card",name:"Superfan Card",description:"A premium Lovelace fan card for the Superfan integration.",preview:!0});let fe=class extends re{constructor(){super(...arguments),this._expanded=!1,this._ghDropdown=null,this._handleWindowClick=e=>{const t=e.composedPath();this._ghDropdown&&!t.includes(this)&&(this._ghDropdown=null)}}connectedCallback(){super.connectedCallback(),window.addEventListener("click",this._handleWindowClick)}disconnectedCallback(){window.removeEventListener("click",this._handleWindowClick),super.disconnectedCallback()}static get styles(){return pe}static getConfigForm(){return{schema:[{name:"entity",required:!0,label:"Fan Entity",selector:{entity:{domain:"fan",integration:"superfan_ir"}}},{name:"name",label:"Custom Title",selector:{text:{}}},{name:"theme",label:"Theme",selector:{select:{options:[{label:"Default HA Theme",value:"default"},{label:"Material You",value:"material_you"}]}}},{name:"layout",label:"Card Layout",selector:{select:{options:[{label:"Default (Full)",value:"default"},{label:"Compact (Expandable)",value:"compact"}]}}},{name:"full_layout",label:"Full View Style",selector:{select:{options:[{label:"Classic",value:"default"},{label:"Google Home",value:"google_home"}]}}},{name:"",type:"expandable",title:"Theming & Colors",icon:"mdi:palette",schema:[{name:"accent_color",label:"Accent Color",selector:{ui_color:{}}},{name:"main_color",label:"Background Color",selector:{ui_color:{}}}]},{name:"",type:"expandable",title:"Companion Entities (Auto-Discovered if blank)",icon:"mdi:link-variant",schema:[{name:"control_source_sensor",label:"Control Source Sensor",selector:{entity:{domain:"sensor",integration:"superfan_ir"}}},{name:"ir_blaster_sensor",label:"IR Blaster Sensor",selector:{entity:{domain:["binary_sensor","infrared","remote"]}}}]}]}}static getStubConfig(e,t,i){const s=t.find(e=>e.startsWith("fan."))||"";return{type:"custom:superfan-card",entity:s}}setConfig(e){if(!e||!e.entity)throw new Error("Please define a valid fan entity");this._config={...e}}updated(e){if(super.updated(e),e.has("_config")){const e=this._config?.theme||"default";this.getAttribute("theme")!==e&&this.setAttribute("theme",e)}}getCardSize(){return"compact"!==this._config?.layout||this._expanded?4:2}_haptic(e="light"){window.dispatchEvent(new CustomEvent("haptic",{detail:e}))}_sourceIcon(e){const t=(e||"").toLowerCase();return t.includes("remote")?"mdi:remote":t.includes("switch")?"mdi:toggle-switch":t.includes("blaster")||t.includes("failover")||"ir"===t?"mdi:remote-desktop":t.includes("cloud")||"mqtt"===t?"mdi:cloud-check":"mdi:remote-desktop"}_showToast(e){this._haptic("warning"),this.dispatchEvent(new CustomEvent("hass-notification",{bubbles:!0,composed:!0,detail:{message:e}}))}_setSpeed(e){this._haptic("selection"),this.hass.callService("fan","set_percentage",{entity_id:this._config.entity,percentage:e})}_toggle(){if(!this.hass||!this._config)return;this._haptic("medium");const e=this.hass.states[this._config.entity];e&&("off"===e.state?this.hass.callService("fan","turn_on",{entity_id:this._config.entity}):this.hass.callService("fan","turn_off",{entity_id:this._config.entity}))}_setPreset(e){this._haptic("light"),this.hass.callService("fan","set_preset_mode",{entity_id:this._config.entity,preset_mode:e})}_formatPresetName(e){return e?e.replace(/_/g," ").replace(/\b\w/g,e=>e.toUpperCase()):""}_getPresetIcon(e){const t=e.toLowerCase();return t.includes("breeze")?"mdi:weather-windy":t.includes("nature")?"mdi:nature":t.includes("smart")?"mdi:brain":t.includes("speed")?"mdi:swap-vertical":t.includes("eco")?"mdi:leaf":t.includes("wellness")?"mdi:heart-pulse":t.includes("ac")?"mdi:air-conditioner":t.includes("reverse")?"mdi:rotate-left":t.includes("sleep")?"mdi:bed-clock":t.includes("led")||t.includes("light")?"mdi:lightbulb-outline":t.includes("boost")?"mdi:rocket-launch-outline":t.includes("timer")||t.includes("hr")||t.includes("hour")?"mdi:timer-outline":"mdi:fan"}render(){if(!this._config||!this.hass)return null;const e=this.hass.states[this._config.entity];if(!e)return B`
         <ha-card style="padding: 20px; text-align: center;">
           <div style="font-size: 16px; font-weight: 700; color: var(--primary-text-color);">Superfan Card</div>
           <div style="font-size: 13px; color: var(--error-color, #e53935); margin-top: 6px;">
             Entity not found: <code>${this._config.entity}</code>
           </div>
         </ha-card>
-      `;const e=this._config.name||t.attributes.friendly_name||"Superfan",s="unavailable"!==t.state&&"unknown"!==t.state,o="on"===t.state&&s,i=t.attributes.percentage||0,n=t.attributes.preset_mode,r=t.attributes.preset_modes||[],a=t.attributes.percentage_step||100,c=Math.round(100/a),l=this._config.entity.replace(/^fan\./,""),d=this._config.control_source_sensor?this.hass.states[this._config.control_source_sensor]:this.hass.states[`sensor.${l}_last_controlled_via`]||Object.values(this.hass.states).find(t=>t.entity_id.startsWith("sensor.")&&t.entity_id.includes(l)&&t.entity_id.includes("last_controlled_via")),h=this._config.ir_blaster_sensor?this.hass.states[this._config.ir_blaster_sensor]:this.hass.states[`binary_sensor.${l}_ir_blaster_available`]||Object.values(this.hass.states).find(t=>t.entity_id.startsWith("binary_sensor.")&&t.entity_id.includes(l)&&t.entity_id.includes("ir_blaster_available")),p=h?"on"===h.state:s,u=d?d.state:null,f=r.filter(t=>!t.toLowerCase().includes("timer")&&!t.toLowerCase().includes("hr")&&!t.toLowerCase().includes("hour")),g=r.filter(t=>t.toLowerCase().includes("timer")||t.toLowerCase().includes("hr")||t.toLowerCase().includes("hour"));let b="";if(this._config.accent_color)if(Array.isArray(this._config.accent_color))b=`rgb(${this._config.accent_color.join(",")})`;else if("string"==typeof this._config.accent_color){const t=this._config.accent_color.toLowerCase();b="primary"===t?"var(--primary-color)":"accent"===t?"var(--accent-color)":/^[a-z-]+$/.test(t)?`var(--${t}-color, ${t})`:t}let m="";if(this._config.main_color)if(Array.isArray(this._config.main_color))m=`rgb(${this._config.main_color.join(",")})`;else if("string"==typeof this._config.main_color){const t=this._config.main_color.toLowerCase();m="primary"===t?"var(--primary-color)":"accent"===t?"var(--accent-color)":/^[a-z-]+$/.test(t)?`var(--${t}-color, ${t})`:t}const v=`${b?`--sf-accent: ${b}; `:""}${m?`--sf-bg: ${m}; `:""}`;return"compact"!==this._config.layout||this._expanded?"google_home"===this._config.full_layout?this._renderGoogleHomeFull(t,e,o,s,i,n,c,f,g,v,d,h):B`
+      `;const t=this._config.name||e.attributes.friendly_name||"Superfan",i="unavailable"!==e.state&&"unknown"!==e.state,s="on"===e.state&&i,o=e.attributes.percentage||0,n=e.attributes.preset_mode,r=e.attributes.preset_modes||[],a=e.attributes.percentage_step||100,c=Math.round(100/a),l=this._config.entity.replace(/^fan\./,""),d=this._config.control_source_sensor?this.hass.states[this._config.control_source_sensor]:this.hass.states[`sensor.${l}_last_controlled_via`]||Object.values(this.hass.states).find(e=>e.entity_id.startsWith("sensor.")&&e.entity_id.includes(l)&&e.entity_id.includes("last_controlled_via")),h=this._config.ir_blaster_sensor?this.hass.states[this._config.ir_blaster_sensor]:this.hass.states[`binary_sensor.${l}_ir_blaster_available`]||Object.values(this.hass.states).find(e=>e.entity_id.startsWith("binary_sensor.")&&e.entity_id.includes(l)&&e.entity_id.includes("ir_blaster_available")),p=h?"on"===h.state:i,f=d?d.state:null,u=r.filter(e=>!e.toLowerCase().includes("timer")&&!e.toLowerCase().includes("hr")&&!e.toLowerCase().includes("hour")),g=r.filter(e=>e.toLowerCase().includes("timer")||e.toLowerCase().includes("hr")||e.toLowerCase().includes("hour"));let b="";if(this._config.accent_color)if(Array.isArray(this._config.accent_color))b=`rgb(${this._config.accent_color.join(",")})`;else if("string"==typeof this._config.accent_color){const e=this._config.accent_color.toLowerCase();b="primary"===e?"var(--primary-color)":"accent"===e?"var(--accent-color)":/^[a-z-]+$/.test(e)?`var(--${e}-color, ${e})`:e}let m="";if(this._config.main_color)if(Array.isArray(this._config.main_color))m=`rgb(${this._config.main_color.join(",")})`;else if("string"==typeof this._config.main_color){const e=this._config.main_color.toLowerCase();m="primary"===e?"var(--primary-color)":"accent"===e?"var(--accent-color)":/^[a-z-]+$/.test(e)?`var(--${e}-color, ${e})`:e}const v=`${b?`--sf-accent: ${b}; `:""}${m?`--sf-bg: ${m}; `:""}`;return"compact"!==this._config.layout||this._expanded?"google_home"===this._config.full_layout?this._renderGoogleHomeFull(e,t,s,i,o,n,c,u,g,v,d,h):B`
       <ha-card style="${v}">
         <div class="header">
           <div class="header-left">
             <div class="title-row">
               <ha-icon class="header-icon" icon="mdi:fan"></ha-icon>
-              <div class="title">${e}</div>
+              <div class="title">${t}</div>
             </div>
-            <div class="subtitle">Fan: ${o?n?this._formatPresetName(n):`${i}%`:s?"Off":"Offline"}</div>
+            <div class="subtitle">Fan: ${s?n?this._formatPresetName(n):`${o}%`:i?"Off":"Offline"}</div>
           </div>
           <div class="header-right">
             ${"compact"===this._config.layout?B`
@@ -649,9 +670,9 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
               </button>
             `:""}
             <button
-              class="power-btn ${o?"on":""} ${s?"":"disabled"}"
-              title="${s?"Toggle Power":"Device is offline"}"
-              @click=${()=>{s?this._toggle():this._showToast("Device is offline")}}
+              class="power-btn ${s?"on":""} ${i?"":"disabled"}"
+              title="${i?"Toggle Power":"Device is offline"}"
+              @click=${()=>{i?this._toggle():this._showToast("Device is offline")}}
             >
               <ha-icon icon="mdi:power"></ha-icon>
             </button>
@@ -663,83 +684,83 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
           <div class="vertical-selector">
             ${5===c?B`
               <button
-                class="speed-btn ${o&&i>80&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Speed 5 (100%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(100):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>80&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Speed 5 (100%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(100):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>5</span>
               </button>
               <button
-                class="speed-btn ${o&&i>60&&i<=80&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Speed 4 (80%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(80):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>60&&o<=80&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Speed 4 (80%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(80):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>4</span>
               </button>
               <button
-                class="speed-btn ${o&&i>40&&i<=60&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Speed 3 (60%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(60):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>40&&o<=60&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Speed 3 (60%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(60):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>3</span>
               </button>
               <button
-                class="speed-btn ${o&&i>20&&i<=40&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Speed 2 (40%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(40):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>20&&o<=40&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Speed 2 (40%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(40):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>2</span>
               </button>
               <button
-                class="speed-btn ${o&&i>0&&i<=20&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Speed 1 (20%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(20):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>0&&o<=20&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Speed 1 (20%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(20):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>1</span>
               </button>
             `:3===c?B`
               <button
-                class="speed-btn ${o&&i>66&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"High Speed (100%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(100):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>66&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"High Speed (100%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(100):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
               </button>
               <button
-                class="speed-btn ${o&&i>33&&i<=66&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Medium Speed (66%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(66):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>33&&o<=66&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Medium Speed (66%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(66):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-2"></ha-icon>
                 <span>Medium</span>
               </button>
               <button
-                class="speed-btn ${o&&i>0&&i<=33&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Low Speed (33%)":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(33):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>0&&o<=33&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Low Speed (33%)":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(33):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
               </button>
             `:B`
               <button
-                class="speed-btn ${o&&i>50&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"High Speed":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(100):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>50&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"High Speed":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(100):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
               </button>
               <button
-                class="speed-btn ${o&&i>0&&i<=50&&!n?"active":""} ${o?"":"disabled"}"
-                title="${o?"Low Speed":"Turn on the fan to adjust speed"}"
-                @click=${()=>{s?o?this._setSpeed(50):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+                class="speed-btn ${s&&o>0&&o<=50&&!n?"active":""} ${i?"":"disabled"}"
+                title="${i?"Low Speed":"Device is offline"}"
+                @click=${()=>{i?this._setSpeed(50):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
@@ -749,17 +770,17 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
 
           <!-- Right Column: Presets -->
           <div class="presets-container">
-            ${f.length>0?B`
+            ${u.length>0?B`
               <div class="section-label">Modes</div>
               <div class="pill-grid">
-                ${f.map(t=>{const e=t.toLowerCase().includes("speed adjust"),s=Boolean(n&&"none"!==n&&!n.toLowerCase().includes("speed adjust"));return B`
+                ${u.map(e=>{const t=e.toLowerCase().includes("speed adjust"),o=Boolean(n&&"none"!==n&&!n.toLowerCase().includes("speed adjust"));return B`
                     <button
-                      class="pill-btn ${n===t?"active":""} ${!o||e&&s?"disabled":""}"
-                      title="${o?t:"Turn on the fan to select modes"}"
-                      @click=${()=>{o?this._setPreset(t):this._showToast("Turn on the fan to select modes")}}
+                      class="pill-btn ${n===e&&s?"active":""} ${!i||t&&o?"disabled":""}"
+                      title="${i?t&&o?"Deactivate current preset to adjust speed":e:"Device is offline"}"
+                      @click=${()=>{i?t&&o?this._showToast("Deactivate current preset to adjust speed"):this._setPreset(e):this._showToast("Device is offline")}}
                     >
-                      <ha-icon icon="${this._getPresetIcon(t)}"></ha-icon>
-                      <span>${t}</span>
+                      <ha-icon icon="${this._getPresetIcon(e)}"></ha-icon>
+                      <span>${e}</span>
                     </button>
                   `})}
               </div>
@@ -768,14 +789,14 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
             ${g.length>0?B`
               <div class="section-label" style="margin-top: 4px;">Timers</div>
               <div class="pill-grid">
-                ${g.map(t=>B`
+                ${g.map(e=>B`
                   <button
-                    class="pill-btn ${n===t?"active":""} ${o?"":"disabled"}"
-                    title="${o?t:"Turn on the fan to activate timers"}"
-                    @click=${()=>{o?this._setPreset(t):this._showToast("Turn on the fan to activate timers")}}
+                    class="pill-btn ${n===e&&s?"active":""} ${i?"":"disabled"}"
+                    title="${i?e:"Device is offline"}"
+                    @click=${()=>{i?this._setPreset(e):this._showToast("Device is offline")}}
                   >
                     <ha-icon icon="mdi:timer-outline"></ha-icon>
-                    <span>${t}</span>
+                    <span>${e}</span>
                   </button>
                 `)}
               </div>
@@ -793,36 +814,36 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
             <div class="status-dot ${p?"online":""}"></div>
             <span>IR Blaster</span>
           </div>
-          ${u?B`
+          ${f?B`
             <div class="connection-status-pill">
-              <ha-icon icon="${"IR Remote"===u?"mdi:remote":"Mains Switch"===u?"mdi:toggle-switch":"mdi:remote-desktop"}" style="--mdc-icon-size: 14px;"></ha-icon>
-              <span>Last controlled by: ${u}</span>
+              <ha-icon icon="${"IR Remote"===f?"mdi:remote":"Mains Switch"===f?"mdi:toggle-switch":"mdi:remote-desktop"}" style="--mdc-icon-size: 14px;"></ha-icon>
+              <span>Last controlled by: ${f}</span>
             </div>
           `:""}
         </div>
       </ha-card>
-    `:this._renderCompact(t,e,o,s,i,n,c,v)}_renderGoogleHomeFull(t,e,s,o,i,n,r,a,c,l,d,h){const p=s?n?this._formatPresetName(n):`${i}%`:"Off";let u=[];if(3===r)u=[{label:"Low",pct:33},{label:"Med",pct:66},{label:"High",pct:100}];else if(5===r)u=[{label:"1",pct:20},{label:"2",pct:40},{label:"3",pct:60},{label:"4",pct:80},{label:"5",pct:100}];else if(6===r)u=[{label:"1",pct:17},{label:"2",pct:33},{label:"3",pct:50},{label:"4",pct:67},{label:"5",pct:83},{label:"6",pct:100}];else{const t=r>0?r:3,e=100/t;for(let s=1;s<=t;s++)u.push({label:`${s}`,pct:Math.round(s*e)})}const f=s?u.findIndex((t,e)=>Math.abs(t.pct-i)<=10||e===u.length-1&&i>=t.pct-10):-1,g=f>=0?u[f].label:`${i}%`,b=c.find(t=>n===t),m=n&&!b?n:null,v=h?"on"===h.state:o,_=d?d.state:null;return B`
+    `:this._renderCompact(e,t,s,i,o,n,c,v)}_renderGoogleHomeFull(e,t,i,s,o,n,r,a,c,l,d,h){const p=i?n?this._formatPresetName(n):`${o}%`:"Off";let f=[];if(3===r)f=[{label:"Low",pct:33},{label:"Med",pct:66},{label:"High",pct:100}];else if(5===r)f=[{label:"1",pct:20},{label:"2",pct:40},{label:"3",pct:60},{label:"4",pct:80},{label:"5",pct:100}];else if(6===r)f=[{label:"1",pct:17},{label:"2",pct:33},{label:"3",pct:50},{label:"4",pct:67},{label:"5",pct:83},{label:"6",pct:100}];else{const e=r>0?r:3,t=100/e;for(let i=1;i<=e;i++)f.push({label:`${i}`,pct:Math.round(i*t)})}const u=i?f.findIndex((e,t)=>Math.abs(e.pct-o)<=10||t===f.length-1&&o>=e.pct-10):-1,g=u>=0?f[u].label:`${o}%`,b=c.find(e=>n===e),m=n&&!b?n:null,v=h?"on"===h.state:s,_=d?d.state:null;return B`
       <ha-card style="${l}" class="gh-full-card" @click=${()=>this._ghDropdown=null}>
         <!-- Header -->
         <div class="gh-header">
           <div class="gh-header-left">
             <ha-icon class="gh-icon" icon="mdi:fan"></ha-icon>
-            <div class="gh-title">${e}</div>
+            <div class="gh-title">${t}</div>
           </div>
           <div style="display: flex; gap: 8px;">
             ${"compact"===this._config.layout?B`
                   <button
                     class="gh-power-btn"
                     title="Collapse card"
-                    @click=${t=>{t.stopPropagation(),this._expanded=!1}}
+                    @click=${e=>{e.stopPropagation(),this._expanded=!1}}
                   >
                     <ha-icon icon="mdi:chevron-up"></ha-icon>
                   </button>
                 `:""}
             <button
-              class="gh-power-btn ${s?"on":""} ${o?"":"disabled"}"
-              title="${o?"Toggle Power":"Device is offline"}"
-              @click=${t=>{t.stopPropagation(),o?this._toggle():this._showToast("Device is offline")}}
+              class="gh-power-btn ${i?"on":""} ${s?"":"disabled"}"
+              title="${s?"Toggle Power":"Device is offline"}"
+              @click=${e=>{e.stopPropagation(),s?this._toggle():this._showToast("Device is offline")}}
             >
               <ha-icon icon="mdi:power"></ha-icon>
             </button>
@@ -831,23 +852,28 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
 
         <!-- Hero Value -->
         <div class="gh-center">
-          <div class="gh-value-large">${p}</div>
-          <div class="gh-subtitle-large">Fan Speed</div>
+          <div
+            class="gh-value-large"
+            style="${p.length>5?"font-size: 2.4rem; padding: 0 8px;":""}"
+          >
+            ${p}
+          </div>
+          <div class="gh-subtitle-large">${n?"Active Preset":"Fan Speed"}</div>
         </div>
 
         <!-- Google Home Dual Stepper Action Row -->
         <div class="gh-action-row">
           <button
-            class="gh-circular-btn ${s&&o?"":"disabled"}"
-            title="${o?s?f<=0?"Turn fan off":"Decrease speed":"Turn on the fan to decrease speed":"Device is offline"}"
-            @click=${t=>{t.stopPropagation(),o?s?f<=0?this._toggle():this._setSpeed(u[f-1].pct):this._showToast("Turn on the fan to decrease speed"):this._showToast("Device is offline")}}
+            class="gh-circular-btn ${i&&s?"":"disabled"}"
+            title="${s?i?u<=0?"Turn fan off":"Decrease speed":"Turn on the fan to decrease speed":"Device is offline"}"
+            @click=${e=>{e.stopPropagation(),s?i?u<=0?this._toggle():this._setSpeed(f[u-1].pct):this._showToast("Turn on the fan to decrease speed"):this._showToast("Device is offline")}}
           >
             <ha-icon icon="mdi:minus"></ha-icon>
           </button>
           <button
-            class="gh-circular-btn ${!o||s&&f>=u.length-1?"disabled":""}"
-            title="${o?s?f>=u.length-1?"Maximum speed reached":"Increase speed":"Turn on fan at low speed":"Device is offline"}"
-            @click=${t=>{t.stopPropagation(),o?s?f>=u.length-1?this._showToast("Maximum speed reached"):this._setSpeed(u[f+1].pct):this._setSpeed(u[0].pct):this._showToast("Device is offline")}}
+            class="gh-circular-btn ${!s||i&&u>=f.length-1?"disabled":""}"
+            title="${s?i?u>=f.length-1?"Maximum speed reached":"Increase speed":"Turn on fan at low speed":"Device is offline"}"
+            @click=${e=>{e.stopPropagation(),s?i?u>=f.length-1?this._showToast("Maximum speed reached"):this._setSpeed(f[u+1].pct):this._setSpeed(f[0].pct):this._showToast("Device is offline")}}
           >
             <ha-icon icon="mdi:plus"></ha-icon>
           </button>
@@ -859,20 +885,20 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
           <div class="gh-select-wrapper ${"speed"===this._ghDropdown?"active":""}">
             <button
               class="gh-custom-select ${s?"":"disabled"}"
-              title="${s?"Select Speed":"Turn on the fan to select speed"}"
-              @click=${t=>{t.stopPropagation(),s?(this._haptic("selection"),this._ghDropdown="speed"===this._ghDropdown?null:"speed"):this._showToast("Turn on the fan to select speed")}}
+              title="${s?"Select Speed":"Device is offline"}"
+              @click=${e=>{e.stopPropagation(),s?(this._haptic("selection"),this._ghDropdown="speed"===this._ghDropdown?null:"speed"):this._showToast("Device is offline")}}
             >
-              <span>Speed: ${s?g:"Off"}</span>
+              <span>Speed: ${i?g:"Off"}</span>
               <ha-icon icon="mdi:chevron-down"></ha-icon>
             </button>
             ${"speed"===this._ghDropdown?B`
               <div class="gh-dropdown-menu">
-                ${u.map((t,e)=>B`
+                ${f.map((e,t)=>B`
                   <button
-                    class="gh-dropdown-item ${s&&f===e?"active":""}"
-                    @click=${e=>{e.stopPropagation(),this._ghDropdown=null,this._setSpeed(t.pct)}}
+                    class="gh-dropdown-item ${i&&u===t?"active":""}"
+                    @click=${t=>{t.stopPropagation(),this._ghDropdown=null,this._setSpeed(e.pct)}}
                   >
-                    Speed ${t.label} (${t.pct}%)
+                    Speed ${e.label} (${e.pct}%)
                   </button>
                 `)}
               </div>
@@ -884,8 +910,8 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
             <div class="gh-select-wrapper ${"preset"===this._ghDropdown?"active":""}">
               <button
                 class="gh-custom-select ${s?"":"disabled"}"
-                title="${s?"Select Preset Mode":"Turn on the fan to select presets"}"
-                @click=${t=>{t.stopPropagation(),s?(this._haptic("selection"),this._ghDropdown="preset"===this._ghDropdown?null:"preset"):this._showToast("Turn on the fan to select presets")}}
+                title="${s?"Select Preset Mode":"Device is offline"}"
+                @click=${e=>{e.stopPropagation(),s?(this._haptic("selection"),this._ghDropdown="preset"===this._ghDropdown?null:"preset"):this._showToast("Device is offline")}}
               >
                 <span>Preset: ${m?this._formatPresetName(m):"None"}</span>
                 <ha-icon icon="mdi:chevron-down"></ha-icon>
@@ -894,16 +920,16 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
                 <div class="gh-dropdown-menu">
                   <button
                     class="gh-dropdown-item ${m?"":"active"}"
-                    @click=${t=>{t.stopPropagation(),this._ghDropdown=null,this._setSpeed(i||u[0].pct)}}
+                    @click=${e=>{e.stopPropagation(),this._ghDropdown=null,this._setSpeed(o||f[0].pct)}}
                   >
                     None
                   </button>
-                  ${a.map(t=>B`
+                  ${a.map(e=>B`
                     <button
-                      class="gh-dropdown-item ${n===t?"active":""}"
-                      @click=${e=>{e.stopPropagation(),this._ghDropdown=null,this._setPreset(t)}}
+                      class="gh-dropdown-item ${n===e?"active":""}"
+                      @click=${t=>{t.stopPropagation(),this._ghDropdown=null,this._setPreset(e)}}
                     >
-                      ${this._formatPresetName(t)}
+                      ${this._formatPresetName(e)}
                     </button>
                   `)}
                 </div>
@@ -916,8 +942,8 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
             <div class="gh-select-wrapper ${"timer"===this._ghDropdown?"active":""}">
               <button
                 class="gh-custom-select ${s?"":"disabled"}"
-                title="${s?"Select Timer":"Turn on the fan to set timers"}"
-                @click=${t=>{t.stopPropagation(),s?(this._haptic("selection"),this._ghDropdown="timer"===this._ghDropdown?null:"timer"):this._showToast("Turn on the fan to set timers")}}
+                title="${s?"Select Timer":"Device is offline"}"
+                @click=${e=>{e.stopPropagation(),s?(this._haptic("selection"),this._ghDropdown="timer"===this._ghDropdown?null:"timer"):this._showToast("Device is offline")}}
               >
                 <span>Timer: ${b?this._formatPresetName(b):"None"}</span>
                 <ha-icon icon="mdi:chevron-down"></ha-icon>
@@ -926,16 +952,16 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
                 <div class="gh-dropdown-menu">
                   <button
                     class="gh-dropdown-item ${b?"":"active"}"
-                    @click=${t=>{t.stopPropagation(),this._ghDropdown=null,this._setSpeed(i||u[0].pct)}}
+                    @click=${e=>{e.stopPropagation(),this._ghDropdown=null,this._setSpeed(o||f[0].pct)}}
                   >
                     None (Off)
                   </button>
-                  ${c.map(t=>B`
+                  ${c.map(e=>B`
                     <button
-                      class="gh-dropdown-item ${n===t?"active":""}"
-                      @click=${e=>{e.stopPropagation(),this._ghDropdown=null,this._setPreset(t)}}
+                      class="gh-dropdown-item ${n===e?"active":""}"
+                      @click=${t=>{t.stopPropagation(),this._ghDropdown=null,this._setPreset(e)}}
                     >
-                      ${this._formatPresetName(t)}
+                      ${this._formatPresetName(e)}
                     </button>
                   `)}
                 </div>
@@ -945,16 +971,16 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
         </div>
 
         <!-- Auxiliary Action Chips (LED Light if present) -->
-        ${a.filter(t=>t.toLowerCase().includes("light")||t.toLowerCase().includes("led")).length>0?B`
+        ${a.filter(e=>e.toLowerCase().includes("light")||e.toLowerCase().includes("led")).length>0?B`
               <div class="gh-extra-chips">
-                ${a.filter(t=>t.toLowerCase().includes("light")||t.toLowerCase().includes("led")).map(t=>B`
+                ${a.filter(e=>e.toLowerCase().includes("light")||e.toLowerCase().includes("led")).map(e=>B`
                       <button
-                        class="gh-chip ${n===t?"active":""} ${s?"":"disabled"}"
-                        title="${s?t:"Turn on the fan to activate"}"
-                        @click=${e=>{e.stopPropagation(),s?this._setPreset(t):this._showToast("Turn on the fan to activate")}}
+                        class="gh-chip ${n===e&&i?"active":""} ${s?"":"disabled"}"
+                        title="${s?e:"Device is offline"}"
+                        @click=${t=>{t.stopPropagation(),s?this._setPreset(e):this._showToast("Device is offline")}}
                       >
                         <ha-icon icon="mdi:lightbulb-outline"></ha-icon>
-                        <span>${this._formatPresetName(t)}</span>
+                        <span>${this._formatPresetName(e)}</span>
                       </button>
                     `)}
               </div>
@@ -977,7 +1003,7 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
               `:""}
         </div>
       </ha-card>
-    `}_renderCompact(t,e,s,o,i,n,r,a){const c=s?n?this._formatPresetName(n):`${i}%`:o?"Off":"Offline",l="google_home"===this._config.full_layout;return B`
+    `}_renderCompact(e,t,i,s,o,n,r,a){const c=i?n?this._formatPresetName(n):`${o}%`:s?"Off":"Offline",l="google_home"===this._config.full_layout;return B`
       <ha-card
         style="${a}"
         class="compact-card ${l?"google-home":"classic"}"
@@ -986,13 +1012,13 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
       >
         <div class="compact-header">
           <button
-            class="compact-icon-btn ${s?"on":""} ${o?"":"disabled"}"
-            title="${o?"Toggle Power":"Device is offline"}"
-            @click=${t=>{t.stopPropagation(),o?this._toggle():this._showToast("Device is offline")}}
+            class="compact-icon-btn ${i?"on":""} ${s?"":"disabled"}"
+            title="${s?"Toggle Power":"Device is offline"}"
+            @click=${e=>{e.stopPropagation(),s?this._toggle():this._showToast("Device is offline")}}
           >
             <ha-icon icon="mdi:power"></ha-icon>
           </button>
-          <div class="compact-title">${e}</div>
+          <div class="compact-title">${t}</div>
           <ha-icon class="compact-chevron" icon="mdi:chevron-right"></ha-icon>
         </div>
 
@@ -1007,20 +1033,20 @@ const ct={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},lt=(t=ct
 
         <div class="compact-footer">
           <button
-            class="compact-action-btn ${s&&o?"":"disabled"}"
-            title="${o?s?i<=1?"Turn fan off":"Decrease Speed":"Turn on the fan to adjust speed":"Device is offline"}"
-            @click=${t=>{t.stopPropagation(),o?s?this._cycleSpeed(i,r,-1):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+            class="compact-action-btn ${i&&s?"":"disabled"}"
+            title="${s?i?o<=1?"Turn fan off":"Decrease Speed":"Turn on the fan to adjust speed":"Device is offline"}"
+            @click=${e=>{e.stopPropagation(),s?i?o<=1?this._toggle():this._cycleSpeed(o,r,-1):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
           >
             <ha-icon icon="mdi:minus"></ha-icon>
           </button>
           <div class="compact-subtitle">Speed</div>
           <button
-            class="compact-action-btn ${!s||!o||s&&i>=100?"disabled":""}"
-            title="${o?s?i>=100?"Maximum speed reached":"Increase Speed":"Turn on the fan to adjust speed":"Device is offline"}"
-            @click=${t=>{t.stopPropagation(),o?s?i>=100?this._showToast("Maximum speed reached"):this._cycleSpeed(i,r,1):this._showToast("Turn on the fan to adjust speed"):this._showToast("Device is offline")}}
+            class="compact-action-btn ${!s||i&&o>=100?"disabled":""}"
+            title="${s?i?o>=100?"Maximum speed reached":"Increase Speed":"Turn on fan at low speed":"Device is offline"}"
+            @click=${e=>{e.stopPropagation(),s?i?o>=100?this._showToast("Maximum speed reached"):this._cycleSpeed(o,r,1):this._setSpeed(o>0?o:3===r?33:6===r?17:20):this._showToast("Device is offline")}}
           >
             <ha-icon icon="mdi:plus"></ha-icon>
           </button>
         </div>
       </ha-card>
-    `}_cycleSpeed(t,e,s){if(this._haptic("light"),3===e){const e=[0,33,66,100];let o=e.findIndex(e=>Math.abs(e-t)<=2);-1===o&&(o=0);let i=o+s;return i>3&&(i=3),i<0&&(i=0),void this._setSpeed(e[i])}if(5===e){const e=[0,20,40,60,80,100];let o=e.findIndex(e=>Math.abs(e-t)<=2);-1===o&&(o=0);let i=o+s;return i>5&&(i=5),i<0&&(i=0),void this._setSpeed(e[i])}if(6===e){const e=[0,17,33,50,67,83,100];let o=e.findIndex(e=>Math.abs(e-t)<=2);-1===o&&(o=0);let i=o+s;return i>6&&(i=6),i<0&&(i=0),void this._setSpeed(e[i])}let o=t+100/e*s;o>100&&(o=100),o<0&&(o=0),this._setSpeed(Math.round(o))}};t([dt({attribute:!1})],ut.prototype,"hass",void 0),t([ht()],ut.prototype,"_config",void 0),t([ht()],ut.prototype,"_expanded",void 0),t([ht()],ut.prototype,"_ghDropdown",void 0),ut=t([(t=>(e,s)=>{void 0!==s?s.addInitializer(()=>{customElements.define(t,e)}):customElements.define(t,e)})("superfan-card")],ut);export{ut as SuperfanCard};
+    `}_cycleSpeed(e,t,i){if(this._haptic("light"),3===t){const t=[0,33,66,100];let s=t.findIndex(t=>Math.abs(t-e)<=2);-1===s&&(s=0);let o=s+i;return o>3&&(o=3),o<0&&(o=0),void this._setSpeed(t[o])}if(5===t){const t=[0,20,40,60,80,100];let s=t.findIndex(t=>Math.abs(t-e)<=2);-1===s&&(s=0);let o=s+i;return o>5&&(o=5),o<0&&(o=0),void this._setSpeed(t[o])}if(6===t){const t=[0,17,33,50,67,83,100];let s=t.findIndex(t=>Math.abs(t-e)<=2);-1===s&&(s=0);let o=s+i;return o>6&&(o=6),o<0&&(o=0),void this._setSpeed(t[o])}let s=e+100/t*i;s>100&&(s=100),s<0&&(s=0),this._setSpeed(Math.round(s))}};e([de({attribute:!1})],fe.prototype,"hass",void 0),e([he()],fe.prototype,"_config",void 0),e([he()],fe.prototype,"_expanded",void 0),e([he()],fe.prototype,"_ghDropdown",void 0),fe=e([(e=>(t,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(e,t)}):customElements.define(e,t)})("superfan-card")],fe);export{fe as SuperfanCard};
