@@ -240,15 +240,6 @@ private _showToast(message: string): void {
     }
 
     const name = this._config.name || stateObj.attributes.friendly_name || 'Superfan';
-    const isOnline = stateObj.state !== 'unavailable' && stateObj.state !== 'unknown';
-    const isOn = stateObj.state === 'on' && isOnline;
-    const percentage = stateObj.attributes.percentage || 0;
-    const presetMode = stateObj.attributes.preset_mode;
-    const presetModes = stateObj.attributes.preset_modes || [];
-
-    const percentageStep = stateObj.attributes.percentage_step || 100;
-    const speedCount = Math.round(100 / percentageStep);
-
     const baseId = this._config.entity.replace(/^fan\./, '');
     const controlSource = this._config.control_source_sensor 
       ? this.hass.states[this._config.control_source_sensor]
@@ -258,7 +249,15 @@ private _showToast(message: string): void {
       ? this.hass.states[this._config.ir_blaster_sensor]
       : (this.hass.states[`binary_sensor.${baseId}_ir_blaster_available`] || Object.values(this.hass.states).find(s => s.entity_id.startsWith('binary_sensor.') && s.entity_id.includes(baseId) && s.entity_id.includes('ir_blaster_available')));
 
-    const isBlasterOnline = irBlaster ? irBlaster.state === 'on' : isOnline;
+    const isBlasterOnline = irBlaster ? irBlaster.state === 'on' : true;
+    const isOnline = stateObj.state !== 'unavailable' && stateObj.state !== 'unknown' && isBlasterOnline;
+    const isOn = stateObj.state === 'on' && isOnline;
+    const percentage = stateObj.attributes.percentage || 0;
+    const presetMode = stateObj.attributes.preset_mode;
+    const presetModes = stateObj.attributes.preset_modes || [];
+
+    const percentageStep = stateObj.attributes.percentage_step || 100;
+    const speedCount = Math.round(100 / percentageStep);
     const lastControlledText = controlSource ? controlSource.state : null;
 
     // Split presets between modes and timers
@@ -543,7 +542,7 @@ private _showToast(message: string): void {
     controlSource?: any,
     irBlaster?: any
   ): TemplateResult {
-    const displayValue = isOn ? (presetMode ? this._formatPresetName(presetMode) : `${percentage}%`) : 'Off';
+    const displayValue = isOn ? (presetMode ? this._formatPresetName(presetMode) : `${percentage}%`) : (isOnline ? 'Off' : 'Offline');
 
     // Calculate discrete speed steps based on fan model speed count
     let speedSteps: { label: string; pct: number }[] = [];

@@ -15,7 +15,7 @@ const t=globalThis,i=t.ShadowRoot&&(void 0===t.ShadyCSS||t.ShadyCSS.nativeShadow
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const y=globalThis,w=e=>e,A=y.trustedTypes,S=A?A.createPolicy("lit-html",{createHTML:e=>e}):void 0,k="$lit$",C=`lit$${Math.random().toFixed(9).slice(2)}$`,E="?"+C,D=`<${E}>`,P=document,T=()=>P.createComment(""),z=e=>null===e||"object"!=typeof e&&"function"!=typeof e,M=Array.isArray,H="[ \t\n\f\r]",O=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,j=/-->/g,L=/>/g,N=RegExp(`>|${H}(?:([^\\s"'>=/]+)(${H}*=${H}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),U=/'/g,R=/"/g,I=/^(?:script|style|textarea|title)$/i,B=(e=>(t,...i)=>({_$litType$:e,strings:t,values:i}))(1),W=Symbol.for("lit-noChange"),F=Symbol.for("lit-nothing"),q=new WeakMap,V=P.createTreeWalker(P,129);function G(e,t){if(!M(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==S?S.createHTML(t):t}const J=(e,t)=>{const i=e.length-1,s=[];let o,n=2===t?"<svg>":3===t?"<math>":"",r=O;for(let t=0;t<i;t++){const i=e[t];let a,c,l=-1,d=0;for(;d<i.length&&(r.lastIndex=d,c=r.exec(i),null!==c);)d=r.lastIndex,r===O?"!--"===c[1]?r=j:void 0!==c[1]?r=L:void 0!==c[2]?(I.test(c[2])&&(o=RegExp("</"+c[2],"g")),r=N):void 0!==c[3]&&(r=N):r===N?">"===c[0]?(r=o??O,l=-1):void 0===c[1]?l=-2:(l=r.lastIndex-c[2].length,a=c[1],r=void 0===c[3]?N:'"'===c[3]?R:U):r===R||r===U?r=N:r===j||r===L?r=O:(r=N,o=void 0);const h=r===N&&e[t+1].startsWith("/>")?" ":"";n+=r===O?i+D:l>=0?(s.push(a),i.slice(0,l)+k+i.slice(l)+C+h):i+C+(-2===l?t:h)}return[G(e,n+(e[i]||"<?>")+(2===t?"</svg>":3===t?"</math>":"")),s]};class K{constructor({strings:e,_$litType$:t},i){let s;this.parts=[];let o=0,n=0;const r=e.length-1,a=this.parts,[c,l]=J(e,t);if(this.el=K.createElement(c,i),V.currentNode=this.el.content,2===t||3===t){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(s=V.nextNode())&&a.length<r;){if(1===s.nodeType){if(s.hasAttributes())for(const e of s.getAttributeNames())if(e.endsWith(k)){const t=l[n++],i=s.getAttribute(e).split(C),r=/([.?@])?(.*)/.exec(t);a.push({type:1,index:o,name:r[2],strings:i,ctor:"."===r[1]?ee:"?"===r[1]?te:"@"===r[1]?ie:X}),s.removeAttribute(e)}else e.startsWith(C)&&(a.push({type:6,index:o}),s.removeAttribute(e));if(I.test(s.tagName)){const e=s.textContent.split(C),t=e.length-1;if(t>0){s.textContent=A?A.emptyScript:"";for(let i=0;i<t;i++)s.append(e[i],T()),V.nextNode(),a.push({type:2,index:++o});s.append(e[t],T())}}}else if(8===s.nodeType)if(s.data===E)a.push({type:2,index:o});else{let e=-1;for(;-1!==(e=s.data.indexOf(C,e+1));)a.push({type:7,index:o}),e+=C.length-1}o++}}static createElement(e,t){const i=P.createElement("template");return i.innerHTML=e,i}}function Y(e,t,i=e,s){if(t===W)return t;let o=void 0!==s?i._$Co?.[s]:i._$Cl;const n=z(t)?void 0:t._$litDirective$;return o?.constructor!==n&&(o?._$AO?.(!1),void 0===n?o=void 0:(o=new n(e),o._$AT(e,i,s)),void 0!==s?(i._$Co??=[])[s]=o:i._$Cl=o),void 0!==o&&(t=Y(e,o._$AS(e,t.values),o,s)),t}class Z{constructor(e,t){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=t}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:t},parts:i}=this._$AD,s=(e?.creationScope??P).importNode(t,!0);V.currentNode=s;let o=V.nextNode(),n=0,r=0,a=i[0];for(;void 0!==a;){if(n===a.index){let t;2===a.type?t=new Q(o,o.nextSibling,this,e):1===a.type?t=new a.ctor(o,a.name,a.strings,this,e):6===a.type&&(t=new se(o,this,e)),this._$AV.push(t),a=i[++r]}n!==a?.index&&(o=V.nextNode(),n++)}return V.currentNode=P,s}p(e){let t=0;for(const i of this._$AV)void 0!==i&&(void 0!==i.strings?(i._$AI(e,i,t),t+=i.strings.length-2):i._$AI(e[t])),t++}}class Q{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,t,i,s){this.type=2,this._$AH=F,this._$AN=void 0,this._$AA=e,this._$AB=t,this._$AM=i,this.options=s,this._$Cv=s?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const t=this._$AM;return void 0!==t&&11===e?.nodeType&&(e=t.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,t=this){e=Y(this,e,t),z(e)?e===F||null==e||""===e?(this._$AH!==F&&this._$AR(),this._$AH=F):e!==this._$AH&&e!==W&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>M(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==F&&z(this._$AH)?this._$AA.nextSibling.data=e:this.T(P.createTextNode(e)),this._$AH=e}$(e){const{values:t,_$litType$:i}=e,s="number"==typeof i?this._$AC(e):(void 0===i.el&&(i.el=K.createElement(G(i.h,i.h[0]),this.options)),i);if(this._$AH?._$AD===s)this._$AH.p(t);else{const e=new Z(s,this),i=e.u(this.options);e.p(t),this.T(i),this._$AH=e}}_$AC(e){let t=q.get(e.strings);return void 0===t&&q.set(e.strings,t=new K(e)),t}k(e){M(this._$AH)||(this._$AH=[],this._$AR());const t=this._$AH;let i,s=0;for(const o of e)s===t.length?t.push(i=new Q(this.O(T()),this.O(T()),this,this.options)):i=t[s],i._$AI(o),s++;s<t.length&&(this._$AR(i&&i._$AB.nextSibling,s),t.length=s)}_$AR(e=this._$AA.nextSibling,t){for(this._$AP?.(!1,!0,t);e!==this._$AB;){const t=w(e).nextSibling;w(e).remove(),e=t}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class X{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,t,i,s,o){this.type=1,this._$AH=F,this._$AN=void 0,this.element=e,this.name=t,this._$AM=s,this.options=o,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=F}_$AI(e,t=this,i,s){const o=this.strings;let n=!1;if(void 0===o)e=Y(this,e,t,0),n=!z(e)||e!==this._$AH&&e!==W,n&&(this._$AH=e);else{const s=e;let r,a;for(e=o[0],r=0;r<o.length-1;r++)a=Y(this,s[i+r],t,r),a===W&&(a=this._$AH[r]),n||=!z(a)||a!==this._$AH[r],a===F?e=F:e!==F&&(e+=(a??"")+o[r+1]),this._$AH[r]=a}n&&!s&&this.j(e)}j(e){e===F?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class ee extends X{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===F?void 0:e}}class te extends X{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==F)}}class ie extends X{constructor(e,t,i,s,o){super(e,t,i,s,o),this.type=5}_$AI(e,t=this){if((e=Y(this,e,t,0)??F)===W)return;const i=this._$AH,s=e===F&&i!==F||e.capture!==i.capture||e.once!==i.once||e.passive!==i.passive,o=e!==F&&(i===F||s);s&&this.element.removeEventListener(this.name,this,i),o&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class se{constructor(e,t,i){this.element=e,this.type=6,this._$AN=void 0,this._$AM=t,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(e){Y(this,e)}}const oe=y.litHtmlPolyfillSupport;oe?.(K,Q),(y.litHtmlVersions??=[]).push("3.3.3");const ne=globalThis;
+const y=globalThis,w=e=>e,A=y.trustedTypes,S=A?A.createPolicy("lit-html",{createHTML:e=>e}):void 0,k="$lit$",C=`lit$${Math.random().toFixed(9).slice(2)}$`,E="?"+C,D=`<${E}>`,P=document,T=()=>P.createComment(""),z=e=>null===e||"object"!=typeof e&&"function"!=typeof e,M=Array.isArray,O="[ \t\n\f\r]",H=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,j=/-->/g,L=/>/g,N=RegExp(`>|${O}(?:([^\\s"'>=/]+)(${O}*=${O}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),U=/'/g,R=/"/g,I=/^(?:script|style|textarea|title)$/i,B=(e=>(t,...i)=>({_$litType$:e,strings:t,values:i}))(1),W=Symbol.for("lit-noChange"),F=Symbol.for("lit-nothing"),q=new WeakMap,V=P.createTreeWalker(P,129);function G(e,t){if(!M(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==S?S.createHTML(t):t}const J=(e,t)=>{const i=e.length-1,s=[];let o,n=2===t?"<svg>":3===t?"<math>":"",r=H;for(let t=0;t<i;t++){const i=e[t];let a,c,l=-1,d=0;for(;d<i.length&&(r.lastIndex=d,c=r.exec(i),null!==c);)d=r.lastIndex,r===H?"!--"===c[1]?r=j:void 0!==c[1]?r=L:void 0!==c[2]?(I.test(c[2])&&(o=RegExp("</"+c[2],"g")),r=N):void 0!==c[3]&&(r=N):r===N?">"===c[0]?(r=o??H,l=-1):void 0===c[1]?l=-2:(l=r.lastIndex-c[2].length,a=c[1],r=void 0===c[3]?N:'"'===c[3]?R:U):r===R||r===U?r=N:r===j||r===L?r=H:(r=N,o=void 0);const h=r===N&&e[t+1].startsWith("/>")?" ":"";n+=r===H?i+D:l>=0?(s.push(a),i.slice(0,l)+k+i.slice(l)+C+h):i+C+(-2===l?t:h)}return[G(e,n+(e[i]||"<?>")+(2===t?"</svg>":3===t?"</math>":"")),s]};class K{constructor({strings:e,_$litType$:t},i){let s;this.parts=[];let o=0,n=0;const r=e.length-1,a=this.parts,[c,l]=J(e,t);if(this.el=K.createElement(c,i),V.currentNode=this.el.content,2===t||3===t){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(s=V.nextNode())&&a.length<r;){if(1===s.nodeType){if(s.hasAttributes())for(const e of s.getAttributeNames())if(e.endsWith(k)){const t=l[n++],i=s.getAttribute(e).split(C),r=/([.?@])?(.*)/.exec(t);a.push({type:1,index:o,name:r[2],strings:i,ctor:"."===r[1]?ee:"?"===r[1]?te:"@"===r[1]?ie:X}),s.removeAttribute(e)}else e.startsWith(C)&&(a.push({type:6,index:o}),s.removeAttribute(e));if(I.test(s.tagName)){const e=s.textContent.split(C),t=e.length-1;if(t>0){s.textContent=A?A.emptyScript:"";for(let i=0;i<t;i++)s.append(e[i],T()),V.nextNode(),a.push({type:2,index:++o});s.append(e[t],T())}}}else if(8===s.nodeType)if(s.data===E)a.push({type:2,index:o});else{let e=-1;for(;-1!==(e=s.data.indexOf(C,e+1));)a.push({type:7,index:o}),e+=C.length-1}o++}}static createElement(e,t){const i=P.createElement("template");return i.innerHTML=e,i}}function Y(e,t,i=e,s){if(t===W)return t;let o=void 0!==s?i._$Co?.[s]:i._$Cl;const n=z(t)?void 0:t._$litDirective$;return o?.constructor!==n&&(o?._$AO?.(!1),void 0===n?o=void 0:(o=new n(e),o._$AT(e,i,s)),void 0!==s?(i._$Co??=[])[s]=o:i._$Cl=o),void 0!==o&&(t=Y(e,o._$AS(e,t.values),o,s)),t}class Z{constructor(e,t){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=t}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:t},parts:i}=this._$AD,s=(e?.creationScope??P).importNode(t,!0);V.currentNode=s;let o=V.nextNode(),n=0,r=0,a=i[0];for(;void 0!==a;){if(n===a.index){let t;2===a.type?t=new Q(o,o.nextSibling,this,e):1===a.type?t=new a.ctor(o,a.name,a.strings,this,e):6===a.type&&(t=new se(o,this,e)),this._$AV.push(t),a=i[++r]}n!==a?.index&&(o=V.nextNode(),n++)}return V.currentNode=P,s}p(e){let t=0;for(const i of this._$AV)void 0!==i&&(void 0!==i.strings?(i._$AI(e,i,t),t+=i.strings.length-2):i._$AI(e[t])),t++}}class Q{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,t,i,s){this.type=2,this._$AH=F,this._$AN=void 0,this._$AA=e,this._$AB=t,this._$AM=i,this.options=s,this._$Cv=s?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const t=this._$AM;return void 0!==t&&11===e?.nodeType&&(e=t.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,t=this){e=Y(this,e,t),z(e)?e===F||null==e||""===e?(this._$AH!==F&&this._$AR(),this._$AH=F):e!==this._$AH&&e!==W&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>M(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==F&&z(this._$AH)?this._$AA.nextSibling.data=e:this.T(P.createTextNode(e)),this._$AH=e}$(e){const{values:t,_$litType$:i}=e,s="number"==typeof i?this._$AC(e):(void 0===i.el&&(i.el=K.createElement(G(i.h,i.h[0]),this.options)),i);if(this._$AH?._$AD===s)this._$AH.p(t);else{const e=new Z(s,this),i=e.u(this.options);e.p(t),this.T(i),this._$AH=e}}_$AC(e){let t=q.get(e.strings);return void 0===t&&q.set(e.strings,t=new K(e)),t}k(e){M(this._$AH)||(this._$AH=[],this._$AR());const t=this._$AH;let i,s=0;for(const o of e)s===t.length?t.push(i=new Q(this.O(T()),this.O(T()),this,this.options)):i=t[s],i._$AI(o),s++;s<t.length&&(this._$AR(i&&i._$AB.nextSibling,s),t.length=s)}_$AR(e=this._$AA.nextSibling,t){for(this._$AP?.(!1,!0,t);e!==this._$AB;){const t=w(e).nextSibling;w(e).remove(),e=t}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class X{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,t,i,s,o){this.type=1,this._$AH=F,this._$AN=void 0,this.element=e,this.name=t,this._$AM=s,this.options=o,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=F}_$AI(e,t=this,i,s){const o=this.strings;let n=!1;if(void 0===o)e=Y(this,e,t,0),n=!z(e)||e!==this._$AH&&e!==W,n&&(this._$AH=e);else{const s=e;let r,a;for(e=o[0],r=0;r<o.length-1;r++)a=Y(this,s[i+r],t,r),a===W&&(a=this._$AH[r]),n||=!z(a)||a!==this._$AH[r],a===F?e=F:e!==F&&(e+=(a??"")+o[r+1]),this._$AH[r]=a}n&&!s&&this.j(e)}j(e){e===F?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class ee extends X{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===F?void 0:e}}class te extends X{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==F)}}class ie extends X{constructor(e,t,i,s,o){super(e,t,i,s,o),this.type=5}_$AI(e,t=this){if((e=Y(this,e,t,0)??F)===W)return;const i=this._$AH,s=e===F&&i!==F||e.capture!==i.capture||e.once!==i.once||e.passive!==i.passive,o=e!==F&&(i===F||s);s&&this.element.removeEventListener(this.name,this,i),o&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class se{constructor(e,t,i){this.element=e,this.type=6,this._$AN=void 0,this._$AM=t,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(e){Y(this,e)}}const oe=y.litHtmlPolyfillSupport;oe?.(K,Q),(y.litHtmlVersions??=[]).push("3.3.3");const ne=globalThis;
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -649,7 +649,7 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
             Entity not found: <code>${this._config.entity}</code>
           </div>
         </ha-card>
-      `;const t=this._config.name||e.attributes.friendly_name||"Superfan",i="unavailable"!==e.state&&"unknown"!==e.state,s="on"===e.state&&i,o=e.attributes.percentage||0,n=e.attributes.preset_mode,r=e.attributes.preset_modes||[],a=e.attributes.percentage_step||100,c=Math.round(100/a),l=this._config.entity.replace(/^fan\./,""),d=this._config.control_source_sensor?this.hass.states[this._config.control_source_sensor]:this.hass.states[`sensor.${l}_last_controlled_via`]||Object.values(this.hass.states).find(e=>e.entity_id.startsWith("sensor.")&&e.entity_id.includes(l)&&e.entity_id.includes("last_controlled_via")),h=this._config.ir_blaster_sensor?this.hass.states[this._config.ir_blaster_sensor]:this.hass.states[`binary_sensor.${l}_ir_blaster_available`]||Object.values(this.hass.states).find(e=>e.entity_id.startsWith("binary_sensor.")&&e.entity_id.includes(l)&&e.entity_id.includes("ir_blaster_available")),p=h?"on"===h.state:i,f=d?d.state:null,u=r.filter(e=>!e.toLowerCase().includes("timer")&&!e.toLowerCase().includes("hr")&&!e.toLowerCase().includes("hour")),g=r.filter(e=>e.toLowerCase().includes("timer")||e.toLowerCase().includes("hr")||e.toLowerCase().includes("hour"));let b="";if(this._config.accent_color)if(Array.isArray(this._config.accent_color))b=`rgb(${this._config.accent_color.join(",")})`;else if("string"==typeof this._config.accent_color){const e=this._config.accent_color.toLowerCase();b="primary"===e?"var(--primary-color)":"accent"===e?"var(--accent-color)":/^[a-z-]+$/.test(e)?`var(--${e}-color, ${e})`:e}let m="";if(this._config.main_color)if(Array.isArray(this._config.main_color))m=`rgb(${this._config.main_color.join(",")})`;else if("string"==typeof this._config.main_color){const e=this._config.main_color.toLowerCase();m="primary"===e?"var(--primary-color)":"accent"===e?"var(--accent-color)":/^[a-z-]+$/.test(e)?`var(--${e}-color, ${e})`:e}const v=`${b?`--sf-accent: ${b}; `:""}${m?`--sf-bg: ${m}; `:""}`;return"compact"!==this._config.layout||this._expanded?"google_home"===this._config.full_layout?this._renderGoogleHomeFull(e,t,s,i,o,n,c,u,g,v,d,h):B`
+      `;const t=this._config.name||e.attributes.friendly_name||"Superfan",i=this._config.entity.replace(/^fan\./,""),s=this._config.control_source_sensor?this.hass.states[this._config.control_source_sensor]:this.hass.states[`sensor.${i}_last_controlled_via`]||Object.values(this.hass.states).find(e=>e.entity_id.startsWith("sensor.")&&e.entity_id.includes(i)&&e.entity_id.includes("last_controlled_via")),o=this._config.ir_blaster_sensor?this.hass.states[this._config.ir_blaster_sensor]:this.hass.states[`binary_sensor.${i}_ir_blaster_available`]||Object.values(this.hass.states).find(e=>e.entity_id.startsWith("binary_sensor.")&&e.entity_id.includes(i)&&e.entity_id.includes("ir_blaster_available")),n=!o||"on"===o.state,r="unavailable"!==e.state&&"unknown"!==e.state&&n,a="on"===e.state&&r,c=e.attributes.percentage||0,l=e.attributes.preset_mode,d=e.attributes.preset_modes||[],h=e.attributes.percentage_step||100,p=Math.round(100/h),f=s?s.state:null,u=d.filter(e=>!e.toLowerCase().includes("timer")&&!e.toLowerCase().includes("hr")&&!e.toLowerCase().includes("hour")),g=d.filter(e=>e.toLowerCase().includes("timer")||e.toLowerCase().includes("hr")||e.toLowerCase().includes("hour"));let b="";if(this._config.accent_color)if(Array.isArray(this._config.accent_color))b=`rgb(${this._config.accent_color.join(",")})`;else if("string"==typeof this._config.accent_color){const e=this._config.accent_color.toLowerCase();b="primary"===e?"var(--primary-color)":"accent"===e?"var(--accent-color)":/^[a-z-]+$/.test(e)?`var(--${e}-color, ${e})`:e}let m="";if(this._config.main_color)if(Array.isArray(this._config.main_color))m=`rgb(${this._config.main_color.join(",")})`;else if("string"==typeof this._config.main_color){const e=this._config.main_color.toLowerCase();m="primary"===e?"var(--primary-color)":"accent"===e?"var(--accent-color)":/^[a-z-]+$/.test(e)?`var(--${e}-color, ${e})`:e}const v=`${b?`--sf-accent: ${b}; `:""}${m?`--sf-bg: ${m}; `:""}`;return"compact"!==this._config.layout||this._expanded?"google_home"===this._config.full_layout?this._renderGoogleHomeFull(e,t,a,r,c,l,p,u,g,v,s,o):B`
       <ha-card style="${v}">
         <div class="header">
           <div class="header-left">
@@ -657,7 +657,7 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
               <ha-icon class="header-icon" icon="mdi:fan"></ha-icon>
               <div class="title">${t}</div>
             </div>
-            <div class="subtitle">Fan: ${s?n?this._formatPresetName(n):`${o}%`:i?"Off":"Offline"}</div>
+            <div class="subtitle">Fan: ${a?l?this._formatPresetName(l):`${c}%`:r?"Off":"Offline"}</div>
           </div>
           <div class="header-right">
             ${"compact"===this._config.layout?B`
@@ -670,9 +670,9 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
               </button>
             `:""}
             <button
-              class="power-btn ${s?"on":""} ${i?"":"disabled"}"
-              title="${i?"Toggle Power":"Device is offline"}"
-              @click=${()=>{i?this._toggle():this._showToast("Device is offline")}}
+              class="power-btn ${a?"on":""} ${r?"":"disabled"}"
+              title="${r?"Toggle Power":"Device is offline"}"
+              @click=${()=>{r?this._toggle():this._showToast("Device is offline")}}
             >
               <ha-icon icon="mdi:power"></ha-icon>
             </button>
@@ -682,85 +682,85 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
         <div class="body-container">
           <!-- Left Column: Speed Selector -->
           <div class="vertical-selector">
-            ${5===c?B`
+            ${5===p?B`
               <button
-                class="speed-btn ${s&&o>80&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Speed 5 (100%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(100):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>80&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Speed 5 (100%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(100):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>5</span>
               </button>
               <button
-                class="speed-btn ${s&&o>60&&o<=80&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Speed 4 (80%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(80):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>60&&c<=80&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Speed 4 (80%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(80):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>4</span>
               </button>
               <button
-                class="speed-btn ${s&&o>40&&o<=60&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Speed 3 (60%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(60):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>40&&c<=60&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Speed 3 (60%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(60):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>3</span>
               </button>
               <button
-                class="speed-btn ${s&&o>20&&o<=40&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Speed 2 (40%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(40):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>20&&c<=40&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Speed 2 (40%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(40):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>2</span>
               </button>
               <button
-                class="speed-btn ${s&&o>0&&o<=20&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Speed 1 (20%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(20):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>0&&c<=20&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Speed 1 (20%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(20):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan"></ha-icon>
                 <span>1</span>
               </button>
-            `:3===c?B`
+            `:3===p?B`
               <button
-                class="speed-btn ${s&&o>66&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"High Speed (100%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(100):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>66&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"High Speed (100%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(100):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
               </button>
               <button
-                class="speed-btn ${s&&o>33&&o<=66&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Medium Speed (66%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(66):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>33&&c<=66&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Medium Speed (66%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(66):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-2"></ha-icon>
                 <span>Medium</span>
               </button>
               <button
-                class="speed-btn ${s&&o>0&&o<=33&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Low Speed (33%)":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(33):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>0&&c<=33&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Low Speed (33%)":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(33):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
               </button>
             `:B`
               <button
-                class="speed-btn ${s&&o>50&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"High Speed":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(100):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>50&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"High Speed":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(100):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-3"></ha-icon>
                 <span>High</span>
               </button>
               <button
-                class="speed-btn ${s&&o>0&&o<=50&&!n?"active":""} ${i?"":"disabled"}"
-                title="${i?"Low Speed":"Device is offline"}"
-                @click=${()=>{i?this._setSpeed(50):this._showToast("Device is offline")}}
+                class="speed-btn ${a&&c>0&&c<=50&&!l?"active":""} ${r?"":"disabled"}"
+                title="${r?"Low Speed":"Device is offline"}"
+                @click=${()=>{r?this._setSpeed(50):this._showToast("Device is offline")}}
               >
                 <ha-icon icon="mdi:fan-speed-1"></ha-icon>
                 <span>Low</span>
@@ -773,11 +773,11 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
             ${u.length>0?B`
               <div class="section-label">Modes</div>
               <div class="pill-grid">
-                ${u.map(e=>{const t=e.toLowerCase().includes("speed adjust"),o=Boolean(n&&"none"!==n&&!n.toLowerCase().includes("speed adjust"));return B`
+                ${u.map(e=>{const t=e.toLowerCase().includes("speed adjust"),i=Boolean(l&&"none"!==l&&!l.toLowerCase().includes("speed adjust"));return B`
                     <button
-                      class="pill-btn ${n===e&&s?"active":""} ${!i||t&&o?"disabled":""}"
-                      title="${i?t&&o?"Deactivate current preset to adjust speed":e:"Device is offline"}"
-                      @click=${()=>{i?t&&o?this._showToast("Deactivate current preset to adjust speed"):this._setPreset(e):this._showToast("Device is offline")}}
+                      class="pill-btn ${l===e&&a?"active":""} ${!r||t&&i?"disabled":""}"
+                      title="${r?t&&i?"Deactivate current preset to adjust speed":e:"Device is offline"}"
+                      @click=${()=>{r?t&&i?this._showToast("Deactivate current preset to adjust speed"):this._setPreset(e):this._showToast("Device is offline")}}
                     >
                       <ha-icon icon="${this._getPresetIcon(e)}"></ha-icon>
                       <span>${e}</span>
@@ -791,9 +791,9 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
               <div class="pill-grid">
                 ${g.map(e=>B`
                   <button
-                    class="pill-btn ${n===e&&s?"active":""} ${i?"":"disabled"}"
-                    title="${i?e:"Device is offline"}"
-                    @click=${()=>{i?this._setPreset(e):this._showToast("Device is offline")}}
+                    class="pill-btn ${l===e&&a?"active":""} ${r?"":"disabled"}"
+                    title="${r?e:"Device is offline"}"
+                    @click=${()=>{r?this._setPreset(e):this._showToast("Device is offline")}}
                   >
                     <ha-icon icon="mdi:timer-outline"></ha-icon>
                     <span>${e}</span>
@@ -802,7 +802,7 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
               </div>
             `:""}
 
-            ${0===r.length?B`
+            ${0===d.length?B`
               <div class="section-label">No Presets Available</div>
             `:""}
           </div>
@@ -811,7 +811,7 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
         <!-- Telemetry & Connection Footer -->
         <div class="footer-telemetry-row">
           <div class="connection-status-pill">
-            <div class="status-dot ${p?"online":""}"></div>
+            <div class="status-dot ${n?"online":""}"></div>
             <span>IR Blaster</span>
           </div>
           ${f?B`
@@ -822,7 +822,7 @@ const ce={attribute:!0,type:String,converter:v,reflect:!1,hasChanged:_},le=(e=ce
           `:""}
         </div>
       </ha-card>
-    `:this._renderCompact(e,t,s,i,o,n,c,v)}_renderGoogleHomeFull(e,t,i,s,o,n,r,a,c,l,d,h){const p=i?n?this._formatPresetName(n):`${o}%`:"Off";let f=[];if(3===r)f=[{label:"Low",pct:33},{label:"Med",pct:66},{label:"High",pct:100}];else if(5===r)f=[{label:"1",pct:20},{label:"2",pct:40},{label:"3",pct:60},{label:"4",pct:80},{label:"5",pct:100}];else if(6===r)f=[{label:"1",pct:17},{label:"2",pct:33},{label:"3",pct:50},{label:"4",pct:67},{label:"5",pct:83},{label:"6",pct:100}];else{const e=r>0?r:3,t=100/e;for(let i=1;i<=e;i++)f.push({label:`${i}`,pct:Math.round(i*t)})}const u=i?f.findIndex((e,t)=>Math.abs(e.pct-o)<=10||t===f.length-1&&o>=e.pct-10):-1,g=u>=0?f[u].label:`${o}%`,b=c.find(e=>n===e),m=n&&!b?n:null,v=h?"on"===h.state:s,_=d?d.state:null;return B`
+    `:this._renderCompact(e,t,a,r,c,l,p,v)}_renderGoogleHomeFull(e,t,i,s,o,n,r,a,c,l,d,h){const p=i?n?this._formatPresetName(n):`${o}%`:s?"Off":"Offline";let f=[];if(3===r)f=[{label:"Low",pct:33},{label:"Med",pct:66},{label:"High",pct:100}];else if(5===r)f=[{label:"1",pct:20},{label:"2",pct:40},{label:"3",pct:60},{label:"4",pct:80},{label:"5",pct:100}];else if(6===r)f=[{label:"1",pct:17},{label:"2",pct:33},{label:"3",pct:50},{label:"4",pct:67},{label:"5",pct:83},{label:"6",pct:100}];else{const e=r>0?r:3,t=100/e;for(let i=1;i<=e;i++)f.push({label:`${i}`,pct:Math.round(i*t)})}const u=i?f.findIndex((e,t)=>Math.abs(e.pct-o)<=10||t===f.length-1&&o>=e.pct-10):-1,g=u>=0?f[u].label:`${o}%`,b=c.find(e=>n===e),m=n&&!b?n:null,v=h?"on"===h.state:s,_=d?d.state:null;return B`
       <ha-card style="${l}" class="gh-full-card" @click=${()=>this._ghDropdown=null}>
         <!-- Header -->
         <div class="gh-header">
