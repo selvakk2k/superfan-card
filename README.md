@@ -1,4 +1,4 @@
-# superfan-card
+# Superfan Custom Lovelace Card (`superfan-card`)
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
 [![Stable](https://img.shields.io/github/v/release/selvakk2k/superfan-card?label=Stable&style=flat-square)](https://github.com/selvakk2k/superfan-card/releases/latest)
