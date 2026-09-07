@@ -1,7 +1,10 @@
 # superfan-card
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![Version](https://img.shields.io/github/v/release/selvakk2k/superfan-card)](https://github.com/selvakk2k/superfan-card/releases)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
+[![Stable](https://img.shields.io/github/v/release/selvakk2k/superfan-card?label=Stable&style=flat-square)](https://github.com/selvakk2k/superfan-card/releases/latest)
+[![Beta](https://img.shields.io/github/v/release/selvakk2k/superfan-card?include_prereleases&label=Beta&color=orange&style=flat-square)](https://github.com/selvakk2k/superfan-card/releases)
+[![AI-Assisted](https://img.shields.io/badge/AI%20Assisted-Antigravity%20%7C%20Claude-blueviolet?style=flat-square&logo=google)](https://github.com/selvakk2k)
+[![AI Attribution](https://img.shields.io/badge/AI%20Attribution-AIA%20PAI%20Nc%20Hin-orange?style=flat-square)](https://aiattribution.github.io/interpret-attribution)
 
 A premium custom Lovelace card for the [Superfan IR integration](https://github.com/selvakk2k/superfan_ir).
 
@@ -68,6 +71,11 @@ accent_color: "#03a9f4"   # optional, overrides theme accent
 - Home Assistant 2024.x or later
 - [Superfan IR integration](https://github.com/selvakk2k/superfan_ir) installed and configured
 
-## License
+## Credits & License
+
+### Project Contributors & AI Attribution
+* **Lead Architecture & Hardware Validation**: [@selvakk2k](https://github.com/selvakk2k) — physical testing on Superfan remotes, Lovelace UX requirements, and theme design.
+* **Code Implementation & Engineering**: **Antigravity** (Google DeepMind) — custom Lovelace card implementation, dynamic remote scaling, responsive speed selectors, and HACS packaging.
+* **Pre-Release Code Review & Auditing**: **Claude** (Anthropic) — independent code review, CSS architecture audits, and edge-case verification.
 
 Licensed under the **MIT License**. See the `LICENSE` file for the full license text.
