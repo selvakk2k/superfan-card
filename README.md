@@ -6,7 +6,7 @@
 [![AI-Assisted](https://img.shields.io/badge/AI%20Assisted-Antigravity%20%7C%20Claude-blueviolet?style=flat-square&logo=google)](https://github.com/selvakk2k)
 [![AI Attribution](https://img.shields.io/badge/AI%20Attribution-AIA%20PAI%20Nc%20Hin-orange?style=flat-square)](https://aiattribution.github.io/interpret-attribution)
 
-A premium custom Lovelace card for the [Superfan IR integration](https://github.com/selvakk2k/superfan_ir).
+A custom Lovelace card for the [Superfan IR integration](https://github.com/selvakk2k/superfan_ir).
 
 ## Features
 
