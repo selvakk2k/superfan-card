@@ -240,6 +240,17 @@ export class SuperfanCard extends LitElement {
     return preset.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
+  private _formatPresetLabel(preset: string, type: 'mode' | 'timer' = 'mode'): string {
+    if (!preset) return '';
+    let name = preset.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+    if (type === 'mode') {
+      name = name.replace(/\s+Mode$/i, '').trim();
+    } else if (type === 'timer') {
+      name = name.replace(/\s+Timer$/i, '').trim();
+    }
+    return name;
+  }
+
   private _getPresetIcon(preset: string): string {
     const p = preset.toLowerCase();
     if (p.includes('breeze')) return 'mdi:weather-windy';
@@ -492,14 +503,15 @@ export class SuperfanCard extends LitElement {
               <div class="section-label">Modes</div>
               <div class="pill-grid">
                 ${modes.map((preset: string) => {
+                  const label = this._formatPresetLabel(preset, 'mode');
                   const isSpeedAdjust = preset.toLowerCase().includes('speed adjust');
                   const isRealPresetActive = Boolean(
                     presetMode &&
                       presetMode !== 'none' &&
                       !presetMode.toLowerCase().includes('speed adjust')
                   );
-                  const desc = SUPERFAN_HELP_DESCRIPTIONS[preset] || '';
-                  let tooltip = preset;
+                  const desc = SUPERFAN_HELP_DESCRIPTIONS[label] || SUPERFAN_HELP_DESCRIPTIONS[preset] || '';
+                  let tooltip = label;
                   if (desc) tooltip += ` — ${desc}`;
                   if (!isOnline) tooltip = 'Device is offline';
                   else if (!isOn) tooltip = 'Turn on fan to activate preset';
@@ -533,7 +545,7 @@ export class SuperfanCard extends LitElement {
                       }}
                     >
                       <ha-icon icon="${this._getPresetIcon(preset)}"></ha-icon>
-                      <span>${preset}</span>
+                      <span>${label}</span>
                     </button>
                   `;
                 })}
@@ -544,8 +556,9 @@ export class SuperfanCard extends LitElement {
               <div class="section-label" style="margin-top: 4px;">Timers</div>
               <div class="pill-grid">
                 ${timers.map((preset: string) => {
-                  const desc = SUPERFAN_HELP_DESCRIPTIONS[preset] || `Automatically turns off after ${preset}`;
-                  let tooltip = preset;
+                  const label = this._formatPresetLabel(preset, 'timer');
+                  const desc = SUPERFAN_HELP_DESCRIPTIONS[preset] || SUPERFAN_HELP_DESCRIPTIONS[label] || `Automatically turns off after ${label}`;
+                  let tooltip = label;
                   if (desc) tooltip += ` — ${desc}`;
                   if (!isOnline) tooltip = 'Device is offline';
                   else if (!isOn) tooltip = 'Turn on fan to set timer';
@@ -576,7 +589,7 @@ export class SuperfanCard extends LitElement {
                       }}
                     >
                       <ha-icon icon="mdi:timer-outline"></ha-icon>
-                      <span>${preset}</span>
+                      <span>${label}</span>
                     </button>
                   `;
                 })}

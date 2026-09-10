@@ -194,18 +194,22 @@ export const styles = css`
   }
 
   .pill-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
+    width: 100%;
   }
 
   .pill-btn {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 90px;
+    height: 40px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     gap: 6px;
-    padding: 10px 8px;
+    padding: 0 10px;
     border-radius: 12px;
     border: 1px solid var(--sf-border);
     background: var(--sf-surface);
@@ -213,13 +217,23 @@ export const styles = css`
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
+    white-space: nowrap;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    min-width: 0;
+    box-sizing: border-box;
     overflow: hidden;
   }
-  .pill-btn:hover { background: var(--sf-surface-hover); }
-  .pill-btn.disabled { opacity: 0.5; cursor: not-allowed; }
-  .pill-btn ha-icon { --mdc-icon-size: 16px; flex-shrink: 0; }
+  .pill-btn:hover:not(.disabled) {
+    background: var(--sf-surface-hover);
+    border-color: color-mix(in srgb, var(--sf-accent) 40%, var(--sf-border));
+  }
+  .pill-btn.disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+  .pill-btn ha-icon {
+    --mdc-icon-size: 16px;
+    flex-shrink: 0;
+  }
   .pill-btn span {
     white-space: nowrap;
     overflow: hidden;
@@ -229,11 +243,11 @@ export const styles = css`
   }
 
   .pill-btn.active {
-    background: var(--sf-accent);
-    border-color: var(--sf-accent);
-    color: var(--sf-on-accent, #ffffff);
+    background: var(--sf-active-bg, color-mix(in srgb, var(--sf-accent) 15%, transparent));
+    border-color: var(--sf-active-border, var(--sf-accent));
+    color: var(--sf-accent);
     font-weight: 700;
-    box-shadow: 0 0 16px color-mix(in srgb, var(--sf-accent) 55%, transparent), 0 2px 8px color-mix(in srgb, var(--sf-accent) 35%, transparent);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--sf-accent) 25%, transparent);
   }
 
   /* ── Telemetry & Connection Footer ── */
