@@ -4,13 +4,24 @@ import { HomeAssistant } from 'custom-card-helpers';
 import { SuperfanCardConfig } from './types';
 import { styles } from './styles';
 
-(window as any).customCards = (window as any).customCards || [];
-(window as any).customCards.push({
+const customCardEntry = {
   type: 'superfan-card',
   name: 'Indian BLDC Fan Card',
   description: 'A premium custom Lovelace card for Indian BLDC ceiling fans (Atomberg, Superfan, Orient, Activa, Goldmedal).',
   preview: true,
-});
+  domain: 'fan',
+  domains: ['fan'],
+  documentationURL: 'https://github.com/selvakk2k/superfan-card',
+};
+(window as any).customCards = (window as any).customCards || [];
+const existingCardIdx = (window as any).customCards.findIndex(
+  (c: any) => c.type === 'superfan-card' || c.type === 'custom:superfan-card'
+);
+if (existingCardIdx >= 0) {
+  (window as any).customCards[existingCardIdx] = customCardEntry;
+} else {
+  (window as any).customCards.push(customCardEntry);
+}
 
 const SUPERFAN_HELP_DESCRIPTIONS: Record<string, string> = {
   Breeze: 'Simulates natural gusting wind by modulating motor RPM smoothly',
@@ -169,6 +180,20 @@ export class SuperfanCard extends LitElement {
       const theme = this._config?.theme || 'default';
       if (this.getAttribute('theme') !== theme) {
         this.setAttribute('theme', theme);
+      }
+      if (this._config?.accent_color) {
+        this.style.setProperty('--appliance-accent', this._config.accent_color);
+        this.style.setProperty('--sf-accent', this._config.accent_color);
+      } else {
+        this.style.removeProperty('--appliance-accent');
+        this.style.removeProperty('--sf-accent');
+      }
+      if (this._config?.main_color) {
+        this.style.setProperty('--appliance-bg', this._config.main_color);
+        this.style.setProperty('--sf-bg', this._config.main_color);
+      } else {
+        this.style.removeProperty('--appliance-bg');
+        this.style.removeProperty('--sf-bg');
       }
     }
   }
