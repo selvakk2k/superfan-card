@@ -17,13 +17,13 @@ A custom Lovelace dashboard card for Indian BLDC ceiling fans (Atomberg, Superfa
 * **Multiple Visual Layouts**: Seamless Google Home design and structured Classic card views with subtle ambient active glow indicators.
 * **Contextual Help & Guard Warnings**: Long-press any preset button on mobile touchscreens or hover on desktop to view functional descriptions, or tap while the device is offline/off for non-blocking toast notifications.
 * **Visual Editor Support**: Easily configure entity bindings, card titles, and custom theme accent colors directly within the Lovelace GUI editor.
-* **Theme Adaptive & Material You**: Fully responsive across default Home Assistant, dark mode, and Material You design themes (optimized for the [Material You Theme by Nerwyn](https://github.com/Nerwyn/material-you-theme)).
+* **Dynamic Theming & Theme Compatibility**: Fully responsive across default Home Assistant themes and dark mode, optimized for the [Material You Theme by Nerwyn](https://github.com/Nerwyn/material-you-theme) (Google Home layout) and the [Graphite Theme by Tilman Griesel](https://github.com/TilmanGriesel/graphite) (Classic layout).
 
 ---
 
 ## Screenshots
 
-| Google Home Style | Classic Card Style |
+| Google Home Style<br>*(shown with [Material You Theme](https://github.com/Nerwyn/material-you-theme))* | Classic Card Style<br>*(shown with [Graphite Theme](https://github.com/TilmanGriesel/graphite))* |
 | :---: | :---: |
 | **Full View**<br><img src="images/screenshot_gh_full.png" alt="Google Home Full View" width="380"> | **Full View**<br><img src="images/screenshot_classic_full.png" alt="Classic Full View" width="380"> |
 | **Compact View**<br><img src="images/screenshot_gh_compact.png" alt="Google Home Compact View" width="380"> | **Compact View**<br><img src="images/screenshot_classic_compact.png" alt="Classic Compact View" width="380"> |
