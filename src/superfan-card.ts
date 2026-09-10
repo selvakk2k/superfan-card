@@ -7,8 +7,8 @@ import { styles } from './styles';
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
   type: 'superfan-card',
-  name: 'Superfan Card',
-  description: 'A premium Lovelace fan card for the Superfan integration.',
+  name: 'Indian BLDC Fan Card',
+  description: 'A premium custom Lovelace card for Indian BLDC ceiling fans (Atomberg, Superfan, Orient, Activa, Goldmedal).',
   preview: true,
 });
 
