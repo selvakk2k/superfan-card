@@ -12,6 +12,20 @@ import { styles } from './styles';
   preview: true,
 });
 
+const SUPERFAN_HELP_DESCRIPTIONS: Record<string, string> = {
+  Breeze: 'Simulates natural gusting wind by modulating motor RPM smoothly',
+  Nature: 'Simulates outdoor ambient air currents',
+  Sleep: 'Gradually steps down fan speed overnight to prevent chills',
+  Boost: 'Operates BLDC motor at maximum RPM for rapid air turnover',
+  Eco: 'Optimizes motor duty cycle for ultra-low power consumption',
+  'Speed Adjust': 'Fine-tune discrete speed levels from the remote control',
+  '1 Hr Timer': 'Automatically turns off the fan after 1 hour',
+  '2 Hr Timer': 'Automatically turns off the fan after 2 hours',
+  '4 Hr Timer': 'Automatically turns off the fan after 4 hours',
+  '6 Hr Timer': 'Automatically turns off the fan after 6 hours',
+  '8 Hr Timer': 'Automatically turns off the fan after 8 hours',
+};
+
 @customElement('superfan-card')
 export class SuperfanCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -123,9 +137,28 @@ export class SuperfanCard extends LitElement {
     return { type: 'custom:superfan-card', entity: fanEntity };
   }
 
+  private _touchTimer: any = null;
+  private _isLongPress: boolean = false;
+
+  private _handleTouchStart(text: string): void {
+    if (!text) return;
+    this._isLongPress = false;
+    this._touchTimer = setTimeout(() => {
+      this._isLongPress = true;
+      this._showToast(text);
+    }, 500);
+  }
+
+  private _handleTouchEnd(): void {
+    if (this._touchTimer) {
+      clearTimeout(this._touchTimer);
+      this._touchTimer = null;
+    }
+  }
+
   public setConfig(config: SuperfanCardConfig): void {
-    if (!config || !config.entity) {
-      throw new Error('Please define a valid fan entity');
+    if (!config) {
+      throw new Error('Invalid configuration');
     }
     this._config = { ...config };
   }
@@ -149,7 +182,7 @@ export class SuperfanCard extends LitElement {
     window.dispatchEvent(new CustomEvent('haptic', { detail: type }));
   }
 
-    private _sourceIcon(source: string): string {
+  private _sourceIcon(source: string): string {
     const s = (source || '').toLowerCase();
     if (s.includes('remote')) return 'mdi:remote';
     if (s.includes('switch')) return 'mdi:toggle-switch';
@@ -158,7 +191,7 @@ export class SuperfanCard extends LitElement {
     return 'mdi:remote-desktop';
   }
 
-private _showToast(message: string): void {
+  private _showToast(message: string): void {
     this._haptic('warning');
     this.dispatchEvent(
       new CustomEvent('hass-notification', {
@@ -227,13 +260,17 @@ private _showToast(message: string): void {
   protected render(): TemplateResult | null {
     if (!this._config || !this.hass) return null;
 
-    const stateObj = this.hass.states[this._config.entity];
+    const entityId = this._config.entity;
+    const stateObj = entityId ? this.hass.states[entityId] : undefined;
     if (!stateObj) {
       return html`
-        <ha-card style="padding: 20px; text-align: center;">
-          <div style="font-size: 16px; font-weight: 700; color: var(--primary-text-color);">Superfan Card</div>
-          <div style="font-size: 13px; color: var(--error-color, #e53935); margin-top: 6px;">
-            Entity not found: <code>${this._config.entity}</code>
+        <ha-card class="superfan-card">
+          <div style="padding: 24px; text-align: center; color: var(--appliance-text-2, #8e8e93);">
+            <ha-icon icon="mdi:fan" style="--mdc-icon-size: 40px; margin-bottom: 8px; opacity: 0.6;"></ha-icon>
+            <div style="font-weight: 500; font-size: 15px; color: var(--appliance-text-1, var(--primary-text-color, inherit));">Superfan Card</div>
+            <div style="font-size: 13px; margin-top: 4px;">
+              ${entityId ? html`Entity not found: <code>${entityId}</code>` : 'Please select a Superfan entity in the card editor.'}
+            </div>
           </div>
         </ha-card>
       `;
@@ -461,13 +498,33 @@ private _showToast(message: string): void {
                       presetMode !== 'none' &&
                       !presetMode.toLowerCase().includes('speed adjust')
                   );
+                  const desc = SUPERFAN_HELP_DESCRIPTIONS[preset] || '';
+                  let tooltip = preset;
+                  if (desc) tooltip += ` — ${desc}`;
+                  if (!isOnline) tooltip = 'Device is offline';
+                  else if (!isOn) tooltip = 'Turn on fan to activate preset';
+                  else if (isSpeedAdjust && isRealPresetActive) tooltip = 'Deactivate current preset to adjust speed';
+
+                  const helpMsg = desc || tooltip;
+
                   return html`
                     <button
-                      class="pill-btn ${presetMode === preset && isOn ? 'active' : ''} ${!isOnline || (isSpeedAdjust && isRealPresetActive) ? 'disabled' : ''}"
-                      title="${!isOnline ? 'Device is offline' : (isSpeedAdjust && isRealPresetActive ? 'Deactivate current preset to adjust speed' : preset)}"
-                      @click=${() => {
+                      class="pill-btn ${presetMode === preset && isOn ? 'active' : ''} ${!isOnline || !isOn || (isSpeedAdjust && isRealPresetActive) ? 'disabled' : ''}"
+                      title="${tooltip}"
+                      @touchstart=${() => this._handleTouchStart(helpMsg)}
+                      @touchend=${() => this._handleTouchEnd()}
+                      @touchcancel=${() => this._handleTouchEnd()}
+                      @click=${(e: Event) => {
+                        if (this._isLongPress) {
+                          this._isLongPress = false;
+                          e.preventDefault();
+                          e.stopPropagation();
+                          return;
+                        }
                         if (!isOnline) {
                           this._showToast('Device is offline');
+                        } else if (!isOn) {
+                          this._showToast('Turn on fan to activate preset');
                         } else if (isSpeedAdjust && isRealPresetActive) {
                           this._showToast('Deactivate current preset to adjust speed');
                         } else {
@@ -486,22 +543,43 @@ private _showToast(message: string): void {
             ${timers.length > 0 ? html`
               <div class="section-label" style="margin-top: 4px;">Timers</div>
               <div class="pill-grid">
-                ${timers.map((preset: string) => html`
-                  <button
-                    class="pill-btn ${presetMode === preset && isOn ? 'active' : ''} ${!isOnline ? 'disabled' : ''}"
-                    title="${!isOnline ? 'Device is offline' : preset}"
-                    @click=${() => {
-                      if (!isOnline) {
-                        this._showToast('Device is offline');
-                      } else {
-                        this._setPreset(preset);
-                      }
-                    }}
-                  >
-                    <ha-icon icon="mdi:timer-outline"></ha-icon>
-                    <span>${preset}</span>
-                  </button>
-                `)}
+                ${timers.map((preset: string) => {
+                  const desc = SUPERFAN_HELP_DESCRIPTIONS[preset] || `Automatically turns off after ${preset}`;
+                  let tooltip = preset;
+                  if (desc) tooltip += ` — ${desc}`;
+                  if (!isOnline) tooltip = 'Device is offline';
+                  else if (!isOn) tooltip = 'Turn on fan to set timer';
+
+                  const helpMsg = desc || tooltip;
+
+                  return html`
+                    <button
+                      class="pill-btn ${presetMode === preset && isOn ? 'active' : ''} ${!isOnline || !isOn ? 'disabled' : ''}"
+                      title="${tooltip}"
+                      @touchstart=${() => this._handleTouchStart(helpMsg)}
+                      @touchend=${() => this._handleTouchEnd()}
+                      @touchcancel=${() => this._handleTouchEnd()}
+                      @click=${(e: Event) => {
+                        if (this._isLongPress) {
+                          this._isLongPress = false;
+                          e.preventDefault();
+                          e.stopPropagation();
+                          return;
+                        }
+                        if (!isOnline) {
+                          this._showToast('Device is offline');
+                        } else if (!isOn) {
+                          this._showToast('Turn on fan to set timer');
+                        } else {
+                          this._setPreset(preset);
+                        }
+                      }}
+                    >
+                      <ha-icon icon="mdi:timer-outline"></ha-icon>
+                      <span>${preset}</span>
+                    </button>
+                  `;
+                })}
               </div>
             ` : ''}
 
