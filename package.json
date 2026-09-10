@@ -1,7 +1,7 @@
 {
   "name": "superfan-card",
-  "version": "2.0.0-beta.16",
-  "description": "A premium custom Lovelace card for the Superfan IR integration.",
+  "version": "2.0.0",
+  "description": "Lovelace card for Superfan and Indian BLDC ceiling fans, IR integration.",
   "type": "module",
   "main": "dist/superfan-card.js",
   "scripts": {
