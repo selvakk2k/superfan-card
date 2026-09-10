@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/selvakk2k/superfan-card"
   },
-  "author": "selvakk2k",
+  "author": "Selva Kumaran K",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
