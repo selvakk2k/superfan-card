@@ -71,7 +71,7 @@ export class SuperfanCard extends LitElement {
             select: {
               options: [
                 { label: 'Default HA Theme', value: 'default' },
-                { label: 'Material You', value: 'material_you' },
+                { label: 'Material You (Optimized for Material 3 Theme)', value: 'material_you' },
               ],
             },
           },
